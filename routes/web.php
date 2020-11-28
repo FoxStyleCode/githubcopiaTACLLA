@@ -2,7 +2,7 @@
 
 use App\Detalle;
 use Illuminate\Support\Facades\Route;
-
+use Illuminate\Notifications\Notification;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,6 +17,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('auth.login');
 });
+
+// Route::get('/rutaprueba', function(){
+//     return view('prubadrag');
+// });
 
 Route::get('/pruebas', function () {
     $detalles = Detalle::all();
@@ -52,6 +56,8 @@ Route::group(['middleware' => ['permission:ver-log']], function () {
 
 Route::group(['middleware' => ['auth']], function () {
     Route::resource('plantillas', 'plantillasControlador');
+    Route::resource('links', 'linkController');
+    Route::resource('cerrados', 'cerradosController');
     Route::get('marcarLeidas', function(){
         auth()->user()->unreadNotifications->markAsRead();
         return redirect()->back()->with('success', 'Notificaciones leidas');

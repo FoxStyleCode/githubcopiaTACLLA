@@ -15,8 +15,9 @@ class CreatePlantillasTable extends Migration
     {
         Schema::create('plantillas', function (Blueprint $table) {
             $table->id()->autoIncrement();
-            $table->string('nombre_plantilla');
             $table->string('dir');
+            $table->string('nombre_plantilla');
+            $table->string('link');
             $table->timestamps();
         });
     }

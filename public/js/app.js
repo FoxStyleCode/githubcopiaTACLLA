@@ -1912,10 +1912,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue_multiselect__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue_multiselect__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var vue_multiselect_dist_vue_multiselect_min_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-multiselect/dist/vue-multiselect.min.css */ "./node_modules/vue-multiselect/dist/vue-multiselect.min.css");
 /* harmony import */ var vue_multiselect_dist_vue_multiselect_min_css__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vue_multiselect_dist_vue_multiselect_min_css__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var cxlt_vue2_toastr__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! cxlt-vue2-toastr */ "./node_modules/cxlt-vue2-toastr/dist/js/cxlt-vue2-toastr.js");
-/* harmony import */ var cxlt_vue2_toastr__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(cxlt_vue2_toastr__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var cxlt_vue2_toastr_dist_css_cxlt_vue2_toastr_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! cxlt-vue2-toastr/dist/css/cxlt-vue2-toastr.css */ "./node_modules/cxlt-vue2-toastr/dist/css/cxlt-vue2-toastr.css");
-/* harmony import */ var cxlt_vue2_toastr_dist_css_cxlt_vue2_toastr_css__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(cxlt_vue2_toastr_dist_css_cxlt_vue2_toastr_css__WEBPACK_IMPORTED_MODULE_3__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -1948,13 +1959,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 
 
-
-
-var toastrConfigs = {
-  position: 'top right',
-  showDuration: 200
-};
-Vue.use(cxlt_vue2_toastr__WEBPACK_IMPORTED_MODULE_2___default.a, toastrConfigs);
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     task: {
@@ -1969,7 +1973,10 @@ Vue.use(cxlt_vue2_toastr__WEBPACK_IMPORTED_MODULE_2___default.a, toastrConfigs);
       tarea: {
         value: [],
         nombretipo: ''
-      }
+      },
+      alert: null,
+      enviar: false,
+      error: null
     };
   },
   computed: {
@@ -1981,15 +1988,124 @@ Vue.use(cxlt_vue2_toastr__WEBPACK_IMPORTED_MODULE_2___default.a, toastrConfigs);
     guardar: function guardar() {
       var _this = this;
 
-      axios.post('tipos', this.tarea).then(function (respuesta) {
-        _this.tarea.value = [];
-        _this.tarea.nombretipo = '';
-        $('#ventanaModelTipo').modal('hide');
+      this.enviar = true;
+      this.error = null;
+      axios.post('tipos', this.tarea).then(function (r) {
+        _this.alert = 'ok';
+        setTimeout(function () {
+          location.reload();
+        }, 1000);
+      })["catch"](function (e) {
+        _this.error = e.response.data;
+        _this.enviar = false;
+      });
+    }
+  }
+});
 
-        _this.$toast.success({
-          title: 'Tipo de proyecto',
-          message: 'Se ha agregado un nuevo tipo de proyecto'
-        });
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/selectDrag.vue?vue&type=script&lang=js&":
+/*!*********************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/selectDrag.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vuedraggable__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuedraggable */ "./node_modules/vuedraggable/dist/vuedraggable.umd.js");
+/* harmony import */ var vuedraggable__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vuedraggable__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vue_multiselect__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-multiselect */ "./node_modules/vue-multiselect/dist/vue-multiselect.min.js");
+/* harmony import */ var vue_multiselect__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vue_multiselect__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var vue_multiselect_dist_vue_multiselect_min_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue-multiselect/dist/vue-multiselect.min.css */ "./node_modules/vue-multiselect/dist/vue-multiselect.min.css");
+/* harmony import */ var vue_multiselect_dist_vue_multiselect_min_css__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(vue_multiselect_dist_vue_multiselect_min_css__WEBPACK_IMPORTED_MODULE_2__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: {
+    task: {
+      type: Array
+    }
+  },
+  components: {
+    selectMultiple: vue_multiselect__WEBPACK_IMPORTED_MODULE_1___default.a
+  },
+  data: function data() {
+    return {
+      tarea: {
+        value: [],
+        nombretipo: ''
+      },
+      alert: null,
+      enviar: false,
+      error: null
+    };
+  },
+  computed: {
+    optionsTask: function optionsTask() {
+      return this.task;
+    }
+  },
+  methods: {
+    guardar: function guardar() {
+      var _this = this;
+
+      this.enviar = true;
+      this.error = null;
+      axios.post('tipos', this.tarea).then(function (r) {
+        _this.alert = 'ok';
+        setTimeout(function () {
+          location.reload();
+        }, 1000);
+      })["catch"](function (e) {
+        _this.error = e.response.data;
+        _this.enviar = false;
       });
     }
   }
@@ -6417,25 +6533,6 @@ Vue.use(cxlt_vue2_toastr__WEBPACK_IMPORTED_MODULE_2___default.a, toastrConfigs);
 
 /***/ }),
 
-/***/ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./node_modules/cxlt-vue2-toastr/dist/css/cxlt-vue2-toastr.css":
-/*!*****************************************************************************************************************************************************!*\
-  !*** ./node_modules/css-loader??ref--6-1!./node_modules/postcss-loader/src??ref--6-2!./node_modules/cxlt-vue2-toastr/dist/css/cxlt-vue2-toastr.css ***!
-  \*****************************************************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(/*! ../../../css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
-// imports
-
-
-// module
-exports.push([module.i, ".toast-title{font-weight:700}.toast-message{-ms-word-wrap:break-word;word-wrap:break-word}.toast-message a,.toast-message label{color:#fff}.toast-message a:hover{color:#ccc;text-decoration:none}.toast-close-button{position:relative;right:-.3em;top:-.3em;float:right;font-size:20px;font-weight:700;color:#fff;-webkit-text-shadow:0 1px 0 #fff;text-shadow:0 1px 0 #fff;opacity:.8;-ms-filter:progid:DXImageTransform.Microsoft.Alpha(Opacity=80);filter:alpha(opacity=80)}.toast-close-button:focus,.toast-close-button:hover{color:#000;text-decoration:none;cursor:pointer;opacity:.4;-ms-filter:progid:DXImageTransform.Microsoft.Alpha(Opacity=40);filter:alpha(opacity=40)}button.toast-close-button{padding:0;cursor:pointer;background:transparent;border:0;-webkit-appearance:none}.toast-icon{position:absolute;left:10px;top:25px}.toast-icon,.toast-icon img{width:30px;height:30px}.toast-top-center{top:0;right:0;width:100%}.toast-bottom-center{bottom:0;right:0;width:100%}.toast-top-full-width{top:0;right:0;width:100%}.toast-bottom-full-width{bottom:0;right:0;width:100%}.toast-top-left{top:12px;left:12px}.toast-top-right{top:12px;right:12px}.toast-bottom-right{right:12px;bottom:12px}.toast-bottom-left{bottom:12px;left:12px}.cxlt-toastr-container{position:fixed;z-index:999999;pointer-events:none}.cxlt-toastr-container *{-webkit-box-sizing:border-box;box-sizing:border-box}.cxlt-toastr-container>div{position:relative;pointer-events:auto;overflow:hidden;margin:0 0 6px;padding:15px 15px 15px 50px;width:300px;border-radius:3px 3px 3px 3px;background-position:15px;background-repeat:no-repeat;-webkit-box-shadow:0 0 12px #999;box-shadow:0 0 12px #999;color:#fff;opacity:.8;-ms-filter:progid:DXImageTransform.Microsoft.Alpha(Opacity=80);filter:alpha(opacity=80)}.cxlt-toastr-container>:hover{-webkit-box-shadow:0 0 12px #000;box-shadow:0 0 12px #000;opacity:1;-ms-filter:progid:DXImageTransform.Microsoft.Alpha(Opacity=100);filter:alpha(opacity=100);cursor:pointer}.cxlt-toastr-container.toast-bottom-center>div,.cxlt-toastr-container.toast-top-center>div{width:300px;margin-left:auto;margin-right:auto}.cxlt-toastr-container.toast-bottom-full-width>div,.cxlt-toastr-container.toast-top-full-width>div{width:96%;margin-left:auto;margin-right:auto}.toast{background-color:#030303}.toast-success{background-color:#51a351}.toast-error{background-color:#bd362f}.toast-info{background-color:#2f96b4}.toast-warning{background-color:#f89406}.toast-progress{position:absolute;left:0;bottom:0;height:4px;background-color:#000;opacity:.4;-ms-filter:progid:DXImageTransform.Microsoft.Alpha(Opacity=40);filter:alpha(opacity=40)}@media (max-width:240px){.cxlt-toastr-container>div{padding:8px 8px 8px 50px;width:11em}.cxlt-toastr-container .toast-close-button{right:-.2em;top:-.2em}}@media (min-width:241px) and (max-width:480px){.cxlt-toastr-container>div{padding:8px 8px 8px 50px;width:18em}.cxlt-toastr-container .toast-close-button{right:-.2em;top:-.2em}}@media (min-width:481px) and (max-width:768px){.cxlt-toastr-container>div{padding:15px 15px 15px 50px;width:25em}}/*!\n * animate.css -https://daneden.github.io/animate.css/\n * Version - 3.7.2\n * Licensed under the MIT license - http://opensource.org/licenses/MIT\n *\n * Copyright (c) 2019 Daniel Eden\n */@-webkit-keyframes bounce{0%,20%,53%,80%,to{-webkit-animation-timing-function:cubic-bezier(.215,.61,.355,1);animation-timing-function:cubic-bezier(.215,.61,.355,1);-webkit-transform:translateZ(0);transform:translateZ(0)}40%,43%{-webkit-animation-timing-function:cubic-bezier(.755,.05,.855,.06);animation-timing-function:cubic-bezier(.755,.05,.855,.06);-webkit-transform:translate3d(0,-30px,0);transform:translate3d(0,-30px,0)}70%{-webkit-animation-timing-function:cubic-bezier(.755,.05,.855,.06);animation-timing-function:cubic-bezier(.755,.05,.855,.06);-webkit-transform:translate3d(0,-15px,0);transform:translate3d(0,-15px,0)}90%{-webkit-transform:translate3d(0,-4px,0);transform:translate3d(0,-4px,0)}}@keyframes bounce{0%,20%,53%,80%,to{-webkit-animation-timing-function:cubic-bezier(.215,.61,.355,1);animation-timing-function:cubic-bezier(.215,.61,.355,1);-webkit-transform:translateZ(0);transform:translateZ(0)}40%,43%{-webkit-animation-timing-function:cubic-bezier(.755,.05,.855,.06);animation-timing-function:cubic-bezier(.755,.05,.855,.06);-webkit-transform:translate3d(0,-30px,0);transform:translate3d(0,-30px,0)}70%{-webkit-animation-timing-function:cubic-bezier(.755,.05,.855,.06);animation-timing-function:cubic-bezier(.755,.05,.855,.06);-webkit-transform:translate3d(0,-15px,0);transform:translate3d(0,-15px,0)}90%{-webkit-transform:translate3d(0,-4px,0);transform:translate3d(0,-4px,0)}}.bounce{-webkit-animation-name:bounce;animation-name:bounce;-webkit-transform-origin:center bottom;transform-origin:center bottom}@-webkit-keyframes flash{0%,50%,to{opacity:1}25%,75%{opacity:0}}@keyframes flash{0%,50%,to{opacity:1}25%,75%{opacity:0}}.flash{-webkit-animation-name:flash;animation-name:flash}@-webkit-keyframes pulse{0%{-webkit-transform:scaleX(1);transform:scaleX(1)}50%{-webkit-transform:scale3d(1.05,1.05,1.05);transform:scale3d(1.05,1.05,1.05)}to{-webkit-transform:scaleX(1);transform:scaleX(1)}}@keyframes pulse{0%{-webkit-transform:scaleX(1);transform:scaleX(1)}50%{-webkit-transform:scale3d(1.05,1.05,1.05);transform:scale3d(1.05,1.05,1.05)}to{-webkit-transform:scaleX(1);transform:scaleX(1)}}.pulse{-webkit-animation-name:pulse;animation-name:pulse}@-webkit-keyframes rubberBand{0%{-webkit-transform:scaleX(1);transform:scaleX(1)}30%{-webkit-transform:scale3d(1.25,.75,1);transform:scale3d(1.25,.75,1)}40%{-webkit-transform:scale3d(.75,1.25,1);transform:scale3d(.75,1.25,1)}50%{-webkit-transform:scale3d(1.15,.85,1);transform:scale3d(1.15,.85,1)}65%{-webkit-transform:scale3d(.95,1.05,1);transform:scale3d(.95,1.05,1)}75%{-webkit-transform:scale3d(1.05,.95,1);transform:scale3d(1.05,.95,1)}to{-webkit-transform:scaleX(1);transform:scaleX(1)}}@keyframes rubberBand{0%{-webkit-transform:scaleX(1);transform:scaleX(1)}30%{-webkit-transform:scale3d(1.25,.75,1);transform:scale3d(1.25,.75,1)}40%{-webkit-transform:scale3d(.75,1.25,1);transform:scale3d(.75,1.25,1)}50%{-webkit-transform:scale3d(1.15,.85,1);transform:scale3d(1.15,.85,1)}65%{-webkit-transform:scale3d(.95,1.05,1);transform:scale3d(.95,1.05,1)}75%{-webkit-transform:scale3d(1.05,.95,1);transform:scale3d(1.05,.95,1)}to{-webkit-transform:scaleX(1);transform:scaleX(1)}}.rubberBand{-webkit-animation-name:rubberBand;animation-name:rubberBand}@-webkit-keyframes shake{0%,to{-webkit-transform:translateZ(0);transform:translateZ(0)}10%,30%,50%,70%,90%{-webkit-transform:translate3d(-10px,0,0);transform:translate3d(-10px,0,0)}20%,40%,60%,80%{-webkit-transform:translate3d(10px,0,0);transform:translate3d(10px,0,0)}}@keyframes shake{0%,to{-webkit-transform:translateZ(0);transform:translateZ(0)}10%,30%,50%,70%,90%{-webkit-transform:translate3d(-10px,0,0);transform:translate3d(-10px,0,0)}20%,40%,60%,80%{-webkit-transform:translate3d(10px,0,0);transform:translate3d(10px,0,0)}}.shake{-webkit-animation-name:shake;animation-name:shake}@-webkit-keyframes headShake{0%{-webkit-transform:translateX(0);transform:translateX(0)}6.5%{-webkit-transform:translateX(-6px) rotateY(-9deg);transform:translateX(-6px) rotateY(-9deg)}18.5%{-webkit-transform:translateX(5px) rotateY(7deg);transform:translateX(5px) rotateY(7deg)}31.5%{-webkit-transform:translateX(-3px) rotateY(-5deg);transform:translateX(-3px) rotateY(-5deg)}43.5%{-webkit-transform:translateX(2px) rotateY(3deg);transform:translateX(2px) rotateY(3deg)}50%{-webkit-transform:translateX(0);transform:translateX(0)}}@keyframes headShake{0%{-webkit-transform:translateX(0);transform:translateX(0)}6.5%{-webkit-transform:translateX(-6px) rotateY(-9deg);transform:translateX(-6px) rotateY(-9deg)}18.5%{-webkit-transform:translateX(5px) rotateY(7deg);transform:translateX(5px) rotateY(7deg)}31.5%{-webkit-transform:translateX(-3px) rotateY(-5deg);transform:translateX(-3px) rotateY(-5deg)}43.5%{-webkit-transform:translateX(2px) rotateY(3deg);transform:translateX(2px) rotateY(3deg)}50%{-webkit-transform:translateX(0);transform:translateX(0)}}.headShake{-webkit-animation-timing-function:ease-in-out;animation-timing-function:ease-in-out;-webkit-animation-name:headShake;animation-name:headShake}@-webkit-keyframes swing{20%{-webkit-transform:rotate(15deg);transform:rotate(15deg)}40%{-webkit-transform:rotate(-10deg);transform:rotate(-10deg)}60%{-webkit-transform:rotate(5deg);transform:rotate(5deg)}80%{-webkit-transform:rotate(-5deg);transform:rotate(-5deg)}to{-webkit-transform:rotate(0deg);transform:rotate(0deg)}}@keyframes swing{20%{-webkit-transform:rotate(15deg);transform:rotate(15deg)}40%{-webkit-transform:rotate(-10deg);transform:rotate(-10deg)}60%{-webkit-transform:rotate(5deg);transform:rotate(5deg)}80%{-webkit-transform:rotate(-5deg);transform:rotate(-5deg)}to{-webkit-transform:rotate(0deg);transform:rotate(0deg)}}.swing{-webkit-transform-origin:top center;transform-origin:top center;-webkit-animation-name:swing;animation-name:swing}@-webkit-keyframes tada{0%{-webkit-transform:scaleX(1);transform:scaleX(1)}10%,20%{-webkit-transform:scale3d(.9,.9,.9) rotate(-3deg);transform:scale3d(.9,.9,.9) rotate(-3deg)}30%,50%,70%,90%{-webkit-transform:scale3d(1.1,1.1,1.1) rotate(3deg);transform:scale3d(1.1,1.1,1.1) rotate(3deg)}40%,60%,80%{-webkit-transform:scale3d(1.1,1.1,1.1) rotate(-3deg);transform:scale3d(1.1,1.1,1.1) rotate(-3deg)}to{-webkit-transform:scaleX(1);transform:scaleX(1)}}@keyframes tada{0%{-webkit-transform:scaleX(1);transform:scaleX(1)}10%,20%{-webkit-transform:scale3d(.9,.9,.9) rotate(-3deg);transform:scale3d(.9,.9,.9) rotate(-3deg)}30%,50%,70%,90%{-webkit-transform:scale3d(1.1,1.1,1.1) rotate(3deg);transform:scale3d(1.1,1.1,1.1) rotate(3deg)}40%,60%,80%{-webkit-transform:scale3d(1.1,1.1,1.1) rotate(-3deg);transform:scale3d(1.1,1.1,1.1) rotate(-3deg)}to{-webkit-transform:scaleX(1);transform:scaleX(1)}}.tada{-webkit-animation-name:tada;animation-name:tada}@-webkit-keyframes wobble{0%{-webkit-transform:translateZ(0);transform:translateZ(0)}15%{-webkit-transform:translate3d(-25%,0,0) rotate(-5deg);transform:translate3d(-25%,0,0) rotate(-5deg)}30%{-webkit-transform:translate3d(20%,0,0) rotate(3deg);transform:translate3d(20%,0,0) rotate(3deg)}45%{-webkit-transform:translate3d(-15%,0,0) rotate(-3deg);transform:translate3d(-15%,0,0) rotate(-3deg)}60%{-webkit-transform:translate3d(10%,0,0) rotate(2deg);transform:translate3d(10%,0,0) rotate(2deg)}75%{-webkit-transform:translate3d(-5%,0,0) rotate(-1deg);transform:translate3d(-5%,0,0) rotate(-1deg)}to{-webkit-transform:translateZ(0);transform:translateZ(0)}}@keyframes wobble{0%{-webkit-transform:translateZ(0);transform:translateZ(0)}15%{-webkit-transform:translate3d(-25%,0,0) rotate(-5deg);transform:translate3d(-25%,0,0) rotate(-5deg)}30%{-webkit-transform:translate3d(20%,0,0) rotate(3deg);transform:translate3d(20%,0,0) rotate(3deg)}45%{-webkit-transform:translate3d(-15%,0,0) rotate(-3deg);transform:translate3d(-15%,0,0) rotate(-3deg)}60%{-webkit-transform:translate3d(10%,0,0) rotate(2deg);transform:translate3d(10%,0,0) rotate(2deg)}75%{-webkit-transform:translate3d(-5%,0,0) rotate(-1deg);transform:translate3d(-5%,0,0) rotate(-1deg)}to{-webkit-transform:translateZ(0);transform:translateZ(0)}}.wobble{-webkit-animation-name:wobble;animation-name:wobble}@-webkit-keyframes jello{0%,11.1%,to{-webkit-transform:translateZ(0);transform:translateZ(0)}22.2%{-webkit-transform:skewX(-12.5deg) skewY(-12.5deg);transform:skewX(-12.5deg) skewY(-12.5deg)}33.3%{-webkit-transform:skewX(6.25deg) skewY(6.25deg);transform:skewX(6.25deg) skewY(6.25deg)}44.4%{-webkit-transform:skewX(-3.125deg) skewY(-3.125deg);transform:skewX(-3.125deg) skewY(-3.125deg)}55.5%{-webkit-transform:skewX(1.5625deg) skewY(1.5625deg);transform:skewX(1.5625deg) skewY(1.5625deg)}66.6%{-webkit-transform:skewX(-.78125deg) skewY(-.78125deg);transform:skewX(-.78125deg) skewY(-.78125deg)}77.7%{-webkit-transform:skewX(.390625deg) skewY(.390625deg);transform:skewX(.390625deg) skewY(.390625deg)}88.8%{-webkit-transform:skewX(-.1953125deg) skewY(-.1953125deg);transform:skewX(-.1953125deg) skewY(-.1953125deg)}}@keyframes jello{0%,11.1%,to{-webkit-transform:translateZ(0);transform:translateZ(0)}22.2%{-webkit-transform:skewX(-12.5deg) skewY(-12.5deg);transform:skewX(-12.5deg) skewY(-12.5deg)}33.3%{-webkit-transform:skewX(6.25deg) skewY(6.25deg);transform:skewX(6.25deg) skewY(6.25deg)}44.4%{-webkit-transform:skewX(-3.125deg) skewY(-3.125deg);transform:skewX(-3.125deg) skewY(-3.125deg)}55.5%{-webkit-transform:skewX(1.5625deg) skewY(1.5625deg);transform:skewX(1.5625deg) skewY(1.5625deg)}66.6%{-webkit-transform:skewX(-.78125deg) skewY(-.78125deg);transform:skewX(-.78125deg) skewY(-.78125deg)}77.7%{-webkit-transform:skewX(.390625deg) skewY(.390625deg);transform:skewX(.390625deg) skewY(.390625deg)}88.8%{-webkit-transform:skewX(-.1953125deg) skewY(-.1953125deg);transform:skewX(-.1953125deg) skewY(-.1953125deg)}}.jello{-webkit-animation-name:jello;animation-name:jello;-webkit-transform-origin:center;transform-origin:center}@-webkit-keyframes heartBeat{0%{-webkit-transform:scale(1);transform:scale(1)}14%{-webkit-transform:scale(1.3);transform:scale(1.3)}28%{-webkit-transform:scale(1);transform:scale(1)}42%{-webkit-transform:scale(1.3);transform:scale(1.3)}70%{-webkit-transform:scale(1);transform:scale(1)}}@keyframes heartBeat{0%{-webkit-transform:scale(1);transform:scale(1)}14%{-webkit-transform:scale(1.3);transform:scale(1.3)}28%{-webkit-transform:scale(1);transform:scale(1)}42%{-webkit-transform:scale(1.3);transform:scale(1.3)}70%{-webkit-transform:scale(1);transform:scale(1)}}.heartBeat{-webkit-animation-name:heartBeat;animation-name:heartBeat;-webkit-animation-duration:1.3s;animation-duration:1.3s;-webkit-animation-timing-function:ease-in-out;animation-timing-function:ease-in-out}@-webkit-keyframes bounceIn{0%,20%,40%,60%,80%,to{-webkit-animation-timing-function:cubic-bezier(.215,.61,.355,1);animation-timing-function:cubic-bezier(.215,.61,.355,1)}0%{opacity:0;-webkit-transform:scale3d(.3,.3,.3);transform:scale3d(.3,.3,.3)}20%{-webkit-transform:scale3d(1.1,1.1,1.1);transform:scale3d(1.1,1.1,1.1)}40%{-webkit-transform:scale3d(.9,.9,.9);transform:scale3d(.9,.9,.9)}60%{opacity:1;-webkit-transform:scale3d(1.03,1.03,1.03);transform:scale3d(1.03,1.03,1.03)}80%{-webkit-transform:scale3d(.97,.97,.97);transform:scale3d(.97,.97,.97)}to{opacity:1;-webkit-transform:scaleX(1);transform:scaleX(1)}}@keyframes bounceIn{0%,20%,40%,60%,80%,to{-webkit-animation-timing-function:cubic-bezier(.215,.61,.355,1);animation-timing-function:cubic-bezier(.215,.61,.355,1)}0%{opacity:0;-webkit-transform:scale3d(.3,.3,.3);transform:scale3d(.3,.3,.3)}20%{-webkit-transform:scale3d(1.1,1.1,1.1);transform:scale3d(1.1,1.1,1.1)}40%{-webkit-transform:scale3d(.9,.9,.9);transform:scale3d(.9,.9,.9)}60%{opacity:1;-webkit-transform:scale3d(1.03,1.03,1.03);transform:scale3d(1.03,1.03,1.03)}80%{-webkit-transform:scale3d(.97,.97,.97);transform:scale3d(.97,.97,.97)}to{opacity:1;-webkit-transform:scaleX(1);transform:scaleX(1)}}.bounceIn{-webkit-animation-duration:.75s;animation-duration:.75s;-webkit-animation-name:bounceIn;animation-name:bounceIn}@-webkit-keyframes bounceInDown{0%,60%,75%,90%,to{-webkit-animation-timing-function:cubic-bezier(.215,.61,.355,1);animation-timing-function:cubic-bezier(.215,.61,.355,1)}0%{opacity:0;-webkit-transform:translate3d(0,-3000px,0);transform:translate3d(0,-3000px,0)}60%{opacity:1;-webkit-transform:translate3d(0,25px,0);transform:translate3d(0,25px,0)}75%{-webkit-transform:translate3d(0,-10px,0);transform:translate3d(0,-10px,0)}90%{-webkit-transform:translate3d(0,5px,0);transform:translate3d(0,5px,0)}to{-webkit-transform:translateZ(0);transform:translateZ(0)}}@keyframes bounceInDown{0%,60%,75%,90%,to{-webkit-animation-timing-function:cubic-bezier(.215,.61,.355,1);animation-timing-function:cubic-bezier(.215,.61,.355,1)}0%{opacity:0;-webkit-transform:translate3d(0,-3000px,0);transform:translate3d(0,-3000px,0)}60%{opacity:1;-webkit-transform:translate3d(0,25px,0);transform:translate3d(0,25px,0)}75%{-webkit-transform:translate3d(0,-10px,0);transform:translate3d(0,-10px,0)}90%{-webkit-transform:translate3d(0,5px,0);transform:translate3d(0,5px,0)}to{-webkit-transform:translateZ(0);transform:translateZ(0)}}.bounceInDown{-webkit-animation-name:bounceInDown;animation-name:bounceInDown}@-webkit-keyframes bounceInLeft{0%,60%,75%,90%,to{-webkit-animation-timing-function:cubic-bezier(.215,.61,.355,1);animation-timing-function:cubic-bezier(.215,.61,.355,1)}0%{opacity:0;-webkit-transform:translate3d(-3000px,0,0);transform:translate3d(-3000px,0,0)}60%{opacity:1;-webkit-transform:translate3d(25px,0,0);transform:translate3d(25px,0,0)}75%{-webkit-transform:translate3d(-10px,0,0);transform:translate3d(-10px,0,0)}90%{-webkit-transform:translate3d(5px,0,0);transform:translate3d(5px,0,0)}to{-webkit-transform:translateZ(0);transform:translateZ(0)}}@keyframes bounceInLeft{0%,60%,75%,90%,to{-webkit-animation-timing-function:cubic-bezier(.215,.61,.355,1);animation-timing-function:cubic-bezier(.215,.61,.355,1)}0%{opacity:0;-webkit-transform:translate3d(-3000px,0,0);transform:translate3d(-3000px,0,0)}60%{opacity:1;-webkit-transform:translate3d(25px,0,0);transform:translate3d(25px,0,0)}75%{-webkit-transform:translate3d(-10px,0,0);transform:translate3d(-10px,0,0)}90%{-webkit-transform:translate3d(5px,0,0);transform:translate3d(5px,0,0)}to{-webkit-transform:translateZ(0);transform:translateZ(0)}}.bounceInLeft{-webkit-animation-name:bounceInLeft;animation-name:bounceInLeft}@-webkit-keyframes bounceInRight{0%,60%,75%,90%,to{-webkit-animation-timing-function:cubic-bezier(.215,.61,.355,1);animation-timing-function:cubic-bezier(.215,.61,.355,1)}0%{opacity:0;-webkit-transform:translate3d(3000px,0,0);transform:translate3d(3000px,0,0)}60%{opacity:1;-webkit-transform:translate3d(-25px,0,0);transform:translate3d(-25px,0,0)}75%{-webkit-transform:translate3d(10px,0,0);transform:translate3d(10px,0,0)}90%{-webkit-transform:translate3d(-5px,0,0);transform:translate3d(-5px,0,0)}to{-webkit-transform:translateZ(0);transform:translateZ(0)}}@keyframes bounceInRight{0%,60%,75%,90%,to{-webkit-animation-timing-function:cubic-bezier(.215,.61,.355,1);animation-timing-function:cubic-bezier(.215,.61,.355,1)}0%{opacity:0;-webkit-transform:translate3d(3000px,0,0);transform:translate3d(3000px,0,0)}60%{opacity:1;-webkit-transform:translate3d(-25px,0,0);transform:translate3d(-25px,0,0)}75%{-webkit-transform:translate3d(10px,0,0);transform:translate3d(10px,0,0)}90%{-webkit-transform:translate3d(-5px,0,0);transform:translate3d(-5px,0,0)}to{-webkit-transform:translateZ(0);transform:translateZ(0)}}.bounceInRight{-webkit-animation-name:bounceInRight;animation-name:bounceInRight}@-webkit-keyframes bounceInUp{0%,60%,75%,90%,to{-webkit-animation-timing-function:cubic-bezier(.215,.61,.355,1);animation-timing-function:cubic-bezier(.215,.61,.355,1)}0%{opacity:0;-webkit-transform:translate3d(0,3000px,0);transform:translate3d(0,3000px,0)}60%{opacity:1;-webkit-transform:translate3d(0,-20px,0);transform:translate3d(0,-20px,0)}75%{-webkit-transform:translate3d(0,10px,0);transform:translate3d(0,10px,0)}90%{-webkit-transform:translate3d(0,-5px,0);transform:translate3d(0,-5px,0)}to{-webkit-transform:translateZ(0);transform:translateZ(0)}}@keyframes bounceInUp{0%,60%,75%,90%,to{-webkit-animation-timing-function:cubic-bezier(.215,.61,.355,1);animation-timing-function:cubic-bezier(.215,.61,.355,1)}0%{opacity:0;-webkit-transform:translate3d(0,3000px,0);transform:translate3d(0,3000px,0)}60%{opacity:1;-webkit-transform:translate3d(0,-20px,0);transform:translate3d(0,-20px,0)}75%{-webkit-transform:translate3d(0,10px,0);transform:translate3d(0,10px,0)}90%{-webkit-transform:translate3d(0,-5px,0);transform:translate3d(0,-5px,0)}to{-webkit-transform:translateZ(0);transform:translateZ(0)}}.bounceInUp{-webkit-animation-name:bounceInUp;animation-name:bounceInUp}@-webkit-keyframes bounceOut{20%{-webkit-transform:scale3d(.9,.9,.9);transform:scale3d(.9,.9,.9)}50%,55%{opacity:1;-webkit-transform:scale3d(1.1,1.1,1.1);transform:scale3d(1.1,1.1,1.1)}to{opacity:0;-webkit-transform:scale3d(.3,.3,.3);transform:scale3d(.3,.3,.3)}}@keyframes bounceOut{20%{-webkit-transform:scale3d(.9,.9,.9);transform:scale3d(.9,.9,.9)}50%,55%{opacity:1;-webkit-transform:scale3d(1.1,1.1,1.1);transform:scale3d(1.1,1.1,1.1)}to{opacity:0;-webkit-transform:scale3d(.3,.3,.3);transform:scale3d(.3,.3,.3)}}.bounceOut{-webkit-animation-duration:.75s;animation-duration:.75s;-webkit-animation-name:bounceOut;animation-name:bounceOut}@-webkit-keyframes bounceOutDown{20%{-webkit-transform:translate3d(0,10px,0);transform:translate3d(0,10px,0)}40%,45%{opacity:1;-webkit-transform:translate3d(0,-20px,0);transform:translate3d(0,-20px,0)}to{opacity:0;-webkit-transform:translate3d(0,2000px,0);transform:translate3d(0,2000px,0)}}@keyframes bounceOutDown{20%{-webkit-transform:translate3d(0,10px,0);transform:translate3d(0,10px,0)}40%,45%{opacity:1;-webkit-transform:translate3d(0,-20px,0);transform:translate3d(0,-20px,0)}to{opacity:0;-webkit-transform:translate3d(0,2000px,0);transform:translate3d(0,2000px,0)}}.bounceOutDown{-webkit-animation-name:bounceOutDown;animation-name:bounceOutDown}@-webkit-keyframes bounceOutLeft{20%{opacity:1;-webkit-transform:translate3d(20px,0,0);transform:translate3d(20px,0,0)}to{opacity:0;-webkit-transform:translate3d(-2000px,0,0);transform:translate3d(-2000px,0,0)}}@keyframes bounceOutLeft{20%{opacity:1;-webkit-transform:translate3d(20px,0,0);transform:translate3d(20px,0,0)}to{opacity:0;-webkit-transform:translate3d(-2000px,0,0);transform:translate3d(-2000px,0,0)}}.bounceOutLeft{-webkit-animation-name:bounceOutLeft;animation-name:bounceOutLeft}@-webkit-keyframes bounceOutRight{20%{opacity:1;-webkit-transform:translate3d(-20px,0,0);transform:translate3d(-20px,0,0)}to{opacity:0;-webkit-transform:translate3d(2000px,0,0);transform:translate3d(2000px,0,0)}}@keyframes bounceOutRight{20%{opacity:1;-webkit-transform:translate3d(-20px,0,0);transform:translate3d(-20px,0,0)}to{opacity:0;-webkit-transform:translate3d(2000px,0,0);transform:translate3d(2000px,0,0)}}.bounceOutRight{-webkit-animation-name:bounceOutRight;animation-name:bounceOutRight}@-webkit-keyframes bounceOutUp{20%{-webkit-transform:translate3d(0,-10px,0);transform:translate3d(0,-10px,0)}40%,45%{opacity:1;-webkit-transform:translate3d(0,20px,0);transform:translate3d(0,20px,0)}to{opacity:0;-webkit-transform:translate3d(0,-2000px,0);transform:translate3d(0,-2000px,0)}}@keyframes bounceOutUp{20%{-webkit-transform:translate3d(0,-10px,0);transform:translate3d(0,-10px,0)}40%,45%{opacity:1;-webkit-transform:translate3d(0,20px,0);transform:translate3d(0,20px,0)}to{opacity:0;-webkit-transform:translate3d(0,-2000px,0);transform:translate3d(0,-2000px,0)}}.bounceOutUp{-webkit-animation-name:bounceOutUp;animation-name:bounceOutUp}@-webkit-keyframes fadeIn{0%{opacity:0}to{opacity:1}}@keyframes fadeIn{0%{opacity:0}to{opacity:1}}.fadeIn{-webkit-animation-name:fadeIn;animation-name:fadeIn}@-webkit-keyframes fadeInDown{0%{opacity:0;-webkit-transform:translate3d(0,-100%,0);transform:translate3d(0,-100%,0)}to{opacity:1;-webkit-transform:translateZ(0);transform:translateZ(0)}}@keyframes fadeInDown{0%{opacity:0;-webkit-transform:translate3d(0,-100%,0);transform:translate3d(0,-100%,0)}to{opacity:1;-webkit-transform:translateZ(0);transform:translateZ(0)}}.fadeInDown{-webkit-animation-name:fadeInDown;animation-name:fadeInDown}@-webkit-keyframes fadeInDownBig{0%{opacity:0;-webkit-transform:translate3d(0,-2000px,0);transform:translate3d(0,-2000px,0)}to{opacity:1;-webkit-transform:translateZ(0);transform:translateZ(0)}}@keyframes fadeInDownBig{0%{opacity:0;-webkit-transform:translate3d(0,-2000px,0);transform:translate3d(0,-2000px,0)}to{opacity:1;-webkit-transform:translateZ(0);transform:translateZ(0)}}.fadeInDownBig{-webkit-animation-name:fadeInDownBig;animation-name:fadeInDownBig}@-webkit-keyframes fadeInLeft{0%{opacity:0;-webkit-transform:translate3d(-100%,0,0);transform:translate3d(-100%,0,0)}to{opacity:1;-webkit-transform:translateZ(0);transform:translateZ(0)}}@keyframes fadeInLeft{0%{opacity:0;-webkit-transform:translate3d(-100%,0,0);transform:translate3d(-100%,0,0)}to{opacity:1;-webkit-transform:translateZ(0);transform:translateZ(0)}}.fadeInLeft{-webkit-animation-name:fadeInLeft;animation-name:fadeInLeft}@-webkit-keyframes fadeInLeftBig{0%{opacity:0;-webkit-transform:translate3d(-2000px,0,0);transform:translate3d(-2000px,0,0)}to{opacity:1;-webkit-transform:translateZ(0);transform:translateZ(0)}}@keyframes fadeInLeftBig{0%{opacity:0;-webkit-transform:translate3d(-2000px,0,0);transform:translate3d(-2000px,0,0)}to{opacity:1;-webkit-transform:translateZ(0);transform:translateZ(0)}}.fadeInLeftBig{-webkit-animation-name:fadeInLeftBig;animation-name:fadeInLeftBig}@-webkit-keyframes fadeInRight{0%{opacity:0;-webkit-transform:translate3d(100%,0,0);transform:translate3d(100%,0,0)}to{opacity:1;-webkit-transform:translateZ(0);transform:translateZ(0)}}@keyframes fadeInRight{0%{opacity:0;-webkit-transform:translate3d(100%,0,0);transform:translate3d(100%,0,0)}to{opacity:1;-webkit-transform:translateZ(0);transform:translateZ(0)}}.fadeInRight{-webkit-animation-name:fadeInRight;animation-name:fadeInRight}@-webkit-keyframes fadeInRightBig{0%{opacity:0;-webkit-transform:translate3d(2000px,0,0);transform:translate3d(2000px,0,0)}to{opacity:1;-webkit-transform:translateZ(0);transform:translateZ(0)}}@keyframes fadeInRightBig{0%{opacity:0;-webkit-transform:translate3d(2000px,0,0);transform:translate3d(2000px,0,0)}to{opacity:1;-webkit-transform:translateZ(0);transform:translateZ(0)}}.fadeInRightBig{-webkit-animation-name:fadeInRightBig;animation-name:fadeInRightBig}@-webkit-keyframes fadeInUp{0%{opacity:0;-webkit-transform:translate3d(0,100%,0);transform:translate3d(0,100%,0)}to{opacity:1;-webkit-transform:translateZ(0);transform:translateZ(0)}}@keyframes fadeInUp{0%{opacity:0;-webkit-transform:translate3d(0,100%,0);transform:translate3d(0,100%,0)}to{opacity:1;-webkit-transform:translateZ(0);transform:translateZ(0)}}.fadeInUp{-webkit-animation-name:fadeInUp;animation-name:fadeInUp}@-webkit-keyframes fadeInUpBig{0%{opacity:0;-webkit-transform:translate3d(0,2000px,0);transform:translate3d(0,2000px,0)}to{opacity:1;-webkit-transform:translateZ(0);transform:translateZ(0)}}@keyframes fadeInUpBig{0%{opacity:0;-webkit-transform:translate3d(0,2000px,0);transform:translate3d(0,2000px,0)}to{opacity:1;-webkit-transform:translateZ(0);transform:translateZ(0)}}.fadeInUpBig{-webkit-animation-name:fadeInUpBig;animation-name:fadeInUpBig}@-webkit-keyframes fadeOut{0%{opacity:1}to{opacity:0}}@keyframes fadeOut{0%{opacity:1}to{opacity:0}}.fadeOut{-webkit-animation-name:fadeOut;animation-name:fadeOut}@-webkit-keyframes fadeOutDown{0%{opacity:1}to{opacity:0;-webkit-transform:translate3d(0,100%,0);transform:translate3d(0,100%,0)}}@keyframes fadeOutDown{0%{opacity:1}to{opacity:0;-webkit-transform:translate3d(0,100%,0);transform:translate3d(0,100%,0)}}.fadeOutDown{-webkit-animation-name:fadeOutDown;animation-name:fadeOutDown}@-webkit-keyframes fadeOutDownBig{0%{opacity:1}to{opacity:0;-webkit-transform:translate3d(0,2000px,0);transform:translate3d(0,2000px,0)}}@keyframes fadeOutDownBig{0%{opacity:1}to{opacity:0;-webkit-transform:translate3d(0,2000px,0);transform:translate3d(0,2000px,0)}}.fadeOutDownBig{-webkit-animation-name:fadeOutDownBig;animation-name:fadeOutDownBig}@-webkit-keyframes fadeOutLeft{0%{opacity:1}to{opacity:0;-webkit-transform:translate3d(-100%,0,0);transform:translate3d(-100%,0,0)}}@keyframes fadeOutLeft{0%{opacity:1}to{opacity:0;-webkit-transform:translate3d(-100%,0,0);transform:translate3d(-100%,0,0)}}.fadeOutLeft{-webkit-animation-name:fadeOutLeft;animation-name:fadeOutLeft}@-webkit-keyframes fadeOutLeftBig{0%{opacity:1}to{opacity:0;-webkit-transform:translate3d(-2000px,0,0);transform:translate3d(-2000px,0,0)}}@keyframes fadeOutLeftBig{0%{opacity:1}to{opacity:0;-webkit-transform:translate3d(-2000px,0,0);transform:translate3d(-2000px,0,0)}}.fadeOutLeftBig{-webkit-animation-name:fadeOutLeftBig;animation-name:fadeOutLeftBig}@-webkit-keyframes fadeOutRight{0%{opacity:1}to{opacity:0;-webkit-transform:translate3d(100%,0,0);transform:translate3d(100%,0,0)}}@keyframes fadeOutRight{0%{opacity:1}to{opacity:0;-webkit-transform:translate3d(100%,0,0);transform:translate3d(100%,0,0)}}.fadeOutRight{-webkit-animation-name:fadeOutRight;animation-name:fadeOutRight}@-webkit-keyframes fadeOutRightBig{0%{opacity:1}to{opacity:0;-webkit-transform:translate3d(2000px,0,0);transform:translate3d(2000px,0,0)}}@keyframes fadeOutRightBig{0%{opacity:1}to{opacity:0;-webkit-transform:translate3d(2000px,0,0);transform:translate3d(2000px,0,0)}}.fadeOutRightBig{-webkit-animation-name:fadeOutRightBig;animation-name:fadeOutRightBig}@-webkit-keyframes fadeOutUp{0%{opacity:1}to{opacity:0;-webkit-transform:translate3d(0,-100%,0);transform:translate3d(0,-100%,0)}}@keyframes fadeOutUp{0%{opacity:1}to{opacity:0;-webkit-transform:translate3d(0,-100%,0);transform:translate3d(0,-100%,0)}}.fadeOutUp{-webkit-animation-name:fadeOutUp;animation-name:fadeOutUp}@-webkit-keyframes fadeOutUpBig{0%{opacity:1}to{opacity:0;-webkit-transform:translate3d(0,-2000px,0);transform:translate3d(0,-2000px,0)}}@keyframes fadeOutUpBig{0%{opacity:1}to{opacity:0;-webkit-transform:translate3d(0,-2000px,0);transform:translate3d(0,-2000px,0)}}.fadeOutUpBig{-webkit-animation-name:fadeOutUpBig;animation-name:fadeOutUpBig}@-webkit-keyframes flip{0%{-webkit-transform:perspective(400px) scaleX(1) translateZ(0) rotateY(-1turn);transform:perspective(400px) scaleX(1) translateZ(0) rotateY(-1turn);-webkit-animation-timing-function:ease-out;animation-timing-function:ease-out}40%{-webkit-transform:perspective(400px) scaleX(1) translateZ(150px) rotateY(-190deg);transform:perspective(400px) scaleX(1) translateZ(150px) rotateY(-190deg);-webkit-animation-timing-function:ease-out;animation-timing-function:ease-out}50%{-webkit-transform:perspective(400px) scaleX(1) translateZ(150px) rotateY(-170deg);transform:perspective(400px) scaleX(1) translateZ(150px) rotateY(-170deg);-webkit-animation-timing-function:ease-in;animation-timing-function:ease-in}80%{-webkit-transform:perspective(400px) scale3d(.95,.95,.95) translateZ(0) rotateY(0deg);transform:perspective(400px) scale3d(.95,.95,.95) translateZ(0) rotateY(0deg);-webkit-animation-timing-function:ease-in;animation-timing-function:ease-in}to{-webkit-transform:perspective(400px) scaleX(1) translateZ(0) rotateY(0deg);transform:perspective(400px) scaleX(1) translateZ(0) rotateY(0deg);-webkit-animation-timing-function:ease-in;animation-timing-function:ease-in}}@keyframes flip{0%{-webkit-transform:perspective(400px) scaleX(1) translateZ(0) rotateY(-1turn);transform:perspective(400px) scaleX(1) translateZ(0) rotateY(-1turn);-webkit-animation-timing-function:ease-out;animation-timing-function:ease-out}40%{-webkit-transform:perspective(400px) scaleX(1) translateZ(150px) rotateY(-190deg);transform:perspective(400px) scaleX(1) translateZ(150px) rotateY(-190deg);-webkit-animation-timing-function:ease-out;animation-timing-function:ease-out}50%{-webkit-transform:perspective(400px) scaleX(1) translateZ(150px) rotateY(-170deg);transform:perspective(400px) scaleX(1) translateZ(150px) rotateY(-170deg);-webkit-animation-timing-function:ease-in;animation-timing-function:ease-in}80%{-webkit-transform:perspective(400px) scale3d(.95,.95,.95) translateZ(0) rotateY(0deg);transform:perspective(400px) scale3d(.95,.95,.95) translateZ(0) rotateY(0deg);-webkit-animation-timing-function:ease-in;animation-timing-function:ease-in}to{-webkit-transform:perspective(400px) scaleX(1) translateZ(0) rotateY(0deg);transform:perspective(400px) scaleX(1) translateZ(0) rotateY(0deg);-webkit-animation-timing-function:ease-in;animation-timing-function:ease-in}}.animated.flip{-webkit-backface-visibility:visible;backface-visibility:visible;-webkit-animation-name:flip;animation-name:flip}@-webkit-keyframes flipInX{0%{-webkit-transform:perspective(400px) rotateX(90deg);transform:perspective(400px) rotateX(90deg);-webkit-animation-timing-function:ease-in;animation-timing-function:ease-in;opacity:0}40%{-webkit-transform:perspective(400px) rotateX(-20deg);transform:perspective(400px) rotateX(-20deg);-webkit-animation-timing-function:ease-in;animation-timing-function:ease-in}60%{-webkit-transform:perspective(400px) rotateX(10deg);transform:perspective(400px) rotateX(10deg);opacity:1}80%{-webkit-transform:perspective(400px) rotateX(-5deg);transform:perspective(400px) rotateX(-5deg)}to{-webkit-transform:perspective(400px);transform:perspective(400px)}}@keyframes flipInX{0%{-webkit-transform:perspective(400px) rotateX(90deg);transform:perspective(400px) rotateX(90deg);-webkit-animation-timing-function:ease-in;animation-timing-function:ease-in;opacity:0}40%{-webkit-transform:perspective(400px) rotateX(-20deg);transform:perspective(400px) rotateX(-20deg);-webkit-animation-timing-function:ease-in;animation-timing-function:ease-in}60%{-webkit-transform:perspective(400px) rotateX(10deg);transform:perspective(400px) rotateX(10deg);opacity:1}80%{-webkit-transform:perspective(400px) rotateX(-5deg);transform:perspective(400px) rotateX(-5deg)}to{-webkit-transform:perspective(400px);transform:perspective(400px)}}.flipInX{-webkit-backface-visibility:visible!important;backface-visibility:visible!important;-webkit-animation-name:flipInX;animation-name:flipInX}@-webkit-keyframes flipInY{0%{-webkit-transform:perspective(400px) rotateY(90deg);transform:perspective(400px) rotateY(90deg);-webkit-animation-timing-function:ease-in;animation-timing-function:ease-in;opacity:0}40%{-webkit-transform:perspective(400px) rotateY(-20deg);transform:perspective(400px) rotateY(-20deg);-webkit-animation-timing-function:ease-in;animation-timing-function:ease-in}60%{-webkit-transform:perspective(400px) rotateY(10deg);transform:perspective(400px) rotateY(10deg);opacity:1}80%{-webkit-transform:perspective(400px) rotateY(-5deg);transform:perspective(400px) rotateY(-5deg)}to{-webkit-transform:perspective(400px);transform:perspective(400px)}}@keyframes flipInY{0%{-webkit-transform:perspective(400px) rotateY(90deg);transform:perspective(400px) rotateY(90deg);-webkit-animation-timing-function:ease-in;animation-timing-function:ease-in;opacity:0}40%{-webkit-transform:perspective(400px) rotateY(-20deg);transform:perspective(400px) rotateY(-20deg);-webkit-animation-timing-function:ease-in;animation-timing-function:ease-in}60%{-webkit-transform:perspective(400px) rotateY(10deg);transform:perspective(400px) rotateY(10deg);opacity:1}80%{-webkit-transform:perspective(400px) rotateY(-5deg);transform:perspective(400px) rotateY(-5deg)}to{-webkit-transform:perspective(400px);transform:perspective(400px)}}.flipInY{-webkit-backface-visibility:visible!important;backface-visibility:visible!important;-webkit-animation-name:flipInY;animation-name:flipInY}@-webkit-keyframes flipOutX{0%{-webkit-transform:perspective(400px);transform:perspective(400px)}30%{-webkit-transform:perspective(400px) rotateX(-20deg);transform:perspective(400px) rotateX(-20deg);opacity:1}to{-webkit-transform:perspective(400px) rotateX(90deg);transform:perspective(400px) rotateX(90deg);opacity:0}}@keyframes flipOutX{0%{-webkit-transform:perspective(400px);transform:perspective(400px)}30%{-webkit-transform:perspective(400px) rotateX(-20deg);transform:perspective(400px) rotateX(-20deg);opacity:1}to{-webkit-transform:perspective(400px) rotateX(90deg);transform:perspective(400px) rotateX(90deg);opacity:0}}.flipOutX{-webkit-animation-duration:.75s;animation-duration:.75s;-webkit-animation-name:flipOutX;animation-name:flipOutX;-webkit-backface-visibility:visible!important;backface-visibility:visible!important}@-webkit-keyframes flipOutY{0%{-webkit-transform:perspective(400px);transform:perspective(400px)}30%{-webkit-transform:perspective(400px) rotateY(-15deg);transform:perspective(400px) rotateY(-15deg);opacity:1}to{-webkit-transform:perspective(400px) rotateY(90deg);transform:perspective(400px) rotateY(90deg);opacity:0}}@keyframes flipOutY{0%{-webkit-transform:perspective(400px);transform:perspective(400px)}30%{-webkit-transform:perspective(400px) rotateY(-15deg);transform:perspective(400px) rotateY(-15deg);opacity:1}to{-webkit-transform:perspective(400px) rotateY(90deg);transform:perspective(400px) rotateY(90deg);opacity:0}}.flipOutY{-webkit-animation-duration:.75s;animation-duration:.75s;-webkit-backface-visibility:visible!important;backface-visibility:visible!important;-webkit-animation-name:flipOutY;animation-name:flipOutY}@-webkit-keyframes lightSpeedIn{0%{-webkit-transform:translate3d(100%,0,0) skewX(-30deg);transform:translate3d(100%,0,0) skewX(-30deg);opacity:0}60%{-webkit-transform:skewX(20deg);transform:skewX(20deg);opacity:1}80%{-webkit-transform:skewX(-5deg);transform:skewX(-5deg)}to{-webkit-transform:translateZ(0);transform:translateZ(0)}}@keyframes lightSpeedIn{0%{-webkit-transform:translate3d(100%,0,0) skewX(-30deg);transform:translate3d(100%,0,0) skewX(-30deg);opacity:0}60%{-webkit-transform:skewX(20deg);transform:skewX(20deg);opacity:1}80%{-webkit-transform:skewX(-5deg);transform:skewX(-5deg)}to{-webkit-transform:translateZ(0);transform:translateZ(0)}}.lightSpeedIn{-webkit-animation-name:lightSpeedIn;animation-name:lightSpeedIn;-webkit-animation-timing-function:ease-out;animation-timing-function:ease-out}@-webkit-keyframes lightSpeedOut{0%{opacity:1}to{-webkit-transform:translate3d(100%,0,0) skewX(30deg);transform:translate3d(100%,0,0) skewX(30deg);opacity:0}}@keyframes lightSpeedOut{0%{opacity:1}to{-webkit-transform:translate3d(100%,0,0) skewX(30deg);transform:translate3d(100%,0,0) skewX(30deg);opacity:0}}.lightSpeedOut{-webkit-animation-name:lightSpeedOut;animation-name:lightSpeedOut;-webkit-animation-timing-function:ease-in;animation-timing-function:ease-in}@-webkit-keyframes rotateIn{0%{-webkit-transform-origin:center;transform-origin:center;-webkit-transform:rotate(-200deg);transform:rotate(-200deg);opacity:0}to{-webkit-transform-origin:center;transform-origin:center;-webkit-transform:translateZ(0);transform:translateZ(0);opacity:1}}@keyframes rotateIn{0%{-webkit-transform-origin:center;transform-origin:center;-webkit-transform:rotate(-200deg);transform:rotate(-200deg);opacity:0}to{-webkit-transform-origin:center;transform-origin:center;-webkit-transform:translateZ(0);transform:translateZ(0);opacity:1}}.rotateIn{-webkit-animation-name:rotateIn;animation-name:rotateIn}@-webkit-keyframes rotateInDownLeft{0%{-webkit-transform-origin:left bottom;transform-origin:left bottom;-webkit-transform:rotate(-45deg);transform:rotate(-45deg);opacity:0}to{-webkit-transform-origin:left bottom;transform-origin:left bottom;-webkit-transform:translateZ(0);transform:translateZ(0);opacity:1}}@keyframes rotateInDownLeft{0%{-webkit-transform-origin:left bottom;transform-origin:left bottom;-webkit-transform:rotate(-45deg);transform:rotate(-45deg);opacity:0}to{-webkit-transform-origin:left bottom;transform-origin:left bottom;-webkit-transform:translateZ(0);transform:translateZ(0);opacity:1}}.rotateInDownLeft{-webkit-animation-name:rotateInDownLeft;animation-name:rotateInDownLeft}@-webkit-keyframes rotateInDownRight{0%{-webkit-transform-origin:right bottom;transform-origin:right bottom;-webkit-transform:rotate(45deg);transform:rotate(45deg);opacity:0}to{-webkit-transform-origin:right bottom;transform-origin:right bottom;-webkit-transform:translateZ(0);transform:translateZ(0);opacity:1}}@keyframes rotateInDownRight{0%{-webkit-transform-origin:right bottom;transform-origin:right bottom;-webkit-transform:rotate(45deg);transform:rotate(45deg);opacity:0}to{-webkit-transform-origin:right bottom;transform-origin:right bottom;-webkit-transform:translateZ(0);transform:translateZ(0);opacity:1}}.rotateInDownRight{-webkit-animation-name:rotateInDownRight;animation-name:rotateInDownRight}@-webkit-keyframes rotateInUpLeft{0%{-webkit-transform-origin:left bottom;transform-origin:left bottom;-webkit-transform:rotate(45deg);transform:rotate(45deg);opacity:0}to{-webkit-transform-origin:left bottom;transform-origin:left bottom;-webkit-transform:translateZ(0);transform:translateZ(0);opacity:1}}@keyframes rotateInUpLeft{0%{-webkit-transform-origin:left bottom;transform-origin:left bottom;-webkit-transform:rotate(45deg);transform:rotate(45deg);opacity:0}to{-webkit-transform-origin:left bottom;transform-origin:left bottom;-webkit-transform:translateZ(0);transform:translateZ(0);opacity:1}}.rotateInUpLeft{-webkit-animation-name:rotateInUpLeft;animation-name:rotateInUpLeft}@-webkit-keyframes rotateInUpRight{0%{-webkit-transform-origin:right bottom;transform-origin:right bottom;-webkit-transform:rotate(-90deg);transform:rotate(-90deg);opacity:0}to{-webkit-transform-origin:right bottom;transform-origin:right bottom;-webkit-transform:translateZ(0);transform:translateZ(0);opacity:1}}@keyframes rotateInUpRight{0%{-webkit-transform-origin:right bottom;transform-origin:right bottom;-webkit-transform:rotate(-90deg);transform:rotate(-90deg);opacity:0}to{-webkit-transform-origin:right bottom;transform-origin:right bottom;-webkit-transform:translateZ(0);transform:translateZ(0);opacity:1}}.rotateInUpRight{-webkit-animation-name:rotateInUpRight;animation-name:rotateInUpRight}@-webkit-keyframes rotateOut{0%{-webkit-transform-origin:center;transform-origin:center;opacity:1}to{-webkit-transform-origin:center;transform-origin:center;-webkit-transform:rotate(200deg);transform:rotate(200deg);opacity:0}}@keyframes rotateOut{0%{-webkit-transform-origin:center;transform-origin:center;opacity:1}to{-webkit-transform-origin:center;transform-origin:center;-webkit-transform:rotate(200deg);transform:rotate(200deg);opacity:0}}.rotateOut{-webkit-animation-name:rotateOut;animation-name:rotateOut}@-webkit-keyframes rotateOutDownLeft{0%{-webkit-transform-origin:left bottom;transform-origin:left bottom;opacity:1}to{-webkit-transform-origin:left bottom;transform-origin:left bottom;-webkit-transform:rotate(45deg);transform:rotate(45deg);opacity:0}}@keyframes rotateOutDownLeft{0%{-webkit-transform-origin:left bottom;transform-origin:left bottom;opacity:1}to{-webkit-transform-origin:left bottom;transform-origin:left bottom;-webkit-transform:rotate(45deg);transform:rotate(45deg);opacity:0}}.rotateOutDownLeft{-webkit-animation-name:rotateOutDownLeft;animation-name:rotateOutDownLeft}@-webkit-keyframes rotateOutDownRight{0%{-webkit-transform-origin:right bottom;transform-origin:right bottom;opacity:1}to{-webkit-transform-origin:right bottom;transform-origin:right bottom;-webkit-transform:rotate(-45deg);transform:rotate(-45deg);opacity:0}}@keyframes rotateOutDownRight{0%{-webkit-transform-origin:right bottom;transform-origin:right bottom;opacity:1}to{-webkit-transform-origin:right bottom;transform-origin:right bottom;-webkit-transform:rotate(-45deg);transform:rotate(-45deg);opacity:0}}.rotateOutDownRight{-webkit-animation-name:rotateOutDownRight;animation-name:rotateOutDownRight}@-webkit-keyframes rotateOutUpLeft{0%{-webkit-transform-origin:left bottom;transform-origin:left bottom;opacity:1}to{-webkit-transform-origin:left bottom;transform-origin:left bottom;-webkit-transform:rotate(-45deg);transform:rotate(-45deg);opacity:0}}@keyframes rotateOutUpLeft{0%{-webkit-transform-origin:left bottom;transform-origin:left bottom;opacity:1}to{-webkit-transform-origin:left bottom;transform-origin:left bottom;-webkit-transform:rotate(-45deg);transform:rotate(-45deg);opacity:0}}.rotateOutUpLeft{-webkit-animation-name:rotateOutUpLeft;animation-name:rotateOutUpLeft}@-webkit-keyframes rotateOutUpRight{0%{-webkit-transform-origin:right bottom;transform-origin:right bottom;opacity:1}to{-webkit-transform-origin:right bottom;transform-origin:right bottom;-webkit-transform:rotate(90deg);transform:rotate(90deg);opacity:0}}@keyframes rotateOutUpRight{0%{-webkit-transform-origin:right bottom;transform-origin:right bottom;opacity:1}to{-webkit-transform-origin:right bottom;transform-origin:right bottom;-webkit-transform:rotate(90deg);transform:rotate(90deg);opacity:0}}.rotateOutUpRight{-webkit-animation-name:rotateOutUpRight;animation-name:rotateOutUpRight}@-webkit-keyframes hinge{0%{-webkit-transform-origin:top left;transform-origin:top left;-webkit-animation-timing-function:ease-in-out;animation-timing-function:ease-in-out}20%,60%{-webkit-transform:rotate(80deg);transform:rotate(80deg);-webkit-transform-origin:top left;transform-origin:top left;-webkit-animation-timing-function:ease-in-out;animation-timing-function:ease-in-out}40%,80%{-webkit-transform:rotate(60deg);transform:rotate(60deg);-webkit-transform-origin:top left;transform-origin:top left;-webkit-animation-timing-function:ease-in-out;animation-timing-function:ease-in-out;opacity:1}to{-webkit-transform:translate3d(0,700px,0);transform:translate3d(0,700px,0);opacity:0}}@keyframes hinge{0%{-webkit-transform-origin:top left;transform-origin:top left;-webkit-animation-timing-function:ease-in-out;animation-timing-function:ease-in-out}20%,60%{-webkit-transform:rotate(80deg);transform:rotate(80deg);-webkit-transform-origin:top left;transform-origin:top left;-webkit-animation-timing-function:ease-in-out;animation-timing-function:ease-in-out}40%,80%{-webkit-transform:rotate(60deg);transform:rotate(60deg);-webkit-transform-origin:top left;transform-origin:top left;-webkit-animation-timing-function:ease-in-out;animation-timing-function:ease-in-out;opacity:1}to{-webkit-transform:translate3d(0,700px,0);transform:translate3d(0,700px,0);opacity:0}}.hinge{-webkit-animation-duration:2s;animation-duration:2s;-webkit-animation-name:hinge;animation-name:hinge}@-webkit-keyframes jackInTheBox{0%{opacity:0;-webkit-transform:scale(.1) rotate(30deg);transform:scale(.1) rotate(30deg);-webkit-transform-origin:center bottom;transform-origin:center bottom}50%{-webkit-transform:rotate(-10deg);transform:rotate(-10deg)}70%{-webkit-transform:rotate(3deg);transform:rotate(3deg)}to{opacity:1;-webkit-transform:scale(1);transform:scale(1)}}@keyframes jackInTheBox{0%{opacity:0;-webkit-transform:scale(.1) rotate(30deg);transform:scale(.1) rotate(30deg);-webkit-transform-origin:center bottom;transform-origin:center bottom}50%{-webkit-transform:rotate(-10deg);transform:rotate(-10deg)}70%{-webkit-transform:rotate(3deg);transform:rotate(3deg)}to{opacity:1;-webkit-transform:scale(1);transform:scale(1)}}.jackInTheBox{-webkit-animation-name:jackInTheBox;animation-name:jackInTheBox}@-webkit-keyframes rollIn{0%{opacity:0;-webkit-transform:translate3d(-100%,0,0) rotate(-120deg);transform:translate3d(-100%,0,0) rotate(-120deg)}to{opacity:1;-webkit-transform:translateZ(0);transform:translateZ(0)}}@keyframes rollIn{0%{opacity:0;-webkit-transform:translate3d(-100%,0,0) rotate(-120deg);transform:translate3d(-100%,0,0) rotate(-120deg)}to{opacity:1;-webkit-transform:translateZ(0);transform:translateZ(0)}}.rollIn{-webkit-animation-name:rollIn;animation-name:rollIn}@-webkit-keyframes rollOut{0%{opacity:1}to{opacity:0;-webkit-transform:translate3d(100%,0,0) rotate(120deg);transform:translate3d(100%,0,0) rotate(120deg)}}@keyframes rollOut{0%{opacity:1}to{opacity:0;-webkit-transform:translate3d(100%,0,0) rotate(120deg);transform:translate3d(100%,0,0) rotate(120deg)}}.rollOut{-webkit-animation-name:rollOut;animation-name:rollOut}@-webkit-keyframes zoomIn{0%{opacity:0;-webkit-transform:scale3d(.3,.3,.3);transform:scale3d(.3,.3,.3)}50%{opacity:1}}@keyframes zoomIn{0%{opacity:0;-webkit-transform:scale3d(.3,.3,.3);transform:scale3d(.3,.3,.3)}50%{opacity:1}}.zoomIn{-webkit-animation-name:zoomIn;animation-name:zoomIn}@-webkit-keyframes zoomInDown{0%{opacity:0;-webkit-transform:scale3d(.1,.1,.1) translate3d(0,-1000px,0);transform:scale3d(.1,.1,.1) translate3d(0,-1000px,0);-webkit-animation-timing-function:cubic-bezier(.55,.055,.675,.19);animation-timing-function:cubic-bezier(.55,.055,.675,.19)}60%{opacity:1;-webkit-transform:scale3d(.475,.475,.475) translate3d(0,60px,0);transform:scale3d(.475,.475,.475) translate3d(0,60px,0);-webkit-animation-timing-function:cubic-bezier(.175,.885,.32,1);animation-timing-function:cubic-bezier(.175,.885,.32,1)}}@keyframes zoomInDown{0%{opacity:0;-webkit-transform:scale3d(.1,.1,.1) translate3d(0,-1000px,0);transform:scale3d(.1,.1,.1) translate3d(0,-1000px,0);-webkit-animation-timing-function:cubic-bezier(.55,.055,.675,.19);animation-timing-function:cubic-bezier(.55,.055,.675,.19)}60%{opacity:1;-webkit-transform:scale3d(.475,.475,.475) translate3d(0,60px,0);transform:scale3d(.475,.475,.475) translate3d(0,60px,0);-webkit-animation-timing-function:cubic-bezier(.175,.885,.32,1);animation-timing-function:cubic-bezier(.175,.885,.32,1)}}.zoomInDown{-webkit-animation-name:zoomInDown;animation-name:zoomInDown}@-webkit-keyframes zoomInLeft{0%{opacity:0;-webkit-transform:scale3d(.1,.1,.1) translate3d(-1000px,0,0);transform:scale3d(.1,.1,.1) translate3d(-1000px,0,0);-webkit-animation-timing-function:cubic-bezier(.55,.055,.675,.19);animation-timing-function:cubic-bezier(.55,.055,.675,.19)}60%{opacity:1;-webkit-transform:scale3d(.475,.475,.475) translate3d(10px,0,0);transform:scale3d(.475,.475,.475) translate3d(10px,0,0);-webkit-animation-timing-function:cubic-bezier(.175,.885,.32,1);animation-timing-function:cubic-bezier(.175,.885,.32,1)}}@keyframes zoomInLeft{0%{opacity:0;-webkit-transform:scale3d(.1,.1,.1) translate3d(-1000px,0,0);transform:scale3d(.1,.1,.1) translate3d(-1000px,0,0);-webkit-animation-timing-function:cubic-bezier(.55,.055,.675,.19);animation-timing-function:cubic-bezier(.55,.055,.675,.19)}60%{opacity:1;-webkit-transform:scale3d(.475,.475,.475) translate3d(10px,0,0);transform:scale3d(.475,.475,.475) translate3d(10px,0,0);-webkit-animation-timing-function:cubic-bezier(.175,.885,.32,1);animation-timing-function:cubic-bezier(.175,.885,.32,1)}}.zoomInLeft{-webkit-animation-name:zoomInLeft;animation-name:zoomInLeft}@-webkit-keyframes zoomInRight{0%{opacity:0;-webkit-transform:scale3d(.1,.1,.1) translate3d(1000px,0,0);transform:scale3d(.1,.1,.1) translate3d(1000px,0,0);-webkit-animation-timing-function:cubic-bezier(.55,.055,.675,.19);animation-timing-function:cubic-bezier(.55,.055,.675,.19)}60%{opacity:1;-webkit-transform:scale3d(.475,.475,.475) translate3d(-10px,0,0);transform:scale3d(.475,.475,.475) translate3d(-10px,0,0);-webkit-animation-timing-function:cubic-bezier(.175,.885,.32,1);animation-timing-function:cubic-bezier(.175,.885,.32,1)}}@keyframes zoomInRight{0%{opacity:0;-webkit-transform:scale3d(.1,.1,.1) translate3d(1000px,0,0);transform:scale3d(.1,.1,.1) translate3d(1000px,0,0);-webkit-animation-timing-function:cubic-bezier(.55,.055,.675,.19);animation-timing-function:cubic-bezier(.55,.055,.675,.19)}60%{opacity:1;-webkit-transform:scale3d(.475,.475,.475) translate3d(-10px,0,0);transform:scale3d(.475,.475,.475) translate3d(-10px,0,0);-webkit-animation-timing-function:cubic-bezier(.175,.885,.32,1);animation-timing-function:cubic-bezier(.175,.885,.32,1)}}.zoomInRight{-webkit-animation-name:zoomInRight;animation-name:zoomInRight}@-webkit-keyframes zoomInUp{0%{opacity:0;-webkit-transform:scale3d(.1,.1,.1) translate3d(0,1000px,0);transform:scale3d(.1,.1,.1) translate3d(0,1000px,0);-webkit-animation-timing-function:cubic-bezier(.55,.055,.675,.19);animation-timing-function:cubic-bezier(.55,.055,.675,.19)}60%{opacity:1;-webkit-transform:scale3d(.475,.475,.475) translate3d(0,-60px,0);transform:scale3d(.475,.475,.475) translate3d(0,-60px,0);-webkit-animation-timing-function:cubic-bezier(.175,.885,.32,1);animation-timing-function:cubic-bezier(.175,.885,.32,1)}}@keyframes zoomInUp{0%{opacity:0;-webkit-transform:scale3d(.1,.1,.1) translate3d(0,1000px,0);transform:scale3d(.1,.1,.1) translate3d(0,1000px,0);-webkit-animation-timing-function:cubic-bezier(.55,.055,.675,.19);animation-timing-function:cubic-bezier(.55,.055,.675,.19)}60%{opacity:1;-webkit-transform:scale3d(.475,.475,.475) translate3d(0,-60px,0);transform:scale3d(.475,.475,.475) translate3d(0,-60px,0);-webkit-animation-timing-function:cubic-bezier(.175,.885,.32,1);animation-timing-function:cubic-bezier(.175,.885,.32,1)}}.zoomInUp{-webkit-animation-name:zoomInUp;animation-name:zoomInUp}@-webkit-keyframes zoomOut{0%{opacity:1}50%{opacity:0;-webkit-transform:scale3d(.3,.3,.3);transform:scale3d(.3,.3,.3)}to{opacity:0}}@keyframes zoomOut{0%{opacity:1}50%{opacity:0;-webkit-transform:scale3d(.3,.3,.3);transform:scale3d(.3,.3,.3)}to{opacity:0}}.zoomOut{-webkit-animation-name:zoomOut;animation-name:zoomOut}@-webkit-keyframes zoomOutDown{40%{opacity:1;-webkit-transform:scale3d(.475,.475,.475) translate3d(0,-60px,0);transform:scale3d(.475,.475,.475) translate3d(0,-60px,0);-webkit-animation-timing-function:cubic-bezier(.55,.055,.675,.19);animation-timing-function:cubic-bezier(.55,.055,.675,.19)}to{opacity:0;-webkit-transform:scale3d(.1,.1,.1) translate3d(0,2000px,0);transform:scale3d(.1,.1,.1) translate3d(0,2000px,0);-webkit-transform-origin:center bottom;transform-origin:center bottom;-webkit-animation-timing-function:cubic-bezier(.175,.885,.32,1);animation-timing-function:cubic-bezier(.175,.885,.32,1)}}@keyframes zoomOutDown{40%{opacity:1;-webkit-transform:scale3d(.475,.475,.475) translate3d(0,-60px,0);transform:scale3d(.475,.475,.475) translate3d(0,-60px,0);-webkit-animation-timing-function:cubic-bezier(.55,.055,.675,.19);animation-timing-function:cubic-bezier(.55,.055,.675,.19)}to{opacity:0;-webkit-transform:scale3d(.1,.1,.1) translate3d(0,2000px,0);transform:scale3d(.1,.1,.1) translate3d(0,2000px,0);-webkit-transform-origin:center bottom;transform-origin:center bottom;-webkit-animation-timing-function:cubic-bezier(.175,.885,.32,1);animation-timing-function:cubic-bezier(.175,.885,.32,1)}}.zoomOutDown{-webkit-animation-name:zoomOutDown;animation-name:zoomOutDown}@-webkit-keyframes zoomOutLeft{40%{opacity:1;-webkit-transform:scale3d(.475,.475,.475) translate3d(42px,0,0);transform:scale3d(.475,.475,.475) translate3d(42px,0,0)}to{opacity:0;-webkit-transform:scale(.1) translate3d(-2000px,0,0);transform:scale(.1) translate3d(-2000px,0,0);-webkit-transform-origin:left center;transform-origin:left center}}@keyframes zoomOutLeft{40%{opacity:1;-webkit-transform:scale3d(.475,.475,.475) translate3d(42px,0,0);transform:scale3d(.475,.475,.475) translate3d(42px,0,0)}to{opacity:0;-webkit-transform:scale(.1) translate3d(-2000px,0,0);transform:scale(.1) translate3d(-2000px,0,0);-webkit-transform-origin:left center;transform-origin:left center}}.zoomOutLeft{-webkit-animation-name:zoomOutLeft;animation-name:zoomOutLeft}@-webkit-keyframes zoomOutRight{40%{opacity:1;-webkit-transform:scale3d(.475,.475,.475) translate3d(-42px,0,0);transform:scale3d(.475,.475,.475) translate3d(-42px,0,0)}to{opacity:0;-webkit-transform:scale(.1) translate3d(2000px,0,0);transform:scale(.1) translate3d(2000px,0,0);-webkit-transform-origin:right center;transform-origin:right center}}@keyframes zoomOutRight{40%{opacity:1;-webkit-transform:scale3d(.475,.475,.475) translate3d(-42px,0,0);transform:scale3d(.475,.475,.475) translate3d(-42px,0,0)}to{opacity:0;-webkit-transform:scale(.1) translate3d(2000px,0,0);transform:scale(.1) translate3d(2000px,0,0);-webkit-transform-origin:right center;transform-origin:right center}}.zoomOutRight{-webkit-animation-name:zoomOutRight;animation-name:zoomOutRight}@-webkit-keyframes zoomOutUp{40%{opacity:1;-webkit-transform:scale3d(.475,.475,.475) translate3d(0,60px,0);transform:scale3d(.475,.475,.475) translate3d(0,60px,0);-webkit-animation-timing-function:cubic-bezier(.55,.055,.675,.19);animation-timing-function:cubic-bezier(.55,.055,.675,.19)}to{opacity:0;-webkit-transform:scale3d(.1,.1,.1) translate3d(0,-2000px,0);transform:scale3d(.1,.1,.1) translate3d(0,-2000px,0);-webkit-transform-origin:center bottom;transform-origin:center bottom;-webkit-animation-timing-function:cubic-bezier(.175,.885,.32,1);animation-timing-function:cubic-bezier(.175,.885,.32,1)}}@keyframes zoomOutUp{40%{opacity:1;-webkit-transform:scale3d(.475,.475,.475) translate3d(0,60px,0);transform:scale3d(.475,.475,.475) translate3d(0,60px,0);-webkit-animation-timing-function:cubic-bezier(.55,.055,.675,.19);animation-timing-function:cubic-bezier(.55,.055,.675,.19)}to{opacity:0;-webkit-transform:scale3d(.1,.1,.1) translate3d(0,-2000px,0);transform:scale3d(.1,.1,.1) translate3d(0,-2000px,0);-webkit-transform-origin:center bottom;transform-origin:center bottom;-webkit-animation-timing-function:cubic-bezier(.175,.885,.32,1);animation-timing-function:cubic-bezier(.175,.885,.32,1)}}.zoomOutUp{-webkit-animation-name:zoomOutUp;animation-name:zoomOutUp}@-webkit-keyframes slideInDown{0%{-webkit-transform:translate3d(0,-100%,0);transform:translate3d(0,-100%,0);visibility:visible}to{-webkit-transform:translateZ(0);transform:translateZ(0)}}@keyframes slideInDown{0%{-webkit-transform:translate3d(0,-100%,0);transform:translate3d(0,-100%,0);visibility:visible}to{-webkit-transform:translateZ(0);transform:translateZ(0)}}.slideInDown{-webkit-animation-name:slideInDown;animation-name:slideInDown}@-webkit-keyframes slideInLeft{0%{-webkit-transform:translate3d(-100%,0,0);transform:translate3d(-100%,0,0);visibility:visible}to{-webkit-transform:translateZ(0);transform:translateZ(0)}}@keyframes slideInLeft{0%{-webkit-transform:translate3d(-100%,0,0);transform:translate3d(-100%,0,0);visibility:visible}to{-webkit-transform:translateZ(0);transform:translateZ(0)}}.slideInLeft{-webkit-animation-name:slideInLeft;animation-name:slideInLeft}@-webkit-keyframes slideInRight{0%{-webkit-transform:translate3d(100%,0,0);transform:translate3d(100%,0,0);visibility:visible}to{-webkit-transform:translateZ(0);transform:translateZ(0)}}@keyframes slideInRight{0%{-webkit-transform:translate3d(100%,0,0);transform:translate3d(100%,0,0);visibility:visible}to{-webkit-transform:translateZ(0);transform:translateZ(0)}}.slideInRight{-webkit-animation-name:slideInRight;animation-name:slideInRight}@-webkit-keyframes slideInUp{0%{-webkit-transform:translate3d(0,100%,0);transform:translate3d(0,100%,0);visibility:visible}to{-webkit-transform:translateZ(0);transform:translateZ(0)}}@keyframes slideInUp{0%{-webkit-transform:translate3d(0,100%,0);transform:translate3d(0,100%,0);visibility:visible}to{-webkit-transform:translateZ(0);transform:translateZ(0)}}.slideInUp{-webkit-animation-name:slideInUp;animation-name:slideInUp}@-webkit-keyframes slideOutDown{0%{-webkit-transform:translateZ(0);transform:translateZ(0)}to{visibility:hidden;-webkit-transform:translate3d(0,100%,0);transform:translate3d(0,100%,0)}}@keyframes slideOutDown{0%{-webkit-transform:translateZ(0);transform:translateZ(0)}to{visibility:hidden;-webkit-transform:translate3d(0,100%,0);transform:translate3d(0,100%,0)}}.slideOutDown{-webkit-animation-name:slideOutDown;animation-name:slideOutDown}@-webkit-keyframes slideOutLeft{0%{-webkit-transform:translateZ(0);transform:translateZ(0)}to{visibility:hidden;-webkit-transform:translate3d(-100%,0,0);transform:translate3d(-100%,0,0)}}@keyframes slideOutLeft{0%{-webkit-transform:translateZ(0);transform:translateZ(0)}to{visibility:hidden;-webkit-transform:translate3d(-100%,0,0);transform:translate3d(-100%,0,0)}}.slideOutLeft{-webkit-animation-name:slideOutLeft;animation-name:slideOutLeft}@-webkit-keyframes slideOutRight{0%{-webkit-transform:translateZ(0);transform:translateZ(0)}to{visibility:hidden;-webkit-transform:translate3d(100%,0,0);transform:translate3d(100%,0,0)}}@keyframes slideOutRight{0%{-webkit-transform:translateZ(0);transform:translateZ(0)}to{visibility:hidden;-webkit-transform:translate3d(100%,0,0);transform:translate3d(100%,0,0)}}.slideOutRight{-webkit-animation-name:slideOutRight;animation-name:slideOutRight}@-webkit-keyframes slideOutUp{0%{-webkit-transform:translateZ(0);transform:translateZ(0)}to{visibility:hidden;-webkit-transform:translate3d(0,-100%,0);transform:translate3d(0,-100%,0)}}@keyframes slideOutUp{0%{-webkit-transform:translateZ(0);transform:translateZ(0)}to{visibility:hidden;-webkit-transform:translate3d(0,-100%,0);transform:translate3d(0,-100%,0)}}.slideOutUp{-webkit-animation-name:slideOutUp;animation-name:slideOutUp}.animated{-webkit-animation-duration:1s;animation-duration:1s;-webkit-animation-fill-mode:both;animation-fill-mode:both}.animated.infinite{-webkit-animation-iteration-count:infinite;animation-iteration-count:infinite}.animated.delay-1s{-webkit-animation-delay:1s;animation-delay:1s}.animated.delay-2s{-webkit-animation-delay:2s;animation-delay:2s}.animated.delay-3s{-webkit-animation-delay:3s;animation-delay:3s}.animated.delay-4s{-webkit-animation-delay:4s;animation-delay:4s}.animated.delay-5s{-webkit-animation-delay:5s;animation-delay:5s}.animated.fast{-webkit-animation-duration:.8s;animation-duration:.8s}.animated.faster{-webkit-animation-duration:.5s;animation-duration:.5s}.animated.slow{-webkit-animation-duration:2s;animation-duration:2s}.animated.slower{-webkit-animation-duration:3s;animation-duration:3s}@media (prefers-reduced-motion:reduce),(print){.animated{-webkit-animation-duration:1ms!important;animation-duration:1ms!important;-webkit-transition-duration:1ms!important;transition-duration:1ms!important;-webkit-animation-iteration-count:1!important;animation-iteration-count:1!important}}", ""]);
-
-// exports
-
-
-/***/ }),
-
 /***/ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-multiselect/dist/vue-multiselect.min.css":
 /*!***************************************************************************************************************************************************!*\
   !*** ./node_modules/css-loader??ref--6-1!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-multiselect/dist/vue-multiselect.min.css ***!
@@ -6539,48 +6636,6 @@ function toComment(sourceMap) {
 	return '/*# ' + data + ' */';
 }
 
-
-/***/ }),
-
-/***/ "./node_modules/cxlt-vue2-toastr/dist/css/cxlt-vue2-toastr.css":
-/*!*********************************************************************!*\
-  !*** ./node_modules/cxlt-vue2-toastr/dist/css/cxlt-vue2-toastr.css ***!
-  \*********************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-
-var content = __webpack_require__(/*! !../../../css-loader??ref--6-1!../../../postcss-loader/src??ref--6-2!./cxlt-vue2-toastr.css */ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./node_modules/cxlt-vue2-toastr/dist/css/cxlt-vue2-toastr.css");
-
-if(typeof content === 'string') content = [[module.i, content, '']];
-
-var transform;
-var insertInto;
-
-
-
-var options = {"hmr":true}
-
-options.transform = transform
-options.insertInto = undefined;
-
-var update = __webpack_require__(/*! ../../../style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
-
-if(content.locals) module.exports = content.locals;
-
-if(false) {}
-
-/***/ }),
-
-/***/ "./node_modules/cxlt-vue2-toastr/dist/js/cxlt-vue2-toastr.js":
-/*!*******************************************************************!*\
-  !*** ./node_modules/cxlt-vue2-toastr/dist/js/cxlt-vue2-toastr.js ***!
-  \*******************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-!function(t,e){ true?module.exports=e():undefined}(this,function(){return function(t){function e(r){if(n[r])return n[r].exports;var o=n[r]={i:r,l:!1,exports:{}};return t[r].call(o.exports,o,o.exports,e),o.l=!0,o.exports}var n={};return e.m=t,e.c=n,e.i=function(t){return t},e.d=function(t,n,r){e.o(t,n)||Object.defineProperty(t,n,{configurable:!1,enumerable:!0,get:r})},e.n=function(t){var n=t&&t.__esModule?function(){return t.default}:function(){return t};return e.d(n,"a",n),n},e.o=function(t,e){return Object.prototype.hasOwnProperty.call(t,e)},e.p="/",e(e.s=43)}([function(t,e){var n=t.exports="undefined"!=typeof window&&window.Math==Math?window:"undefined"!=typeof self&&self.Math==Math?self:Function("return this")();"number"==typeof __g&&(__g=n)},function(t,e,n){t.exports=!n(8)(function(){return 7!=Object.defineProperty({},"a",{get:function(){return 7}}).a})},function(t,e){var n={}.hasOwnProperty;t.exports=function(t,e){return n.call(t,e)}},function(t,e,n){var r=n(4),o=n(14);t.exports=n(1)?function(t,e,n){return r.f(t,e,o(1,n))}:function(t,e,n){return t[e]=n,t}},function(t,e,n){var r=n(10),o=n(31),i=n(26),s=Object.defineProperty;e.f=n(1)?Object.defineProperty:function(t,e,n){if(r(t),e=i(e,!0),r(n),o)try{return s(t,e,n)}catch(t){}if("get"in n||"set"in n)throw TypeError("Accessors not supported!");return"value"in n&&(t[e]=n.value),t}},function(t,e,n){var r=n(32),o=n(16);t.exports=function(t){return r(o(t))}},function(t,e,n){var r=n(23)("wks"),o=n(15),i=n(0).Symbol,s="function"==typeof i;(t.exports=function(t){return r[t]||(r[t]=s&&i[t]||(s?i:o)("Symbol."+t))}).store=r},function(t,e){var n=t.exports={version:"2.6.9"};"number"==typeof __e&&(__e=n)},function(t,e){t.exports=function(t){try{return!!t()}catch(t){return!0}}},function(t,e){t.exports=function(t){return"object"==typeof t?null!==t:"function"==typeof t}},function(t,e,n){var r=n(9);t.exports=function(t){if(!r(t))throw TypeError(t+" is not an object!");return t}},function(t,e){t.exports=!0},function(t,e,n){var r=n(36),o=n(17);t.exports=Object.keys||function(t){return r(t,o)}},function(t,e){e.f={}.propertyIsEnumerable},function(t,e){t.exports=function(t,e){return{enumerable:!(1&t),configurable:!(2&t),writable:!(4&t),value:e}}},function(t,e){var n=0,r=Math.random();t.exports=function(t){return"Symbol(".concat(void 0===t?"":t,")_",(++n+r).toString(36))}},function(t,e){t.exports=function(t){if(void 0==t)throw TypeError("Can't call method on  "+t);return t}},function(t,e){t.exports="constructor,hasOwnProperty,isPrototypeOf,propertyIsEnumerable,toLocaleString,toString,valueOf".split(",")},function(t,e,n){var r=n(0),o=n(7),i=n(53),s=n(3),u=n(2),c=function(t,e,n){var a,f,l,p=t&c.F,h=t&c.G,d=t&c.S,y=t&c.P,A=t&c.B,g=t&c.W,v=h?o:o[e]||(o[e]={}),m=v.prototype,b=h?r:d?r[e]:(r[e]||{}).prototype;h&&(n=e);for(a in n)(f=!p&&b&&void 0!==b[a])&&u(v,a)||(l=f?b[a]:n[a],v[a]=h&&"function"!=typeof b[a]?n[a]:A&&f?i(l,r):g&&b[a]==l?function(t){var e=function(e,n,r){if(this instanceof t){switch(arguments.length){case 0:return new t;case 1:return new t(e);case 2:return new t(e,n)}return new t(e,n,r)}return t.apply(this,arguments)};return e.prototype=t.prototype,e}(l):y&&"function"==typeof l?i(Function.call,l):l,y&&((v.virtual||(v.virtual={}))[a]=l,t&c.R&&m&&!m[a]&&s(m,a,l)))};c.F=1,c.G=2,c.S=4,c.P=8,c.B=16,c.W=32,c.U=64,c.R=128,t.exports=c},function(t,e){t.exports={}},function(t,e){e.f=Object.getOwnPropertySymbols},function(t,e,n){var r=n(4).f,o=n(2),i=n(6)("toStringTag");t.exports=function(t,e,n){t&&!o(t=n?t:t.prototype,i)&&r(t,i,{configurable:!0,value:e})}},function(t,e,n){var r=n(23)("keys"),o=n(15);t.exports=function(t){return r[t]||(r[t]=o(t))}},function(t,e,n){var r=n(7),o=n(0),i=o["__core-js_shared__"]||(o["__core-js_shared__"]={});(t.exports=function(t,e){return i[t]||(i[t]=void 0!==e?e:{})})("versions",[]).push({version:r.version,mode:n(11)?"pure":"global",copyright:"© 2019 Denis Pushkarev (zloirock.ru)"})},function(t,e){var n=Math.ceil,r=Math.floor;t.exports=function(t){return isNaN(t=+t)?0:(t>0?r:n)(t)}},function(t,e,n){var r=n(16);t.exports=function(t){return Object(r(t))}},function(t,e,n){var r=n(9);t.exports=function(t,e){if(!r(t))return t;var n,o;if(e&&"function"==typeof(n=t.toString)&&!r(o=n.call(t)))return o;if("function"==typeof(n=t.valueOf)&&!r(o=n.call(t)))return o;if(!e&&"function"==typeof(n=t.toString)&&!r(o=n.call(t)))return o;throw TypeError("Can't convert object to primitive value")}},function(t,e,n){var r=n(0),o=n(7),i=n(11),s=n(28),u=n(4).f;t.exports=function(t){var e=o.Symbol||(o.Symbol=i?{}:r.Symbol||{});"_"==t.charAt(0)||t in e||u(e,t,{value:s.f(t)})}},function(t,e,n){e.f=n(6)},function(t,e){var n={}.toString;t.exports=function(t){return n.call(t).slice(8,-1)}},function(t,e,n){var r=n(9),o=n(0).document,i=r(o)&&r(o.createElement);t.exports=function(t){return i?o.createElement(t):{}}},function(t,e,n){t.exports=!n(1)&&!n(8)(function(){return 7!=Object.defineProperty(n(30)("div"),"a",{get:function(){return 7}}).a})},function(t,e,n){var r=n(29);t.exports=Object("z").propertyIsEnumerable(0)?Object:function(t){return"String"==r(t)?t.split(""):Object(t)}},function(t,e,n){"use strict";var r=n(11),o=n(18),i=n(37),s=n(3),u=n(19),c=n(57),a=n(21),f=n(64),l=n(6)("iterator"),p=!([].keys&&"next"in[].keys()),h=function(){return this};t.exports=function(t,e,n,d,y,A,g){c(n,e,d);var v,m,b,x=function(t){if(!p&&t in O)return O[t];switch(t){case"keys":case"values":return function(){return new n(this,t)}}return function(){return new n(this,t)}},S=e+" Iterator",w="values"==y,C=!1,O=t.prototype,B=O[l]||O["@@iterator"]||y&&O[y],M=B||x(y),E=y?w?x("entries"):M:void 0,I="Array"==e?O.entries||B:B;if(I&&(b=f(I.call(new t)))!==Object.prototype&&b.next&&(a(b,S,!0),r||"function"==typeof b[l]||s(b,l,h)),w&&B&&"values"!==B.name&&(C=!0,M=function(){return B.call(this)}),r&&!g||!p&&!C&&O[l]||s(O,l,M),u[e]=M,u[S]=h,y)if(v={values:w?M:x("values"),keys:A?M:x("keys"),entries:E},g)for(m in v)m in O||i(O,m,v[m]);else o(o.P+o.F*(p||C),e,v);return v}},function(t,e,n){var r=n(10),o=n(61),i=n(17),s=n(22)("IE_PROTO"),u=function(){},c=function(){var t,e=n(30)("iframe"),r=i.length;for(e.style.display="none",n(55).appendChild(e),e.src="javascript:",t=e.contentWindow.document,t.open(),t.write("<script>document.F=Object<\/script>"),t.close(),c=t.F;r--;)delete c.prototype[i[r]];return c()};t.exports=Object.create||function(t,e){var n;return null!==t?(u.prototype=r(t),n=new u,u.prototype=null,n[s]=t):n=c(),void 0===e?n:o(n,e)}},function(t,e,n){var r=n(36),o=n(17).concat("length","prototype");e.f=Object.getOwnPropertyNames||function(t){return r(t,o)}},function(t,e,n){var r=n(2),o=n(5),i=n(52)(!1),s=n(22)("IE_PROTO");t.exports=function(t,e){var n,u=o(t),c=0,a=[];for(n in u)n!=s&&r(u,n)&&a.push(n);for(;e.length>c;)r(u,n=e[c++])&&(~i(a,n)||a.push(n));return a}},function(t,e,n){t.exports=n(3)},function(t,e,n){t.exports={default:n(47),__esModule:!0}},function(t,e,n){"use strict";function r(t){return t&&t.__esModule?t:{default:t}}e.__esModule=!0;var o=n(46),i=r(o),s=n(45),u=r(s),c="function"==typeof u.default&&"symbol"==typeof i.default?function(t){return typeof t}:function(t){return t&&"function"==typeof u.default&&t.constructor===u.default&&t!==u.default.prototype?"symbol":typeof t};e.default="function"==typeof u.default&&"symbol"===c(i.default)?function(t){return void 0===t?"undefined":c(t)}:function(t){return t&&"function"==typeof u.default&&t.constructor===u.default&&t!==u.default.prototype?"symbol":void 0===t?"undefined":c(t)}},function(t,e){},function(t,e){},function(t,e,n){var r=n(80)(n(44),n(81),null,null);r.options.__file="/Users/chengxulvtu/Documents/github/cxlt-vue2-toastr/src/Toastr.vue",r.esModule&&Object.keys(r.esModule).some(function(t){return"default"!==t&&"__esModule"!==t})&&console.error("named exports are not supported in *.vue files."),r.options.functional&&console.error("[vue-loader] Toastr.vue: functional components are not supported with templates, they should use render functions."),t.exports=r.exports},function(t,e,n){"use strict";Object.defineProperty(e,"__esModule",{value:!0});var r=n(39),o=n.n(r),i=n(38),s=n.n(i),u=n(42),c=n.n(u),a=n(41),f=(n.n(a),n(40)),l=(n.n(f),{install:function(t,e){function n(n,r){var o=t.extend(c.a),u=s()(e,n,{type:r}),a=new o({el:document.createElement("div"),propsData:u});return i.push(a),a}function r(t){return"object"!==(void 0===t?"undefined":o()(t))&&"function"!=typeof t&&(t={message:t.toString()}),t}e||(e={});var i=[];t.prototype.$toast={success:function(t){return n(r(t),"success")},info:function(t){return n(r(t),"info")},warn:function(t){return n(r(t),"warning")},error:function(t){return n(r(t),"error")},removeAll:function(){i.forEach(function(t){t.hideToastr()}),i=[]}}}});e.default=l},function(t,e,n){"use strict";Object.defineProperty(e,"__esModule",{value:!0}),e.default={name:"CxltToastr",data:function(){return{progress:{hideEta:0,percent:0,intervalId:null},show:!1,defaultIcons:{success:n(78),info:n(77),warning:n(79),error:n(76)}}},props:{type:{type:String,default:"success"},position:{type:String,default:"top center"},title:{type:String},message:{type:String},useHtml:{type:Boolean,default:!1},closeButton:{type:Boolean,default:!0},progressBar:{type:Boolean,default:!1},icon:{type:String},timeOut:{default:"1500"},showMethod:{type:String,default:"fadeIn"},hideMethod:{type:String,default:"fadeOut"},showDuration:{default:"1000"},hideDuration:{default:"1000"},delay:{default:"0"},successColor:{type:String},infoColor:{type:String},warningColor:{type:String},errorColor:{type:String},color:{type:String}},beforeMount:function(){var t=document.querySelector(".cxlt-toastr-container.toast-"+this.positionClass);t||(t=document.createElement("div"),t.classList.add("cxlt-toastr-container"),t.classList.add("toast-"+this.positionClass),document.body.appendChild(t)),t.appendChild(this.$el)},mounted:function(){var t=this;setTimeout(function(){return t.showToastr()},this.delay)},computed:{positionClass:function(){return this.position.split(" ").join("-")},enterActiveClass:function(){return"animated "+this.showMethod},leaveActiveClass:function(){return"animated "+this.hideMethod},toastBackgroundColor:function(){return this.color?this.color:"success"===this.type&&this.successColor?this.successColor:"info"===this.type&&this.infoColor?this.infoColor:"warning"===this.type&&this.warningColor?this.warningColor:"error"===this.type&&this.errorColor?this.errorColor:null},iconSrc:function(){return this.icon?this.icon:this.defaultIcons[this.type]}},methods:{showToastr:function(){var t=this;this.show=!0,this.sto=setTimeout(function(){return t.hideToastr()},this.timeOut),this.progressBar&&(this.progress.hideEta=(new Date).getTime()+parseFloat(this.timeOut),this.progress.intervalId=setInterval(function(){return t.refreshProgress()},10))},hideToastr:function(){clearTimeout(this.sto),clearTimeout(this.progress.intervalId),this.show=!1},refreshProgress:function(){this.progress.percent=(this.progress.hideEta-(new Date).getTime())/this.timeOut*100},beforeEnter:function(t){t.style.animationDuration=this.showDuration+"ms"},afterEnter:function(t){this.$el.classList.add("animated"),this.$el.classList.add(this.showMethod)},beforeLeave:function(t){t.style.animationDuration=this.hideDuration+"ms"}}}},function(t,e,n){t.exports={default:n(48),__esModule:!0}},function(t,e,n){t.exports={default:n(49),__esModule:!0}},function(t,e,n){n(69),t.exports=n(7).Object.assign},function(t,e,n){n(72),n(70),n(73),n(74),t.exports=n(7).Symbol},function(t,e,n){n(71),n(75),t.exports=n(28).f("iterator")},function(t,e){t.exports=function(t){if("function"!=typeof t)throw TypeError(t+" is not a function!");return t}},function(t,e){t.exports=function(){}},function(t,e,n){var r=n(5),o=n(67),i=n(66);t.exports=function(t){return function(e,n,s){var u,c=r(e),a=o(c.length),f=i(s,a);if(t&&n!=n){for(;a>f;)if((u=c[f++])!=u)return!0}else for(;a>f;f++)if((t||f in c)&&c[f]===n)return t||f||0;return!t&&-1}}},function(t,e,n){var r=n(50);t.exports=function(t,e,n){if(r(t),void 0===e)return t;switch(n){case 1:return function(n){return t.call(e,n)};case 2:return function(n,r){return t.call(e,n,r)};case 3:return function(n,r,o){return t.call(e,n,r,o)}}return function(){return t.apply(e,arguments)}}},function(t,e,n){var r=n(12),o=n(20),i=n(13);t.exports=function(t){var e=r(t),n=o.f;if(n)for(var s,u=n(t),c=i.f,a=0;u.length>a;)c.call(t,s=u[a++])&&e.push(s);return e}},function(t,e,n){var r=n(0).document;t.exports=r&&r.documentElement},function(t,e,n){var r=n(29);t.exports=Array.isArray||function(t){return"Array"==r(t)}},function(t,e,n){"use strict";var r=n(34),o=n(14),i=n(21),s={};n(3)(s,n(6)("iterator"),function(){return this}),t.exports=function(t,e,n){t.prototype=r(s,{next:o(1,n)}),i(t,e+" Iterator")}},function(t,e){t.exports=function(t,e){return{value:e,done:!!t}}},function(t,e,n){var r=n(15)("meta"),o=n(9),i=n(2),s=n(4).f,u=0,c=Object.isExtensible||function(){return!0},a=!n(8)(function(){return c(Object.preventExtensions({}))}),f=function(t){s(t,r,{value:{i:"O"+ ++u,w:{}}})},l=function(t,e){if(!o(t))return"symbol"==typeof t?t:("string"==typeof t?"S":"P")+t;if(!i(t,r)){if(!c(t))return"F";if(!e)return"E";f(t)}return t[r].i},p=function(t,e){if(!i(t,r)){if(!c(t))return!0;if(!e)return!1;f(t)}return t[r].w},h=function(t){return a&&d.NEED&&c(t)&&!i(t,r)&&f(t),t},d=t.exports={KEY:r,NEED:!1,fastKey:l,getWeak:p,onFreeze:h}},function(t,e,n){"use strict";var r=n(1),o=n(12),i=n(20),s=n(13),u=n(25),c=n(32),a=Object.assign;t.exports=!a||n(8)(function(){var t={},e={},n=Symbol(),r="abcdefghijklmnopqrst";return t[n]=7,r.split("").forEach(function(t){e[t]=t}),7!=a({},t)[n]||Object.keys(a({},e)).join("")!=r})?function(t,e){for(var n=u(t),a=arguments.length,f=1,l=i.f,p=s.f;a>f;)for(var h,d=c(arguments[f++]),y=l?o(d).concat(l(d)):o(d),A=y.length,g=0;A>g;)h=y[g++],r&&!p.call(d,h)||(n[h]=d[h]);return n}:a},function(t,e,n){var r=n(4),o=n(10),i=n(12);t.exports=n(1)?Object.defineProperties:function(t,e){o(t);for(var n,s=i(e),u=s.length,c=0;u>c;)r.f(t,n=s[c++],e[n]);return t}},function(t,e,n){var r=n(13),o=n(14),i=n(5),s=n(26),u=n(2),c=n(31),a=Object.getOwnPropertyDescriptor;e.f=n(1)?a:function(t,e){if(t=i(t),e=s(e,!0),c)try{return a(t,e)}catch(t){}if(u(t,e))return o(!r.f.call(t,e),t[e])}},function(t,e,n){var r=n(5),o=n(35).f,i={}.toString,s="object"==typeof window&&window&&Object.getOwnPropertyNames?Object.getOwnPropertyNames(window):[],u=function(t){try{return o(t)}catch(t){return s.slice()}};t.exports.f=function(t){return s&&"[object Window]"==i.call(t)?u(t):o(r(t))}},function(t,e,n){var r=n(2),o=n(25),i=n(22)("IE_PROTO"),s=Object.prototype;t.exports=Object.getPrototypeOf||function(t){return t=o(t),r(t,i)?t[i]:"function"==typeof t.constructor&&t instanceof t.constructor?t.constructor.prototype:t instanceof Object?s:null}},function(t,e,n){var r=n(24),o=n(16);t.exports=function(t){return function(e,n){var i,s,u=String(o(e)),c=r(n),a=u.length;return c<0||c>=a?t?"":void 0:(i=u.charCodeAt(c),i<55296||i>56319||c+1===a||(s=u.charCodeAt(c+1))<56320||s>57343?t?u.charAt(c):i:t?u.slice(c,c+2):s-56320+(i-55296<<10)+65536)}}},function(t,e,n){var r=n(24),o=Math.max,i=Math.min;t.exports=function(t,e){return t=r(t),t<0?o(t+e,0):i(t,e)}},function(t,e,n){var r=n(24),o=Math.min;t.exports=function(t){return t>0?o(r(t),9007199254740991):0}},function(t,e,n){"use strict";var r=n(51),o=n(58),i=n(19),s=n(5);t.exports=n(33)(Array,"Array",function(t,e){this._t=s(t),this._i=0,this._k=e},function(){var t=this._t,e=this._k,n=this._i++;return!t||n>=t.length?(this._t=void 0,o(1)):"keys"==e?o(0,n):"values"==e?o(0,t[n]):o(0,[n,t[n]])},"values"),i.Arguments=i.Array,r("keys"),r("values"),r("entries")},function(t,e,n){var r=n(18);r(r.S+r.F,"Object",{assign:n(60)})},function(t,e){},function(t,e,n){"use strict";var r=n(65)(!0);n(33)(String,"String",function(t){this._t=String(t),this._i=0},function(){var t,e=this._t,n=this._i;return n>=e.length?{value:void 0,done:!0}:(t=r(e,n),this._i+=t.length,{value:t,done:!1})})},function(t,e,n){"use strict";var r=n(0),o=n(2),i=n(1),s=n(18),u=n(37),c=n(59).KEY,a=n(8),f=n(23),l=n(21),p=n(15),h=n(6),d=n(28),y=n(27),A=n(54),g=n(56),v=n(10),m=n(9),b=n(25),x=n(5),S=n(26),w=n(14),C=n(34),O=n(63),B=n(62),M=n(20),E=n(4),I=n(12),k=B.f,T=E.f,j=O.f,D=r.Symbol,P=r.JSON,L=P&&P.stringify,R=h("_hidden"),Q=h("toPrimitive"),F={}.propertyIsEnumerable,U=f("symbol-registry"),J=f("symbols"),z=f("op-symbols"),N=Object.prototype,Y="function"==typeof D&&!!M.f,V=r.QObject,G=!V||!V.prototype||!V.prototype.findChild,_=i&&a(function(){return 7!=C(T({},"a",{get:function(){return T(this,"a",{value:7}).a}})).a})?function(t,e,n){var r=k(N,e);r&&delete N[e],T(t,e,n),r&&t!==N&&T(N,e,r)}:T,H=function(t){var e=J[t]=C(D.prototype);return e._k=t,e},K=Y&&"symbol"==typeof D.iterator?function(t){return"symbol"==typeof t}:function(t){return t instanceof D},Z=function(t,e,n){return t===N&&Z(z,e,n),v(t),e=S(e,!0),v(n),o(J,e)?(n.enumerable?(o(t,R)&&t[R][e]&&(t[R][e]=!1),n=C(n,{enumerable:w(0,!1)})):(o(t,R)||T(t,R,w(1,{})),t[R][e]=!0),_(t,e,n)):T(t,e,n)},W=function(t,e){v(t);for(var n,r=A(e=x(e)),o=0,i=r.length;i>o;)Z(t,n=r[o++],e[n]);return t},q=function(t,e){return void 0===e?C(t):W(C(t),e)},X=function(t){var e=F.call(this,t=S(t,!0));return!(this===N&&o(J,t)&&!o(z,t))&&(!(e||!o(this,t)||!o(J,t)||o(this,R)&&this[R][t])||e)},$=function(t,e){if(t=x(t),e=S(e,!0),t!==N||!o(J,e)||o(z,e)){var n=k(t,e);return!n||!o(J,e)||o(t,R)&&t[R][e]||(n.enumerable=!0),n}},tt=function(t){for(var e,n=j(x(t)),r=[],i=0;n.length>i;)o(J,e=n[i++])||e==R||e==c||r.push(e);return r},et=function(t){for(var e,n=t===N,r=j(n?z:x(t)),i=[],s=0;r.length>s;)!o(J,e=r[s++])||n&&!o(N,e)||i.push(J[e]);return i};Y||(D=function(){if(this instanceof D)throw TypeError("Symbol is not a constructor!");var t=p(arguments.length>0?arguments[0]:void 0),e=function(n){this===N&&e.call(z,n),o(this,R)&&o(this[R],t)&&(this[R][t]=!1),_(this,t,w(1,n))};return i&&G&&_(N,t,{configurable:!0,set:e}),H(t)},u(D.prototype,"toString",function(){return this._k}),B.f=$,E.f=Z,n(35).f=O.f=tt,n(13).f=X,M.f=et,i&&!n(11)&&u(N,"propertyIsEnumerable",X,!0),d.f=function(t){return H(h(t))}),s(s.G+s.W+s.F*!Y,{Symbol:D});for(var nt="hasInstance,isConcatSpreadable,iterator,match,replace,search,species,split,toPrimitive,toStringTag,unscopables".split(","),rt=0;nt.length>rt;)h(nt[rt++]);for(var ot=I(h.store),it=0;ot.length>it;)y(ot[it++]);s(s.S+s.F*!Y,"Symbol",{for:function(t){return o(U,t+="")?U[t]:U[t]=D(t)},keyFor:function(t){if(!K(t))throw TypeError(t+" is not a symbol!");for(var e in U)if(U[e]===t)return e},useSetter:function(){G=!0},useSimple:function(){G=!1}}),s(s.S+s.F*!Y,"Object",{create:q,defineProperty:Z,defineProperties:W,getOwnPropertyDescriptor:$,getOwnPropertyNames:tt,getOwnPropertySymbols:et});var st=a(function(){M.f(1)});s(s.S+s.F*st,"Object",{getOwnPropertySymbols:function(t){return M.f(b(t))}}),P&&s(s.S+s.F*(!Y||a(function(){var t=D();return"[null]"!=L([t])||"{}"!=L({a:t})||"{}"!=L(Object(t))})),"JSON",{stringify:function(t){for(var e,n,r=[t],o=1;arguments.length>o;)r.push(arguments[o++]);if(n=e=r[1],(m(e)||void 0!==t)&&!K(t))return g(e)||(e=function(t,e){if("function"==typeof n&&(e=n.call(this,t,e)),!K(e))return e}),r[1]=e,L.apply(P,r)}}),D.prototype[Q]||n(3)(D.prototype,Q,D.prototype.valueOf),l(D,"Symbol"),l(Math,"Math",!0),l(r.JSON,"JSON",!0)},function(t,e,n){n(27)("asyncIterator")},function(t,e,n){n(27)("observable")},function(t,e,n){n(68);for(var r=n(0),o=n(3),i=n(19),s=n(6)("toStringTag"),u="CSSRuleList,CSSStyleDeclaration,CSSValueList,ClientRectList,DOMRectList,DOMStringList,DOMTokenList,DataTransferItemList,FileList,HTMLAllCollection,HTMLCollection,HTMLFormElement,HTMLSelectElement,MediaList,MimeTypeArray,NamedNodeMap,NodeList,PaintRequestList,Plugin,PluginArray,SVGLengthList,SVGNumberList,SVGPathSegList,SVGPointList,SVGStringList,SVGTransformList,SourceBufferList,StyleSheetList,TextTrackCueList,TextTrackList,TouchList".split(","),c=0;c<u.length;c++){var a=u[c],f=r[a],l=f&&f.prototype;l&&!l[s]&&o(l,s,a),i[a]=i.Array}},function(t,e){t.exports="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAADJUlEQVRoQ+2a/VEVMRTFz60ArQCsQK1A6AArECrQDoQOoAKhAu0AqECoQKhAO4hzmMBk9+XjJNl9C29e/mKGZDe/3HM/cvcZNmTYhnBgC5KypHPuDYD3APYTc64B3JnZvynVMIlFnHMfAHwBcASAIMq4B/ALwKWZ3SoLcnO6QJxz3PwJgL3OjRDqxMwuW5/TBOKco2x+TAAw3jeBjs2M8qsaVSBe/98BfKt6S/3kMwCnNX4kg3iIKwD0h3UM+s2BCiOBeGf+OYOUSgdCqX1WgkERxFvi9wIQT5CE+ViyTBZkATmlLFSUWQmETve1ZP81/f/czJJBJgniQyyd+yUNOn80NOdA/lT4xQ0AWo/5RbXgOQBuiqf8STytezN7F5sbBXHOsdRgwlMGSwzOfxziWia9i2AN/2aVoIzB2qcFKRDVGgMIESa6EeecChO1ygqIzxkMt6VxY2apCjdlmShEcACUmiIzhuNBoRkDUU+GiYrVa3KMZJaF8LI8BMDEWxorESwG8lcsxbPhcCQzhD6R2mWPvAYgPgESRB3FU1YfJAaJ8HFvw2w/BqHma3NHN0wDBIEGOWUMwksSy/Ta0QzTCMH9scznfh/HVCB8VjVMB8SsIFUwnRBbEMVnNkJa1RCjPKPWdeGBZp19Y8Ivm2uvPyH6eoetzB3BKZYsUR7MbNAUjNVa6vX2xReN7FspZfy1mR1kCsDY5axUxrM8Sl4NgneVy3gvL7ZgdgV5XZjZ8XheIdmlLlaMXM83zcy7V2S1UqI0hsQBjJixx1ddFSJZPeSaD6pV+HDe7OhbvBgpp8o1vMDxYsbmgyInrolaI2kRL6+WnCKosWtKfTvIw6gRrGt34uK2Bp0HYYKkbPgpbclxR/nl+r9qE5sdCyWKzQH7wE8ZXU3sIIoxt9Ax1w1DiMNJPisEMOuWWVFOofmL0gon+y4L78lqf7dVauwL8+Oo/Am7CiSwDkMz88DUUqOUjmb/GJooRWihXiAC0ALPje1aUzZZJALEYMCMzsyuQnHzDCAscZb9wUDs1LwfESz3E47bGv0r1pnEIsqL5p6zBZn7hGuf/x/5tYxCBjNscgAAAABJRU5ErkJggg=="},function(t,e){t.exports="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAER0lEQVRoQ+2ajVEUQRCFuyNQIxAiECIQIhAjkItAiECMQIlAiACMQC4CIQLvIhAiaOtt9Zx9s71787dbhWVXXVHA3u580697enqWqZGJyB4RvSWiA/3gd3ysrYgIn3v9LJkZv1cb19xBB/+BiE6dQafeGiBfieh7DVQRiIhg1j8qQOqAU667IqLPJUBZICLykoi+jACsiejWyMcbfJDeERG9HqAD0DkzP6bQ45pkEBGBfAABGGsYPKRxmzuTKs0TIjpzoACxYGZMzE5LAhGRb44XHgDAzJi9atOJunCA8IzzXQ8YBVEp3RARZBDsiYgumBleaG4iAu8A6IW5+R0RvR+T2iCIQvzQVBruCS+c5Eool1YlB0m9Md9Fyj4eghkDAYT1xDUzI05mMxGBbJHeg90x87E3ABfEiYkiCE3T7/TBWCcwq1nmwFwyM+S3ZT0QDToEd7BSCGQjxJc16DwpC9kvOTC9+2yBaFz8Min2gZmR97NNRJA+bcDiHo/M/Cr7ZkQkIvBmiBnce9/GSwxiNYnsdFAa2CIirpaZk1J+/F1NAIAJk7OllM1NVc8/zQ2wshan2AGPPDFzvKAmO0hTMxblYPBKV3RaEOuNYkmFJ4hIsxiJ4gUDD6XNxisdiLoNsREMpUH1iq1eBhAMJUx21nIkhiXAJqPOKwEEK+kn/dKameN9RLL757hQRKxXuhAIIPBGGHxVbMwEgnUkxMqKmffZkdUmgFoMSuVFLWRl4g+TbkOhA7GaayYrnSAsiGEdQnxgIWuytY3ktQAIUix2ezB3+S/xjIigYsUe3tpgrZT7jGi1vwSIfWCT+NAK4bc3OC5cEJ3sZRPUEiA20FEmA6zahlZ2LcWrnyEiqMxRocNWALGlxHMFof8gu7Q3s7T+LY/Y5f65xsh6kvQL2c0grV76tQti0bbWi5cZQOy2o1sQbYnSFWC7Ajnl/zOA2PWvK1H6BViDemhKEHfMqudefZ8y62PXTAxiy/iu0PU2Vk3kNTFIb/802VZ3KhCn7/Z3q6vyslngnpkPa+Q1IYj1xnbzQUGwAWrZDnL7WjXVb1I7yPEKunmHpTu6EY8UbaU1U2GiQ1/Mb9ApCC5CBgvdvGKJtW7QiQggwrYZXdC9wZapwsSNtStmXuTGS8sGnXM6MN7EDoON9vH4cykMZrCqQedApB0rGJi4eVAEk+tJe70DgRcM7OHT5vJdR2+AiY+/mrV0hiCdVhIuxbHfUfbRmwl+HMzYtg6yGQ5DL2tmewQCrSmU6LZrv9Szy8Fz96SzCidmus6FAl23ABIRnBUCIO47J/XakkBMNsPqH59CFb9LohLCGSOKwBgAKfY09aguGcRIDRsxe9JqHQIoxFX46TkLwYpBh5/eNfDy2SSvcETZBAOBDIaAStUGAMRfdn84yyPx6Ha8S5IKU/wui31AFYjjJcjFvngWv/2DQdsXz9DUzp59b4b+AJFTg4IAQeQDAAAAAElFTkSuQmCC"},function(t,e){t.exports="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAABiklEQVRoQ+3Y4VHDMAwF4PcmgBE6AiPABBwbMAKMwgSMwAjABh2hTABMYM53bi+kThzLlqP0nL+pXX+SHetEXMjDC3GgQ6xlsmekZ0QpAn1rKQVWPO2mMuKcuwZwD+BA8nOo3gzEOXcD4A3ALgBeSD4dMZuABMQ7AJ+R00PytH7zkCkEgC+Sx+zYLlFmEL8AbknuzW+tHITHmNxauQiTEAnCHESKMAUpQZiBlCJMQGogVofUQkQhoTDbDS8bcUk6M7Am4gzinHsE8Br+/wPAA8mf2pDaiBjke1SY+RLgriZGAxGD+OhfjTJQDaOFSG2toacYo4mYOuzDc1IFo42Y/PyODn0RpgVi9h6pgWmFSF6IJZiWiCTE/0CCaY1YBMnFrIFYDFmKWQuRBVmAeQ59p38tGwBnjYLaJU82JIGJra8JQgTJwDRDiCELME0RRZAZTHNEMSSCWQVRBRIwvlPu+7B7kgeNr1JqTpOdxtSiY+87RBI1zTE9I5rRlczdMyKJmuaYnhHN6Erm/gOnUwJCWY8N3gAAAABJRU5ErkJggg=="},function(t,e){t.exports="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAADbUlEQVRoQ+1Z0XXUMBDcqQBSAaQCkgpIKgAqIFQAVABUQFIBUAFJBSQVcFRAUgFJBcObe9Jh6yR7ZcsPXjj9OLmz7B3Nzmq0B7snA/cEh+2A/GtM7hj5rxgh+drMngfQ5wDOllqAxVKL5DczO0oCvwRwvASYRYCQfGNmHwsBvwLwuTWY5kBIPjSzn2amq8ZVuD4N11sz2wega7OxBJBTM5M2NO7M7HEAtTKzB+HzMwBirdloCoTkgZl970T3AcB7/U9S13ed7w4BCFyT0RpIV+A3AMTGZpC8NrNH4YOmwm8GhOSJmX3qxH0M4DIBoiomsHG8AHDegpImQILAlVKRgQsAcf/oxUlS4KLwxZBSbLbwWwFJ819V6ToAfBKQ/FDAJAVWVS2OjY7mMDMbSCmwIPyvHZa0+kqlVUb4a+B/G0hP4GZ2EFZeFSmyEWNcATgMTOn7ZsKfxQhJ6UCrviVekiys8F4Ams7dKg41DM0FolyPAr8CsPFWA0A2AafCB7BfE3z33slAxvLcCaS4gdYCmgQkCFzlNvqpLcvhAaJgSXYtjcqwynG18KcCkS7iPrH2U+leUAFEi6HAow/7AkCba9WoBkIy3Z2zttwLJLAy6grGUE0BUhR4YkdKVStbnRLhr8v0WPCTxZ45MBUdbIkRANnFyzD9FoD04xpuRjIHpsFcJikz+CyJoujBQorp5PgyzKk6gNUA6b4kK/AktSRizYlgLszsZMgghsWaJHwXkLm0u3Ij3FSTvtUaIak9Q5uXhlxs/LsmRve9JLs+zXUAG2XEc2ByR+i80Vvi3YzUCjyNM5jK2IjQ7u8+DSbFYlT4g4wk9kECl0V32YcMk8Lp7mkFG+TuvBSBDHVEPBlCUqsYbUeccgtgzzM/lOPsyTM3fwjIYEdkKJiQkr+yLyxsiKXneTsvpV129qGnwMgdgOiYXcQMHd4GxV7TERlhJdf/rbId8fmezssWI2MHJtcy/tnctN/ILYsF/awwqbPo6bz0gHgm1ABpee/YAqdAun7qJnZEWgY09VmZzkvPtKZAetbAzHotz6lBNJynNI0Njl6zIwWSs94N42j6qN6RIAUicYqFdCNrGkGDh8llHHWLR65qqU+lHbX3k0CDl7d6hNL/NLVKo+631duXfs4OyNIrXPv8HSO1K7b0/feGkd8QasVCy9vvvgAAAABJRU5ErkJggg=="},function(t,e){t.exports=function(t,e,n,r){var o,i=t=t||{},s=typeof t.default;"object"!==s&&"function"!==s||(o=t,i=t.default);var u="function"==typeof i?i.options:i;if(e&&(u.render=e.render,u.staticRenderFns=e.staticRenderFns),n&&(u._scopeId=n),r){var c=Object.create(u.computed||null);Object.keys(r).forEach(function(t){var e=r[t];c[t]=function(){return e}}),u.computed=c}return{esModule:o,exports:i,options:u}}},function(t,e,n){t.exports={render:function(){var t=this,e=t.$createElement,n=t._self._c||e;return n("transition",{attrs:{"enter-active-class":t.enterActiveClass,"leave-active-class":t.leaveActiveClass},on:{"before-enter":t.beforeEnter,"after-enter":t.afterEnter,"before-leave":t.beforeLeave}},[t.show?n("div",{staticClass:"toast",class:["toast-"+t.type],style:{backgroundColor:t.toastBackgroundColor}},[t.closeButton?n("button",{staticClass:"toast-close-button",attrs:{role:"button"},on:{click:t.hideToastr}},[t._v("×")]):t._e(),t._v(" "),t.progressBar?n("div",{staticClass:"toast-progress",style:"width: "+t.progress.percent+"%"}):t._e(),t._v(" "),n("div",{staticClass:"toast-icon"},[n("img",{attrs:{src:t.iconSrc}})]),t._v(" "),n("div",{staticClass:"toast-title"},[t._v(t._s(t.title))]),t._v(" "),t.useHtml?n("div",{staticClass:"toast-message",domProps:{innerHTML:t._s(t.message)}}):n("div",{staticClass:"toast-message",domProps:{textContent:t._s(t.message)}})]):t._e()])},staticRenderFns:[]},t.exports.render._withStripped=!0}])});
-//# sourceMappingURL=cxlt-vue2-toastr.js.map
 
 /***/ }),
 
@@ -37656,6 +37711,3721 @@ process.umask = function() { return 0; };
 
 /***/ }),
 
+/***/ "./node_modules/sortablejs/modular/sortable.esm.js":
+/*!*********************************************************!*\
+  !*** ./node_modules/sortablejs/modular/sortable.esm.js ***!
+  \*********************************************************/
+/*! exports provided: default, MultiDrag, Sortable, Swap */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MultiDrag", function() { return MultiDragPlugin; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Sortable", function() { return Sortable; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Swap", function() { return SwapPlugin; });
+/**!
+ * Sortable 1.10.2
+ * @author	RubaXa   <trash@rubaxa.org>
+ * @author	owenm    <owen23355@gmail.com>
+ * @license MIT
+ */
+function _typeof(obj) {
+  if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
+    _typeof = function (obj) {
+      return typeof obj;
+    };
+  } else {
+    _typeof = function (obj) {
+      return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
+    };
+  }
+
+  return _typeof(obj);
+}
+
+function _defineProperty(obj, key, value) {
+  if (key in obj) {
+    Object.defineProperty(obj, key, {
+      value: value,
+      enumerable: true,
+      configurable: true,
+      writable: true
+    });
+  } else {
+    obj[key] = value;
+  }
+
+  return obj;
+}
+
+function _extends() {
+  _extends = Object.assign || function (target) {
+    for (var i = 1; i < arguments.length; i++) {
+      var source = arguments[i];
+
+      for (var key in source) {
+        if (Object.prototype.hasOwnProperty.call(source, key)) {
+          target[key] = source[key];
+        }
+      }
+    }
+
+    return target;
+  };
+
+  return _extends.apply(this, arguments);
+}
+
+function _objectSpread(target) {
+  for (var i = 1; i < arguments.length; i++) {
+    var source = arguments[i] != null ? arguments[i] : {};
+    var ownKeys = Object.keys(source);
+
+    if (typeof Object.getOwnPropertySymbols === 'function') {
+      ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) {
+        return Object.getOwnPropertyDescriptor(source, sym).enumerable;
+      }));
+    }
+
+    ownKeys.forEach(function (key) {
+      _defineProperty(target, key, source[key]);
+    });
+  }
+
+  return target;
+}
+
+function _objectWithoutPropertiesLoose(source, excluded) {
+  if (source == null) return {};
+  var target = {};
+  var sourceKeys = Object.keys(source);
+  var key, i;
+
+  for (i = 0; i < sourceKeys.length; i++) {
+    key = sourceKeys[i];
+    if (excluded.indexOf(key) >= 0) continue;
+    target[key] = source[key];
+  }
+
+  return target;
+}
+
+function _objectWithoutProperties(source, excluded) {
+  if (source == null) return {};
+
+  var target = _objectWithoutPropertiesLoose(source, excluded);
+
+  var key, i;
+
+  if (Object.getOwnPropertySymbols) {
+    var sourceSymbolKeys = Object.getOwnPropertySymbols(source);
+
+    for (i = 0; i < sourceSymbolKeys.length; i++) {
+      key = sourceSymbolKeys[i];
+      if (excluded.indexOf(key) >= 0) continue;
+      if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue;
+      target[key] = source[key];
+    }
+  }
+
+  return target;
+}
+
+function _toConsumableArray(arr) {
+  return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread();
+}
+
+function _arrayWithoutHoles(arr) {
+  if (Array.isArray(arr)) {
+    for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) arr2[i] = arr[i];
+
+    return arr2;
+  }
+}
+
+function _iterableToArray(iter) {
+  if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter);
+}
+
+function _nonIterableSpread() {
+  throw new TypeError("Invalid attempt to spread non-iterable instance");
+}
+
+var version = "1.10.2";
+
+function userAgent(pattern) {
+  if (typeof window !== 'undefined' && window.navigator) {
+    return !!
+    /*@__PURE__*/
+    navigator.userAgent.match(pattern);
+  }
+}
+
+var IE11OrLess = userAgent(/(?:Trident.*rv[ :]?11\.|msie|iemobile|Windows Phone)/i);
+var Edge = userAgent(/Edge/i);
+var FireFox = userAgent(/firefox/i);
+var Safari = userAgent(/safari/i) && !userAgent(/chrome/i) && !userAgent(/android/i);
+var IOS = userAgent(/iP(ad|od|hone)/i);
+var ChromeForAndroid = userAgent(/chrome/i) && userAgent(/android/i);
+
+var captureMode = {
+  capture: false,
+  passive: false
+};
+
+function on(el, event, fn) {
+  el.addEventListener(event, fn, !IE11OrLess && captureMode);
+}
+
+function off(el, event, fn) {
+  el.removeEventListener(event, fn, !IE11OrLess && captureMode);
+}
+
+function matches(
+/**HTMLElement*/
+el,
+/**String*/
+selector) {
+  if (!selector) return;
+  selector[0] === '>' && (selector = selector.substring(1));
+
+  if (el) {
+    try {
+      if (el.matches) {
+        return el.matches(selector);
+      } else if (el.msMatchesSelector) {
+        return el.msMatchesSelector(selector);
+      } else if (el.webkitMatchesSelector) {
+        return el.webkitMatchesSelector(selector);
+      }
+    } catch (_) {
+      return false;
+    }
+  }
+
+  return false;
+}
+
+function getParentOrHost(el) {
+  return el.host && el !== document && el.host.nodeType ? el.host : el.parentNode;
+}
+
+function closest(
+/**HTMLElement*/
+el,
+/**String*/
+selector,
+/**HTMLElement*/
+ctx, includeCTX) {
+  if (el) {
+    ctx = ctx || document;
+
+    do {
+      if (selector != null && (selector[0] === '>' ? el.parentNode === ctx && matches(el, selector) : matches(el, selector)) || includeCTX && el === ctx) {
+        return el;
+      }
+
+      if (el === ctx) break;
+      /* jshint boss:true */
+    } while (el = getParentOrHost(el));
+  }
+
+  return null;
+}
+
+var R_SPACE = /\s+/g;
+
+function toggleClass(el, name, state) {
+  if (el && name) {
+    if (el.classList) {
+      el.classList[state ? 'add' : 'remove'](name);
+    } else {
+      var className = (' ' + el.className + ' ').replace(R_SPACE, ' ').replace(' ' + name + ' ', ' ');
+      el.className = (className + (state ? ' ' + name : '')).replace(R_SPACE, ' ');
+    }
+  }
+}
+
+function css(el, prop, val) {
+  var style = el && el.style;
+
+  if (style) {
+    if (val === void 0) {
+      if (document.defaultView && document.defaultView.getComputedStyle) {
+        val = document.defaultView.getComputedStyle(el, '');
+      } else if (el.currentStyle) {
+        val = el.currentStyle;
+      }
+
+      return prop === void 0 ? val : val[prop];
+    } else {
+      if (!(prop in style) && prop.indexOf('webkit') === -1) {
+        prop = '-webkit-' + prop;
+      }
+
+      style[prop] = val + (typeof val === 'string' ? '' : 'px');
+    }
+  }
+}
+
+function matrix(el, selfOnly) {
+  var appliedTransforms = '';
+
+  if (typeof el === 'string') {
+    appliedTransforms = el;
+  } else {
+    do {
+      var transform = css(el, 'transform');
+
+      if (transform && transform !== 'none') {
+        appliedTransforms = transform + ' ' + appliedTransforms;
+      }
+      /* jshint boss:true */
+
+    } while (!selfOnly && (el = el.parentNode));
+  }
+
+  var matrixFn = window.DOMMatrix || window.WebKitCSSMatrix || window.CSSMatrix || window.MSCSSMatrix;
+  /*jshint -W056 */
+
+  return matrixFn && new matrixFn(appliedTransforms);
+}
+
+function find(ctx, tagName, iterator) {
+  if (ctx) {
+    var list = ctx.getElementsByTagName(tagName),
+        i = 0,
+        n = list.length;
+
+    if (iterator) {
+      for (; i < n; i++) {
+        iterator(list[i], i);
+      }
+    }
+
+    return list;
+  }
+
+  return [];
+}
+
+function getWindowScrollingElement() {
+  var scrollingElement = document.scrollingElement;
+
+  if (scrollingElement) {
+    return scrollingElement;
+  } else {
+    return document.documentElement;
+  }
+}
+/**
+ * Returns the "bounding client rect" of given element
+ * @param  {HTMLElement} el                       The element whose boundingClientRect is wanted
+ * @param  {[Boolean]} relativeToContainingBlock  Whether the rect should be relative to the containing block of (including) the container
+ * @param  {[Boolean]} relativeToNonStaticParent  Whether the rect should be relative to the relative parent of (including) the contaienr
+ * @param  {[Boolean]} undoScale                  Whether the container's scale() should be undone
+ * @param  {[HTMLElement]} container              The parent the element will be placed in
+ * @return {Object}                               The boundingClientRect of el, with specified adjustments
+ */
+
+
+function getRect(el, relativeToContainingBlock, relativeToNonStaticParent, undoScale, container) {
+  if (!el.getBoundingClientRect && el !== window) return;
+  var elRect, top, left, bottom, right, height, width;
+
+  if (el !== window && el !== getWindowScrollingElement()) {
+    elRect = el.getBoundingClientRect();
+    top = elRect.top;
+    left = elRect.left;
+    bottom = elRect.bottom;
+    right = elRect.right;
+    height = elRect.height;
+    width = elRect.width;
+  } else {
+    top = 0;
+    left = 0;
+    bottom = window.innerHeight;
+    right = window.innerWidth;
+    height = window.innerHeight;
+    width = window.innerWidth;
+  }
+
+  if ((relativeToContainingBlock || relativeToNonStaticParent) && el !== window) {
+    // Adjust for translate()
+    container = container || el.parentNode; // solves #1123 (see: https://stackoverflow.com/a/37953806/6088312)
+    // Not needed on <= IE11
+
+    if (!IE11OrLess) {
+      do {
+        if (container && container.getBoundingClientRect && (css(container, 'transform') !== 'none' || relativeToNonStaticParent && css(container, 'position') !== 'static')) {
+          var containerRect = container.getBoundingClientRect(); // Set relative to edges of padding box of container
+
+          top -= containerRect.top + parseInt(css(container, 'border-top-width'));
+          left -= containerRect.left + parseInt(css(container, 'border-left-width'));
+          bottom = top + elRect.height;
+          right = left + elRect.width;
+          break;
+        }
+        /* jshint boss:true */
+
+      } while (container = container.parentNode);
+    }
+  }
+
+  if (undoScale && el !== window) {
+    // Adjust for scale()
+    var elMatrix = matrix(container || el),
+        scaleX = elMatrix && elMatrix.a,
+        scaleY = elMatrix && elMatrix.d;
+
+    if (elMatrix) {
+      top /= scaleY;
+      left /= scaleX;
+      width /= scaleX;
+      height /= scaleY;
+      bottom = top + height;
+      right = left + width;
+    }
+  }
+
+  return {
+    top: top,
+    left: left,
+    bottom: bottom,
+    right: right,
+    width: width,
+    height: height
+  };
+}
+/**
+ * Checks if a side of an element is scrolled past a side of its parents
+ * @param  {HTMLElement}  el           The element who's side being scrolled out of view is in question
+ * @param  {String}       elSide       Side of the element in question ('top', 'left', 'right', 'bottom')
+ * @param  {String}       parentSide   Side of the parent in question ('top', 'left', 'right', 'bottom')
+ * @return {HTMLElement}               The parent scroll element that the el's side is scrolled past, or null if there is no such element
+ */
+
+
+function isScrolledPast(el, elSide, parentSide) {
+  var parent = getParentAutoScrollElement(el, true),
+      elSideVal = getRect(el)[elSide];
+  /* jshint boss:true */
+
+  while (parent) {
+    var parentSideVal = getRect(parent)[parentSide],
+        visible = void 0;
+
+    if (parentSide === 'top' || parentSide === 'left') {
+      visible = elSideVal >= parentSideVal;
+    } else {
+      visible = elSideVal <= parentSideVal;
+    }
+
+    if (!visible) return parent;
+    if (parent === getWindowScrollingElement()) break;
+    parent = getParentAutoScrollElement(parent, false);
+  }
+
+  return false;
+}
+/**
+ * Gets nth child of el, ignoring hidden children, sortable's elements (does not ignore clone if it's visible)
+ * and non-draggable elements
+ * @param  {HTMLElement} el       The parent element
+ * @param  {Number} childNum      The index of the child
+ * @param  {Object} options       Parent Sortable's options
+ * @return {HTMLElement}          The child at index childNum, or null if not found
+ */
+
+
+function getChild(el, childNum, options) {
+  var currentChild = 0,
+      i = 0,
+      children = el.children;
+
+  while (i < children.length) {
+    if (children[i].style.display !== 'none' && children[i] !== Sortable.ghost && children[i] !== Sortable.dragged && closest(children[i], options.draggable, el, false)) {
+      if (currentChild === childNum) {
+        return children[i];
+      }
+
+      currentChild++;
+    }
+
+    i++;
+  }
+
+  return null;
+}
+/**
+ * Gets the last child in the el, ignoring ghostEl or invisible elements (clones)
+ * @param  {HTMLElement} el       Parent element
+ * @param  {selector} selector    Any other elements that should be ignored
+ * @return {HTMLElement}          The last child, ignoring ghostEl
+ */
+
+
+function lastChild(el, selector) {
+  var last = el.lastElementChild;
+
+  while (last && (last === Sortable.ghost || css(last, 'display') === 'none' || selector && !matches(last, selector))) {
+    last = last.previousElementSibling;
+  }
+
+  return last || null;
+}
+/**
+ * Returns the index of an element within its parent for a selected set of
+ * elements
+ * @param  {HTMLElement} el
+ * @param  {selector} selector
+ * @return {number}
+ */
+
+
+function index(el, selector) {
+  var index = 0;
+
+  if (!el || !el.parentNode) {
+    return -1;
+  }
+  /* jshint boss:true */
+
+
+  while (el = el.previousElementSibling) {
+    if (el.nodeName.toUpperCase() !== 'TEMPLATE' && el !== Sortable.clone && (!selector || matches(el, selector))) {
+      index++;
+    }
+  }
+
+  return index;
+}
+/**
+ * Returns the scroll offset of the given element, added with all the scroll offsets of parent elements.
+ * The value is returned in real pixels.
+ * @param  {HTMLElement} el
+ * @return {Array}             Offsets in the format of [left, top]
+ */
+
+
+function getRelativeScrollOffset(el) {
+  var offsetLeft = 0,
+      offsetTop = 0,
+      winScroller = getWindowScrollingElement();
+
+  if (el) {
+    do {
+      var elMatrix = matrix(el),
+          scaleX = elMatrix.a,
+          scaleY = elMatrix.d;
+      offsetLeft += el.scrollLeft * scaleX;
+      offsetTop += el.scrollTop * scaleY;
+    } while (el !== winScroller && (el = el.parentNode));
+  }
+
+  return [offsetLeft, offsetTop];
+}
+/**
+ * Returns the index of the object within the given array
+ * @param  {Array} arr   Array that may or may not hold the object
+ * @param  {Object} obj  An object that has a key-value pair unique to and identical to a key-value pair in the object you want to find
+ * @return {Number}      The index of the object in the array, or -1
+ */
+
+
+function indexOfObject(arr, obj) {
+  for (var i in arr) {
+    if (!arr.hasOwnProperty(i)) continue;
+
+    for (var key in obj) {
+      if (obj.hasOwnProperty(key) && obj[key] === arr[i][key]) return Number(i);
+    }
+  }
+
+  return -1;
+}
+
+function getParentAutoScrollElement(el, includeSelf) {
+  // skip to window
+  if (!el || !el.getBoundingClientRect) return getWindowScrollingElement();
+  var elem = el;
+  var gotSelf = false;
+
+  do {
+    // we don't need to get elem css if it isn't even overflowing in the first place (performance)
+    if (elem.clientWidth < elem.scrollWidth || elem.clientHeight < elem.scrollHeight) {
+      var elemCSS = css(elem);
+
+      if (elem.clientWidth < elem.scrollWidth && (elemCSS.overflowX == 'auto' || elemCSS.overflowX == 'scroll') || elem.clientHeight < elem.scrollHeight && (elemCSS.overflowY == 'auto' || elemCSS.overflowY == 'scroll')) {
+        if (!elem.getBoundingClientRect || elem === document.body) return getWindowScrollingElement();
+        if (gotSelf || includeSelf) return elem;
+        gotSelf = true;
+      }
+    }
+    /* jshint boss:true */
+
+  } while (elem = elem.parentNode);
+
+  return getWindowScrollingElement();
+}
+
+function extend(dst, src) {
+  if (dst && src) {
+    for (var key in src) {
+      if (src.hasOwnProperty(key)) {
+        dst[key] = src[key];
+      }
+    }
+  }
+
+  return dst;
+}
+
+function isRectEqual(rect1, rect2) {
+  return Math.round(rect1.top) === Math.round(rect2.top) && Math.round(rect1.left) === Math.round(rect2.left) && Math.round(rect1.height) === Math.round(rect2.height) && Math.round(rect1.width) === Math.round(rect2.width);
+}
+
+var _throttleTimeout;
+
+function throttle(callback, ms) {
+  return function () {
+    if (!_throttleTimeout) {
+      var args = arguments,
+          _this = this;
+
+      if (args.length === 1) {
+        callback.call(_this, args[0]);
+      } else {
+        callback.apply(_this, args);
+      }
+
+      _throttleTimeout = setTimeout(function () {
+        _throttleTimeout = void 0;
+      }, ms);
+    }
+  };
+}
+
+function cancelThrottle() {
+  clearTimeout(_throttleTimeout);
+  _throttleTimeout = void 0;
+}
+
+function scrollBy(el, x, y) {
+  el.scrollLeft += x;
+  el.scrollTop += y;
+}
+
+function clone(el) {
+  var Polymer = window.Polymer;
+  var $ = window.jQuery || window.Zepto;
+
+  if (Polymer && Polymer.dom) {
+    return Polymer.dom(el).cloneNode(true);
+  } else if ($) {
+    return $(el).clone(true)[0];
+  } else {
+    return el.cloneNode(true);
+  }
+}
+
+function setRect(el, rect) {
+  css(el, 'position', 'absolute');
+  css(el, 'top', rect.top);
+  css(el, 'left', rect.left);
+  css(el, 'width', rect.width);
+  css(el, 'height', rect.height);
+}
+
+function unsetRect(el) {
+  css(el, 'position', '');
+  css(el, 'top', '');
+  css(el, 'left', '');
+  css(el, 'width', '');
+  css(el, 'height', '');
+}
+
+var expando = 'Sortable' + new Date().getTime();
+
+function AnimationStateManager() {
+  var animationStates = [],
+      animationCallbackId;
+  return {
+    captureAnimationState: function captureAnimationState() {
+      animationStates = [];
+      if (!this.options.animation) return;
+      var children = [].slice.call(this.el.children);
+      children.forEach(function (child) {
+        if (css(child, 'display') === 'none' || child === Sortable.ghost) return;
+        animationStates.push({
+          target: child,
+          rect: getRect(child)
+        });
+
+        var fromRect = _objectSpread({}, animationStates[animationStates.length - 1].rect); // If animating: compensate for current animation
+
+
+        if (child.thisAnimationDuration) {
+          var childMatrix = matrix(child, true);
+
+          if (childMatrix) {
+            fromRect.top -= childMatrix.f;
+            fromRect.left -= childMatrix.e;
+          }
+        }
+
+        child.fromRect = fromRect;
+      });
+    },
+    addAnimationState: function addAnimationState(state) {
+      animationStates.push(state);
+    },
+    removeAnimationState: function removeAnimationState(target) {
+      animationStates.splice(indexOfObject(animationStates, {
+        target: target
+      }), 1);
+    },
+    animateAll: function animateAll(callback) {
+      var _this = this;
+
+      if (!this.options.animation) {
+        clearTimeout(animationCallbackId);
+        if (typeof callback === 'function') callback();
+        return;
+      }
+
+      var animating = false,
+          animationTime = 0;
+      animationStates.forEach(function (state) {
+        var time = 0,
+            target = state.target,
+            fromRect = target.fromRect,
+            toRect = getRect(target),
+            prevFromRect = target.prevFromRect,
+            prevToRect = target.prevToRect,
+            animatingRect = state.rect,
+            targetMatrix = matrix(target, true);
+
+        if (targetMatrix) {
+          // Compensate for current animation
+          toRect.top -= targetMatrix.f;
+          toRect.left -= targetMatrix.e;
+        }
+
+        target.toRect = toRect;
+
+        if (target.thisAnimationDuration) {
+          // Could also check if animatingRect is between fromRect and toRect
+          if (isRectEqual(prevFromRect, toRect) && !isRectEqual(fromRect, toRect) && // Make sure animatingRect is on line between toRect & fromRect
+          (animatingRect.top - toRect.top) / (animatingRect.left - toRect.left) === (fromRect.top - toRect.top) / (fromRect.left - toRect.left)) {
+            // If returning to same place as started from animation and on same axis
+            time = calculateRealTime(animatingRect, prevFromRect, prevToRect, _this.options);
+          }
+        } // if fromRect != toRect: animate
+
+
+        if (!isRectEqual(toRect, fromRect)) {
+          target.prevFromRect = fromRect;
+          target.prevToRect = toRect;
+
+          if (!time) {
+            time = _this.options.animation;
+          }
+
+          _this.animate(target, animatingRect, toRect, time);
+        }
+
+        if (time) {
+          animating = true;
+          animationTime = Math.max(animationTime, time);
+          clearTimeout(target.animationResetTimer);
+          target.animationResetTimer = setTimeout(function () {
+            target.animationTime = 0;
+            target.prevFromRect = null;
+            target.fromRect = null;
+            target.prevToRect = null;
+            target.thisAnimationDuration = null;
+          }, time);
+          target.thisAnimationDuration = time;
+        }
+      });
+      clearTimeout(animationCallbackId);
+
+      if (!animating) {
+        if (typeof callback === 'function') callback();
+      } else {
+        animationCallbackId = setTimeout(function () {
+          if (typeof callback === 'function') callback();
+        }, animationTime);
+      }
+
+      animationStates = [];
+    },
+    animate: function animate(target, currentRect, toRect, duration) {
+      if (duration) {
+        css(target, 'transition', '');
+        css(target, 'transform', '');
+        var elMatrix = matrix(this.el),
+            scaleX = elMatrix && elMatrix.a,
+            scaleY = elMatrix && elMatrix.d,
+            translateX = (currentRect.left - toRect.left) / (scaleX || 1),
+            translateY = (currentRect.top - toRect.top) / (scaleY || 1);
+        target.animatingX = !!translateX;
+        target.animatingY = !!translateY;
+        css(target, 'transform', 'translate3d(' + translateX + 'px,' + translateY + 'px,0)');
+        repaint(target); // repaint
+
+        css(target, 'transition', 'transform ' + duration + 'ms' + (this.options.easing ? ' ' + this.options.easing : ''));
+        css(target, 'transform', 'translate3d(0,0,0)');
+        typeof target.animated === 'number' && clearTimeout(target.animated);
+        target.animated = setTimeout(function () {
+          css(target, 'transition', '');
+          css(target, 'transform', '');
+          target.animated = false;
+          target.animatingX = false;
+          target.animatingY = false;
+        }, duration);
+      }
+    }
+  };
+}
+
+function repaint(target) {
+  return target.offsetWidth;
+}
+
+function calculateRealTime(animatingRect, fromRect, toRect, options) {
+  return Math.sqrt(Math.pow(fromRect.top - animatingRect.top, 2) + Math.pow(fromRect.left - animatingRect.left, 2)) / Math.sqrt(Math.pow(fromRect.top - toRect.top, 2) + Math.pow(fromRect.left - toRect.left, 2)) * options.animation;
+}
+
+var plugins = [];
+var defaults = {
+  initializeByDefault: true
+};
+var PluginManager = {
+  mount: function mount(plugin) {
+    // Set default static properties
+    for (var option in defaults) {
+      if (defaults.hasOwnProperty(option) && !(option in plugin)) {
+        plugin[option] = defaults[option];
+      }
+    }
+
+    plugins.push(plugin);
+  },
+  pluginEvent: function pluginEvent(eventName, sortable, evt) {
+    var _this = this;
+
+    this.eventCanceled = false;
+
+    evt.cancel = function () {
+      _this.eventCanceled = true;
+    };
+
+    var eventNameGlobal = eventName + 'Global';
+    plugins.forEach(function (plugin) {
+      if (!sortable[plugin.pluginName]) return; // Fire global events if it exists in this sortable
+
+      if (sortable[plugin.pluginName][eventNameGlobal]) {
+        sortable[plugin.pluginName][eventNameGlobal](_objectSpread({
+          sortable: sortable
+        }, evt));
+      } // Only fire plugin event if plugin is enabled in this sortable,
+      // and plugin has event defined
+
+
+      if (sortable.options[plugin.pluginName] && sortable[plugin.pluginName][eventName]) {
+        sortable[plugin.pluginName][eventName](_objectSpread({
+          sortable: sortable
+        }, evt));
+      }
+    });
+  },
+  initializePlugins: function initializePlugins(sortable, el, defaults, options) {
+    plugins.forEach(function (plugin) {
+      var pluginName = plugin.pluginName;
+      if (!sortable.options[pluginName] && !plugin.initializeByDefault) return;
+      var initialized = new plugin(sortable, el, sortable.options);
+      initialized.sortable = sortable;
+      initialized.options = sortable.options;
+      sortable[pluginName] = initialized; // Add default options from plugin
+
+      _extends(defaults, initialized.defaults);
+    });
+
+    for (var option in sortable.options) {
+      if (!sortable.options.hasOwnProperty(option)) continue;
+      var modified = this.modifyOption(sortable, option, sortable.options[option]);
+
+      if (typeof modified !== 'undefined') {
+        sortable.options[option] = modified;
+      }
+    }
+  },
+  getEventProperties: function getEventProperties(name, sortable) {
+    var eventProperties = {};
+    plugins.forEach(function (plugin) {
+      if (typeof plugin.eventProperties !== 'function') return;
+
+      _extends(eventProperties, plugin.eventProperties.call(sortable[plugin.pluginName], name));
+    });
+    return eventProperties;
+  },
+  modifyOption: function modifyOption(sortable, name, value) {
+    var modifiedValue;
+    plugins.forEach(function (plugin) {
+      // Plugin must exist on the Sortable
+      if (!sortable[plugin.pluginName]) return; // If static option listener exists for this option, call in the context of the Sortable's instance of this plugin
+
+      if (plugin.optionListeners && typeof plugin.optionListeners[name] === 'function') {
+        modifiedValue = plugin.optionListeners[name].call(sortable[plugin.pluginName], value);
+      }
+    });
+    return modifiedValue;
+  }
+};
+
+function dispatchEvent(_ref) {
+  var sortable = _ref.sortable,
+      rootEl = _ref.rootEl,
+      name = _ref.name,
+      targetEl = _ref.targetEl,
+      cloneEl = _ref.cloneEl,
+      toEl = _ref.toEl,
+      fromEl = _ref.fromEl,
+      oldIndex = _ref.oldIndex,
+      newIndex = _ref.newIndex,
+      oldDraggableIndex = _ref.oldDraggableIndex,
+      newDraggableIndex = _ref.newDraggableIndex,
+      originalEvent = _ref.originalEvent,
+      putSortable = _ref.putSortable,
+      extraEventProperties = _ref.extraEventProperties;
+  sortable = sortable || rootEl && rootEl[expando];
+  if (!sortable) return;
+  var evt,
+      options = sortable.options,
+      onName = 'on' + name.charAt(0).toUpperCase() + name.substr(1); // Support for new CustomEvent feature
+
+  if (window.CustomEvent && !IE11OrLess && !Edge) {
+    evt = new CustomEvent(name, {
+      bubbles: true,
+      cancelable: true
+    });
+  } else {
+    evt = document.createEvent('Event');
+    evt.initEvent(name, true, true);
+  }
+
+  evt.to = toEl || rootEl;
+  evt.from = fromEl || rootEl;
+  evt.item = targetEl || rootEl;
+  evt.clone = cloneEl;
+  evt.oldIndex = oldIndex;
+  evt.newIndex = newIndex;
+  evt.oldDraggableIndex = oldDraggableIndex;
+  evt.newDraggableIndex = newDraggableIndex;
+  evt.originalEvent = originalEvent;
+  evt.pullMode = putSortable ? putSortable.lastPutMode : undefined;
+
+  var allEventProperties = _objectSpread({}, extraEventProperties, PluginManager.getEventProperties(name, sortable));
+
+  for (var option in allEventProperties) {
+    evt[option] = allEventProperties[option];
+  }
+
+  if (rootEl) {
+    rootEl.dispatchEvent(evt);
+  }
+
+  if (options[onName]) {
+    options[onName].call(sortable, evt);
+  }
+}
+
+var pluginEvent = function pluginEvent(eventName, sortable) {
+  var _ref = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {},
+      originalEvent = _ref.evt,
+      data = _objectWithoutProperties(_ref, ["evt"]);
+
+  PluginManager.pluginEvent.bind(Sortable)(eventName, sortable, _objectSpread({
+    dragEl: dragEl,
+    parentEl: parentEl,
+    ghostEl: ghostEl,
+    rootEl: rootEl,
+    nextEl: nextEl,
+    lastDownEl: lastDownEl,
+    cloneEl: cloneEl,
+    cloneHidden: cloneHidden,
+    dragStarted: moved,
+    putSortable: putSortable,
+    activeSortable: Sortable.active,
+    originalEvent: originalEvent,
+    oldIndex: oldIndex,
+    oldDraggableIndex: oldDraggableIndex,
+    newIndex: newIndex,
+    newDraggableIndex: newDraggableIndex,
+    hideGhostForTarget: _hideGhostForTarget,
+    unhideGhostForTarget: _unhideGhostForTarget,
+    cloneNowHidden: function cloneNowHidden() {
+      cloneHidden = true;
+    },
+    cloneNowShown: function cloneNowShown() {
+      cloneHidden = false;
+    },
+    dispatchSortableEvent: function dispatchSortableEvent(name) {
+      _dispatchEvent({
+        sortable: sortable,
+        name: name,
+        originalEvent: originalEvent
+      });
+    }
+  }, data));
+};
+
+function _dispatchEvent(info) {
+  dispatchEvent(_objectSpread({
+    putSortable: putSortable,
+    cloneEl: cloneEl,
+    targetEl: dragEl,
+    rootEl: rootEl,
+    oldIndex: oldIndex,
+    oldDraggableIndex: oldDraggableIndex,
+    newIndex: newIndex,
+    newDraggableIndex: newDraggableIndex
+  }, info));
+}
+
+var dragEl,
+    parentEl,
+    ghostEl,
+    rootEl,
+    nextEl,
+    lastDownEl,
+    cloneEl,
+    cloneHidden,
+    oldIndex,
+    newIndex,
+    oldDraggableIndex,
+    newDraggableIndex,
+    activeGroup,
+    putSortable,
+    awaitingDragStarted = false,
+    ignoreNextClick = false,
+    sortables = [],
+    tapEvt,
+    touchEvt,
+    lastDx,
+    lastDy,
+    tapDistanceLeft,
+    tapDistanceTop,
+    moved,
+    lastTarget,
+    lastDirection,
+    pastFirstInvertThresh = false,
+    isCircumstantialInvert = false,
+    targetMoveDistance,
+    // For positioning ghost absolutely
+ghostRelativeParent,
+    ghostRelativeParentInitialScroll = [],
+    // (left, top)
+_silent = false,
+    savedInputChecked = [];
+/** @const */
+
+var documentExists = typeof document !== 'undefined',
+    PositionGhostAbsolutely = IOS,
+    CSSFloatProperty = Edge || IE11OrLess ? 'cssFloat' : 'float',
+    // This will not pass for IE9, because IE9 DnD only works on anchors
+supportDraggable = documentExists && !ChromeForAndroid && !IOS && 'draggable' in document.createElement('div'),
+    supportCssPointerEvents = function () {
+  if (!documentExists) return; // false when <= IE11
+
+  if (IE11OrLess) {
+    return false;
+  }
+
+  var el = document.createElement('x');
+  el.style.cssText = 'pointer-events:auto';
+  return el.style.pointerEvents === 'auto';
+}(),
+    _detectDirection = function _detectDirection(el, options) {
+  var elCSS = css(el),
+      elWidth = parseInt(elCSS.width) - parseInt(elCSS.paddingLeft) - parseInt(elCSS.paddingRight) - parseInt(elCSS.borderLeftWidth) - parseInt(elCSS.borderRightWidth),
+      child1 = getChild(el, 0, options),
+      child2 = getChild(el, 1, options),
+      firstChildCSS = child1 && css(child1),
+      secondChildCSS = child2 && css(child2),
+      firstChildWidth = firstChildCSS && parseInt(firstChildCSS.marginLeft) + parseInt(firstChildCSS.marginRight) + getRect(child1).width,
+      secondChildWidth = secondChildCSS && parseInt(secondChildCSS.marginLeft) + parseInt(secondChildCSS.marginRight) + getRect(child2).width;
+
+  if (elCSS.display === 'flex') {
+    return elCSS.flexDirection === 'column' || elCSS.flexDirection === 'column-reverse' ? 'vertical' : 'horizontal';
+  }
+
+  if (elCSS.display === 'grid') {
+    return elCSS.gridTemplateColumns.split(' ').length <= 1 ? 'vertical' : 'horizontal';
+  }
+
+  if (child1 && firstChildCSS["float"] && firstChildCSS["float"] !== 'none') {
+    var touchingSideChild2 = firstChildCSS["float"] === 'left' ? 'left' : 'right';
+    return child2 && (secondChildCSS.clear === 'both' || secondChildCSS.clear === touchingSideChild2) ? 'vertical' : 'horizontal';
+  }
+
+  return child1 && (firstChildCSS.display === 'block' || firstChildCSS.display === 'flex' || firstChildCSS.display === 'table' || firstChildCSS.display === 'grid' || firstChildWidth >= elWidth && elCSS[CSSFloatProperty] === 'none' || child2 && elCSS[CSSFloatProperty] === 'none' && firstChildWidth + secondChildWidth > elWidth) ? 'vertical' : 'horizontal';
+},
+    _dragElInRowColumn = function _dragElInRowColumn(dragRect, targetRect, vertical) {
+  var dragElS1Opp = vertical ? dragRect.left : dragRect.top,
+      dragElS2Opp = vertical ? dragRect.right : dragRect.bottom,
+      dragElOppLength = vertical ? dragRect.width : dragRect.height,
+      targetS1Opp = vertical ? targetRect.left : targetRect.top,
+      targetS2Opp = vertical ? targetRect.right : targetRect.bottom,
+      targetOppLength = vertical ? targetRect.width : targetRect.height;
+  return dragElS1Opp === targetS1Opp || dragElS2Opp === targetS2Opp || dragElS1Opp + dragElOppLength / 2 === targetS1Opp + targetOppLength / 2;
+},
+
+/**
+ * Detects first nearest empty sortable to X and Y position using emptyInsertThreshold.
+ * @param  {Number} x      X position
+ * @param  {Number} y      Y position
+ * @return {HTMLElement}   Element of the first found nearest Sortable
+ */
+_detectNearestEmptySortable = function _detectNearestEmptySortable(x, y) {
+  var ret;
+  sortables.some(function (sortable) {
+    if (lastChild(sortable)) return;
+    var rect = getRect(sortable),
+        threshold = sortable[expando].options.emptyInsertThreshold,
+        insideHorizontally = x >= rect.left - threshold && x <= rect.right + threshold,
+        insideVertically = y >= rect.top - threshold && y <= rect.bottom + threshold;
+
+    if (threshold && insideHorizontally && insideVertically) {
+      return ret = sortable;
+    }
+  });
+  return ret;
+},
+    _prepareGroup = function _prepareGroup(options) {
+  function toFn(value, pull) {
+    return function (to, from, dragEl, evt) {
+      var sameGroup = to.options.group.name && from.options.group.name && to.options.group.name === from.options.group.name;
+
+      if (value == null && (pull || sameGroup)) {
+        // Default pull value
+        // Default pull and put value if same group
+        return true;
+      } else if (value == null || value === false) {
+        return false;
+      } else if (pull && value === 'clone') {
+        return value;
+      } else if (typeof value === 'function') {
+        return toFn(value(to, from, dragEl, evt), pull)(to, from, dragEl, evt);
+      } else {
+        var otherGroup = (pull ? to : from).options.group.name;
+        return value === true || typeof value === 'string' && value === otherGroup || value.join && value.indexOf(otherGroup) > -1;
+      }
+    };
+  }
+
+  var group = {};
+  var originalGroup = options.group;
+
+  if (!originalGroup || _typeof(originalGroup) != 'object') {
+    originalGroup = {
+      name: originalGroup
+    };
+  }
+
+  group.name = originalGroup.name;
+  group.checkPull = toFn(originalGroup.pull, true);
+  group.checkPut = toFn(originalGroup.put);
+  group.revertClone = originalGroup.revertClone;
+  options.group = group;
+},
+    _hideGhostForTarget = function _hideGhostForTarget() {
+  if (!supportCssPointerEvents && ghostEl) {
+    css(ghostEl, 'display', 'none');
+  }
+},
+    _unhideGhostForTarget = function _unhideGhostForTarget() {
+  if (!supportCssPointerEvents && ghostEl) {
+    css(ghostEl, 'display', '');
+  }
+}; // #1184 fix - Prevent click event on fallback if dragged but item not changed position
+
+
+if (documentExists) {
+  document.addEventListener('click', function (evt) {
+    if (ignoreNextClick) {
+      evt.preventDefault();
+      evt.stopPropagation && evt.stopPropagation();
+      evt.stopImmediatePropagation && evt.stopImmediatePropagation();
+      ignoreNextClick = false;
+      return false;
+    }
+  }, true);
+}
+
+var nearestEmptyInsertDetectEvent = function nearestEmptyInsertDetectEvent(evt) {
+  if (dragEl) {
+    evt = evt.touches ? evt.touches[0] : evt;
+
+    var nearest = _detectNearestEmptySortable(evt.clientX, evt.clientY);
+
+    if (nearest) {
+      // Create imitation event
+      var event = {};
+
+      for (var i in evt) {
+        if (evt.hasOwnProperty(i)) {
+          event[i] = evt[i];
+        }
+      }
+
+      event.target = event.rootEl = nearest;
+      event.preventDefault = void 0;
+      event.stopPropagation = void 0;
+
+      nearest[expando]._onDragOver(event);
+    }
+  }
+};
+
+var _checkOutsideTargetEl = function _checkOutsideTargetEl(evt) {
+  if (dragEl) {
+    dragEl.parentNode[expando]._isOutsideThisEl(evt.target);
+  }
+};
+/**
+ * @class  Sortable
+ * @param  {HTMLElement}  el
+ * @param  {Object}       [options]
+ */
+
+
+function Sortable(el, options) {
+  if (!(el && el.nodeType && el.nodeType === 1)) {
+    throw "Sortable: `el` must be an HTMLElement, not ".concat({}.toString.call(el));
+  }
+
+  this.el = el; // root element
+
+  this.options = options = _extends({}, options); // Export instance
+
+  el[expando] = this;
+  var defaults = {
+    group: null,
+    sort: true,
+    disabled: false,
+    store: null,
+    handle: null,
+    draggable: /^[uo]l$/i.test(el.nodeName) ? '>li' : '>*',
+    swapThreshold: 1,
+    // percentage; 0 <= x <= 1
+    invertSwap: false,
+    // invert always
+    invertedSwapThreshold: null,
+    // will be set to same as swapThreshold if default
+    removeCloneOnHide: true,
+    direction: function direction() {
+      return _detectDirection(el, this.options);
+    },
+    ghostClass: 'sortable-ghost',
+    chosenClass: 'sortable-chosen',
+    dragClass: 'sortable-drag',
+    ignore: 'a, img',
+    filter: null,
+    preventOnFilter: true,
+    animation: 0,
+    easing: null,
+    setData: function setData(dataTransfer, dragEl) {
+      dataTransfer.setData('Text', dragEl.textContent);
+    },
+    dropBubble: false,
+    dragoverBubble: false,
+    dataIdAttr: 'data-id',
+    delay: 0,
+    delayOnTouchOnly: false,
+    touchStartThreshold: (Number.parseInt ? Number : window).parseInt(window.devicePixelRatio, 10) || 1,
+    forceFallback: false,
+    fallbackClass: 'sortable-fallback',
+    fallbackOnBody: false,
+    fallbackTolerance: 0,
+    fallbackOffset: {
+      x: 0,
+      y: 0
+    },
+    supportPointer: Sortable.supportPointer !== false && 'PointerEvent' in window,
+    emptyInsertThreshold: 5
+  };
+  PluginManager.initializePlugins(this, el, defaults); // Set default options
+
+  for (var name in defaults) {
+    !(name in options) && (options[name] = defaults[name]);
+  }
+
+  _prepareGroup(options); // Bind all private methods
+
+
+  for (var fn in this) {
+    if (fn.charAt(0) === '_' && typeof this[fn] === 'function') {
+      this[fn] = this[fn].bind(this);
+    }
+  } // Setup drag mode
+
+
+  this.nativeDraggable = options.forceFallback ? false : supportDraggable;
+
+  if (this.nativeDraggable) {
+    // Touch start threshold cannot be greater than the native dragstart threshold
+    this.options.touchStartThreshold = 1;
+  } // Bind events
+
+
+  if (options.supportPointer) {
+    on(el, 'pointerdown', this._onTapStart);
+  } else {
+    on(el, 'mousedown', this._onTapStart);
+    on(el, 'touchstart', this._onTapStart);
+  }
+
+  if (this.nativeDraggable) {
+    on(el, 'dragover', this);
+    on(el, 'dragenter', this);
+  }
+
+  sortables.push(this.el); // Restore sorting
+
+  options.store && options.store.get && this.sort(options.store.get(this) || []); // Add animation state manager
+
+  _extends(this, AnimationStateManager());
+}
+
+Sortable.prototype =
+/** @lends Sortable.prototype */
+{
+  constructor: Sortable,
+  _isOutsideThisEl: function _isOutsideThisEl(target) {
+    if (!this.el.contains(target) && target !== this.el) {
+      lastTarget = null;
+    }
+  },
+  _getDirection: function _getDirection(evt, target) {
+    return typeof this.options.direction === 'function' ? this.options.direction.call(this, evt, target, dragEl) : this.options.direction;
+  },
+  _onTapStart: function _onTapStart(
+  /** Event|TouchEvent */
+  evt) {
+    if (!evt.cancelable) return;
+
+    var _this = this,
+        el = this.el,
+        options = this.options,
+        preventOnFilter = options.preventOnFilter,
+        type = evt.type,
+        touch = evt.touches && evt.touches[0] || evt.pointerType && evt.pointerType === 'touch' && evt,
+        target = (touch || evt).target,
+        originalTarget = evt.target.shadowRoot && (evt.path && evt.path[0] || evt.composedPath && evt.composedPath()[0]) || target,
+        filter = options.filter;
+
+    _saveInputCheckedState(el); // Don't trigger start event when an element is been dragged, otherwise the evt.oldindex always wrong when set option.group.
+
+
+    if (dragEl) {
+      return;
+    }
+
+    if (/mousedown|pointerdown/.test(type) && evt.button !== 0 || options.disabled) {
+      return; // only left button and enabled
+    } // cancel dnd if original target is content editable
+
+
+    if (originalTarget.isContentEditable) {
+      return;
+    }
+
+    target = closest(target, options.draggable, el, false);
+
+    if (target && target.animated) {
+      return;
+    }
+
+    if (lastDownEl === target) {
+      // Ignoring duplicate `down`
+      return;
+    } // Get the index of the dragged element within its parent
+
+
+    oldIndex = index(target);
+    oldDraggableIndex = index(target, options.draggable); // Check filter
+
+    if (typeof filter === 'function') {
+      if (filter.call(this, evt, target, this)) {
+        _dispatchEvent({
+          sortable: _this,
+          rootEl: originalTarget,
+          name: 'filter',
+          targetEl: target,
+          toEl: el,
+          fromEl: el
+        });
+
+        pluginEvent('filter', _this, {
+          evt: evt
+        });
+        preventOnFilter && evt.cancelable && evt.preventDefault();
+        return; // cancel dnd
+      }
+    } else if (filter) {
+      filter = filter.split(',').some(function (criteria) {
+        criteria = closest(originalTarget, criteria.trim(), el, false);
+
+        if (criteria) {
+          _dispatchEvent({
+            sortable: _this,
+            rootEl: criteria,
+            name: 'filter',
+            targetEl: target,
+            fromEl: el,
+            toEl: el
+          });
+
+          pluginEvent('filter', _this, {
+            evt: evt
+          });
+          return true;
+        }
+      });
+
+      if (filter) {
+        preventOnFilter && evt.cancelable && evt.preventDefault();
+        return; // cancel dnd
+      }
+    }
+
+    if (options.handle && !closest(originalTarget, options.handle, el, false)) {
+      return;
+    } // Prepare `dragstart`
+
+
+    this._prepareDragStart(evt, touch, target);
+  },
+  _prepareDragStart: function _prepareDragStart(
+  /** Event */
+  evt,
+  /** Touch */
+  touch,
+  /** HTMLElement */
+  target) {
+    var _this = this,
+        el = _this.el,
+        options = _this.options,
+        ownerDocument = el.ownerDocument,
+        dragStartFn;
+
+    if (target && !dragEl && target.parentNode === el) {
+      var dragRect = getRect(target);
+      rootEl = el;
+      dragEl = target;
+      parentEl = dragEl.parentNode;
+      nextEl = dragEl.nextSibling;
+      lastDownEl = target;
+      activeGroup = options.group;
+      Sortable.dragged = dragEl;
+      tapEvt = {
+        target: dragEl,
+        clientX: (touch || evt).clientX,
+        clientY: (touch || evt).clientY
+      };
+      tapDistanceLeft = tapEvt.clientX - dragRect.left;
+      tapDistanceTop = tapEvt.clientY - dragRect.top;
+      this._lastX = (touch || evt).clientX;
+      this._lastY = (touch || evt).clientY;
+      dragEl.style['will-change'] = 'all';
+
+      dragStartFn = function dragStartFn() {
+        pluginEvent('delayEnded', _this, {
+          evt: evt
+        });
+
+        if (Sortable.eventCanceled) {
+          _this._onDrop();
+
+          return;
+        } // Delayed drag has been triggered
+        // we can re-enable the events: touchmove/mousemove
+
+
+        _this._disableDelayedDragEvents();
+
+        if (!FireFox && _this.nativeDraggable) {
+          dragEl.draggable = true;
+        } // Bind the events: dragstart/dragend
+
+
+        _this._triggerDragStart(evt, touch); // Drag start event
+
+
+        _dispatchEvent({
+          sortable: _this,
+          name: 'choose',
+          originalEvent: evt
+        }); // Chosen item
+
+
+        toggleClass(dragEl, options.chosenClass, true);
+      }; // Disable "draggable"
+
+
+      options.ignore.split(',').forEach(function (criteria) {
+        find(dragEl, criteria.trim(), _disableDraggable);
+      });
+      on(ownerDocument, 'dragover', nearestEmptyInsertDetectEvent);
+      on(ownerDocument, 'mousemove', nearestEmptyInsertDetectEvent);
+      on(ownerDocument, 'touchmove', nearestEmptyInsertDetectEvent);
+      on(ownerDocument, 'mouseup', _this._onDrop);
+      on(ownerDocument, 'touchend', _this._onDrop);
+      on(ownerDocument, 'touchcancel', _this._onDrop); // Make dragEl draggable (must be before delay for FireFox)
+
+      if (FireFox && this.nativeDraggable) {
+        this.options.touchStartThreshold = 4;
+        dragEl.draggable = true;
+      }
+
+      pluginEvent('delayStart', this, {
+        evt: evt
+      }); // Delay is impossible for native DnD in Edge or IE
+
+      if (options.delay && (!options.delayOnTouchOnly || touch) && (!this.nativeDraggable || !(Edge || IE11OrLess))) {
+        if (Sortable.eventCanceled) {
+          this._onDrop();
+
+          return;
+        } // If the user moves the pointer or let go the click or touch
+        // before the delay has been reached:
+        // disable the delayed drag
+
+
+        on(ownerDocument, 'mouseup', _this._disableDelayedDrag);
+        on(ownerDocument, 'touchend', _this._disableDelayedDrag);
+        on(ownerDocument, 'touchcancel', _this._disableDelayedDrag);
+        on(ownerDocument, 'mousemove', _this._delayedDragTouchMoveHandler);
+        on(ownerDocument, 'touchmove', _this._delayedDragTouchMoveHandler);
+        options.supportPointer && on(ownerDocument, 'pointermove', _this._delayedDragTouchMoveHandler);
+        _this._dragStartTimer = setTimeout(dragStartFn, options.delay);
+      } else {
+        dragStartFn();
+      }
+    }
+  },
+  _delayedDragTouchMoveHandler: function _delayedDragTouchMoveHandler(
+  /** TouchEvent|PointerEvent **/
+  e) {
+    var touch = e.touches ? e.touches[0] : e;
+
+    if (Math.max(Math.abs(touch.clientX - this._lastX), Math.abs(touch.clientY - this._lastY)) >= Math.floor(this.options.touchStartThreshold / (this.nativeDraggable && window.devicePixelRatio || 1))) {
+      this._disableDelayedDrag();
+    }
+  },
+  _disableDelayedDrag: function _disableDelayedDrag() {
+    dragEl && _disableDraggable(dragEl);
+    clearTimeout(this._dragStartTimer);
+
+    this._disableDelayedDragEvents();
+  },
+  _disableDelayedDragEvents: function _disableDelayedDragEvents() {
+    var ownerDocument = this.el.ownerDocument;
+    off(ownerDocument, 'mouseup', this._disableDelayedDrag);
+    off(ownerDocument, 'touchend', this._disableDelayedDrag);
+    off(ownerDocument, 'touchcancel', this._disableDelayedDrag);
+    off(ownerDocument, 'mousemove', this._delayedDragTouchMoveHandler);
+    off(ownerDocument, 'touchmove', this._delayedDragTouchMoveHandler);
+    off(ownerDocument, 'pointermove', this._delayedDragTouchMoveHandler);
+  },
+  _triggerDragStart: function _triggerDragStart(
+  /** Event */
+  evt,
+  /** Touch */
+  touch) {
+    touch = touch || evt.pointerType == 'touch' && evt;
+
+    if (!this.nativeDraggable || touch) {
+      if (this.options.supportPointer) {
+        on(document, 'pointermove', this._onTouchMove);
+      } else if (touch) {
+        on(document, 'touchmove', this._onTouchMove);
+      } else {
+        on(document, 'mousemove', this._onTouchMove);
+      }
+    } else {
+      on(dragEl, 'dragend', this);
+      on(rootEl, 'dragstart', this._onDragStart);
+    }
+
+    try {
+      if (document.selection) {
+        // Timeout neccessary for IE9
+        _nextTick(function () {
+          document.selection.empty();
+        });
+      } else {
+        window.getSelection().removeAllRanges();
+      }
+    } catch (err) {}
+  },
+  _dragStarted: function _dragStarted(fallback, evt) {
+
+    awaitingDragStarted = false;
+
+    if (rootEl && dragEl) {
+      pluginEvent('dragStarted', this, {
+        evt: evt
+      });
+
+      if (this.nativeDraggable) {
+        on(document, 'dragover', _checkOutsideTargetEl);
+      }
+
+      var options = this.options; // Apply effect
+
+      !fallback && toggleClass(dragEl, options.dragClass, false);
+      toggleClass(dragEl, options.ghostClass, true);
+      Sortable.active = this;
+      fallback && this._appendGhost(); // Drag start event
+
+      _dispatchEvent({
+        sortable: this,
+        name: 'start',
+        originalEvent: evt
+      });
+    } else {
+      this._nulling();
+    }
+  },
+  _emulateDragOver: function _emulateDragOver() {
+    if (touchEvt) {
+      this._lastX = touchEvt.clientX;
+      this._lastY = touchEvt.clientY;
+
+      _hideGhostForTarget();
+
+      var target = document.elementFromPoint(touchEvt.clientX, touchEvt.clientY);
+      var parent = target;
+
+      while (target && target.shadowRoot) {
+        target = target.shadowRoot.elementFromPoint(touchEvt.clientX, touchEvt.clientY);
+        if (target === parent) break;
+        parent = target;
+      }
+
+      dragEl.parentNode[expando]._isOutsideThisEl(target);
+
+      if (parent) {
+        do {
+          if (parent[expando]) {
+            var inserted = void 0;
+            inserted = parent[expando]._onDragOver({
+              clientX: touchEvt.clientX,
+              clientY: touchEvt.clientY,
+              target: target,
+              rootEl: parent
+            });
+
+            if (inserted && !this.options.dragoverBubble) {
+              break;
+            }
+          }
+
+          target = parent; // store last element
+        }
+        /* jshint boss:true */
+        while (parent = parent.parentNode);
+      }
+
+      _unhideGhostForTarget();
+    }
+  },
+  _onTouchMove: function _onTouchMove(
+  /**TouchEvent*/
+  evt) {
+    if (tapEvt) {
+      var options = this.options,
+          fallbackTolerance = options.fallbackTolerance,
+          fallbackOffset = options.fallbackOffset,
+          touch = evt.touches ? evt.touches[0] : evt,
+          ghostMatrix = ghostEl && matrix(ghostEl, true),
+          scaleX = ghostEl && ghostMatrix && ghostMatrix.a,
+          scaleY = ghostEl && ghostMatrix && ghostMatrix.d,
+          relativeScrollOffset = PositionGhostAbsolutely && ghostRelativeParent && getRelativeScrollOffset(ghostRelativeParent),
+          dx = (touch.clientX - tapEvt.clientX + fallbackOffset.x) / (scaleX || 1) + (relativeScrollOffset ? relativeScrollOffset[0] - ghostRelativeParentInitialScroll[0] : 0) / (scaleX || 1),
+          dy = (touch.clientY - tapEvt.clientY + fallbackOffset.y) / (scaleY || 1) + (relativeScrollOffset ? relativeScrollOffset[1] - ghostRelativeParentInitialScroll[1] : 0) / (scaleY || 1); // only set the status to dragging, when we are actually dragging
+
+      if (!Sortable.active && !awaitingDragStarted) {
+        if (fallbackTolerance && Math.max(Math.abs(touch.clientX - this._lastX), Math.abs(touch.clientY - this._lastY)) < fallbackTolerance) {
+          return;
+        }
+
+        this._onDragStart(evt, true);
+      }
+
+      if (ghostEl) {
+        if (ghostMatrix) {
+          ghostMatrix.e += dx - (lastDx || 0);
+          ghostMatrix.f += dy - (lastDy || 0);
+        } else {
+          ghostMatrix = {
+            a: 1,
+            b: 0,
+            c: 0,
+            d: 1,
+            e: dx,
+            f: dy
+          };
+        }
+
+        var cssMatrix = "matrix(".concat(ghostMatrix.a, ",").concat(ghostMatrix.b, ",").concat(ghostMatrix.c, ",").concat(ghostMatrix.d, ",").concat(ghostMatrix.e, ",").concat(ghostMatrix.f, ")");
+        css(ghostEl, 'webkitTransform', cssMatrix);
+        css(ghostEl, 'mozTransform', cssMatrix);
+        css(ghostEl, 'msTransform', cssMatrix);
+        css(ghostEl, 'transform', cssMatrix);
+        lastDx = dx;
+        lastDy = dy;
+        touchEvt = touch;
+      }
+
+      evt.cancelable && evt.preventDefault();
+    }
+  },
+  _appendGhost: function _appendGhost() {
+    // Bug if using scale(): https://stackoverflow.com/questions/2637058
+    // Not being adjusted for
+    if (!ghostEl) {
+      var container = this.options.fallbackOnBody ? document.body : rootEl,
+          rect = getRect(dragEl, true, PositionGhostAbsolutely, true, container),
+          options = this.options; // Position absolutely
+
+      if (PositionGhostAbsolutely) {
+        // Get relatively positioned parent
+        ghostRelativeParent = container;
+
+        while (css(ghostRelativeParent, 'position') === 'static' && css(ghostRelativeParent, 'transform') === 'none' && ghostRelativeParent !== document) {
+          ghostRelativeParent = ghostRelativeParent.parentNode;
+        }
+
+        if (ghostRelativeParent !== document.body && ghostRelativeParent !== document.documentElement) {
+          if (ghostRelativeParent === document) ghostRelativeParent = getWindowScrollingElement();
+          rect.top += ghostRelativeParent.scrollTop;
+          rect.left += ghostRelativeParent.scrollLeft;
+        } else {
+          ghostRelativeParent = getWindowScrollingElement();
+        }
+
+        ghostRelativeParentInitialScroll = getRelativeScrollOffset(ghostRelativeParent);
+      }
+
+      ghostEl = dragEl.cloneNode(true);
+      toggleClass(ghostEl, options.ghostClass, false);
+      toggleClass(ghostEl, options.fallbackClass, true);
+      toggleClass(ghostEl, options.dragClass, true);
+      css(ghostEl, 'transition', '');
+      css(ghostEl, 'transform', '');
+      css(ghostEl, 'box-sizing', 'border-box');
+      css(ghostEl, 'margin', 0);
+      css(ghostEl, 'top', rect.top);
+      css(ghostEl, 'left', rect.left);
+      css(ghostEl, 'width', rect.width);
+      css(ghostEl, 'height', rect.height);
+      css(ghostEl, 'opacity', '0.8');
+      css(ghostEl, 'position', PositionGhostAbsolutely ? 'absolute' : 'fixed');
+      css(ghostEl, 'zIndex', '100000');
+      css(ghostEl, 'pointerEvents', 'none');
+      Sortable.ghost = ghostEl;
+      container.appendChild(ghostEl); // Set transform-origin
+
+      css(ghostEl, 'transform-origin', tapDistanceLeft / parseInt(ghostEl.style.width) * 100 + '% ' + tapDistanceTop / parseInt(ghostEl.style.height) * 100 + '%');
+    }
+  },
+  _onDragStart: function _onDragStart(
+  /**Event*/
+  evt,
+  /**boolean*/
+  fallback) {
+    var _this = this;
+
+    var dataTransfer = evt.dataTransfer;
+    var options = _this.options;
+    pluginEvent('dragStart', this, {
+      evt: evt
+    });
+
+    if (Sortable.eventCanceled) {
+      this._onDrop();
+
+      return;
+    }
+
+    pluginEvent('setupClone', this);
+
+    if (!Sortable.eventCanceled) {
+      cloneEl = clone(dragEl);
+      cloneEl.draggable = false;
+      cloneEl.style['will-change'] = '';
+
+      this._hideClone();
+
+      toggleClass(cloneEl, this.options.chosenClass, false);
+      Sortable.clone = cloneEl;
+    } // #1143: IFrame support workaround
+
+
+    _this.cloneId = _nextTick(function () {
+      pluginEvent('clone', _this);
+      if (Sortable.eventCanceled) return;
+
+      if (!_this.options.removeCloneOnHide) {
+        rootEl.insertBefore(cloneEl, dragEl);
+      }
+
+      _this._hideClone();
+
+      _dispatchEvent({
+        sortable: _this,
+        name: 'clone'
+      });
+    });
+    !fallback && toggleClass(dragEl, options.dragClass, true); // Set proper drop events
+
+    if (fallback) {
+      ignoreNextClick = true;
+      _this._loopId = setInterval(_this._emulateDragOver, 50);
+    } else {
+      // Undo what was set in _prepareDragStart before drag started
+      off(document, 'mouseup', _this._onDrop);
+      off(document, 'touchend', _this._onDrop);
+      off(document, 'touchcancel', _this._onDrop);
+
+      if (dataTransfer) {
+        dataTransfer.effectAllowed = 'move';
+        options.setData && options.setData.call(_this, dataTransfer, dragEl);
+      }
+
+      on(document, 'drop', _this); // #1276 fix:
+
+      css(dragEl, 'transform', 'translateZ(0)');
+    }
+
+    awaitingDragStarted = true;
+    _this._dragStartId = _nextTick(_this._dragStarted.bind(_this, fallback, evt));
+    on(document, 'selectstart', _this);
+    moved = true;
+
+    if (Safari) {
+      css(document.body, 'user-select', 'none');
+    }
+  },
+  // Returns true - if no further action is needed (either inserted or another condition)
+  _onDragOver: function _onDragOver(
+  /**Event*/
+  evt) {
+    var el = this.el,
+        target = evt.target,
+        dragRect,
+        targetRect,
+        revert,
+        options = this.options,
+        group = options.group,
+        activeSortable = Sortable.active,
+        isOwner = activeGroup === group,
+        canSort = options.sort,
+        fromSortable = putSortable || activeSortable,
+        vertical,
+        _this = this,
+        completedFired = false;
+
+    if (_silent) return;
+
+    function dragOverEvent(name, extra) {
+      pluginEvent(name, _this, _objectSpread({
+        evt: evt,
+        isOwner: isOwner,
+        axis: vertical ? 'vertical' : 'horizontal',
+        revert: revert,
+        dragRect: dragRect,
+        targetRect: targetRect,
+        canSort: canSort,
+        fromSortable: fromSortable,
+        target: target,
+        completed: completed,
+        onMove: function onMove(target, after) {
+          return _onMove(rootEl, el, dragEl, dragRect, target, getRect(target), evt, after);
+        },
+        changed: changed
+      }, extra));
+    } // Capture animation state
+
+
+    function capture() {
+      dragOverEvent('dragOverAnimationCapture');
+
+      _this.captureAnimationState();
+
+      if (_this !== fromSortable) {
+        fromSortable.captureAnimationState();
+      }
+    } // Return invocation when dragEl is inserted (or completed)
+
+
+    function completed(insertion) {
+      dragOverEvent('dragOverCompleted', {
+        insertion: insertion
+      });
+
+      if (insertion) {
+        // Clones must be hidden before folding animation to capture dragRectAbsolute properly
+        if (isOwner) {
+          activeSortable._hideClone();
+        } else {
+          activeSortable._showClone(_this);
+        }
+
+        if (_this !== fromSortable) {
+          // Set ghost class to new sortable's ghost class
+          toggleClass(dragEl, putSortable ? putSortable.options.ghostClass : activeSortable.options.ghostClass, false);
+          toggleClass(dragEl, options.ghostClass, true);
+        }
+
+        if (putSortable !== _this && _this !== Sortable.active) {
+          putSortable = _this;
+        } else if (_this === Sortable.active && putSortable) {
+          putSortable = null;
+        } // Animation
+
+
+        if (fromSortable === _this) {
+          _this._ignoreWhileAnimating = target;
+        }
+
+        _this.animateAll(function () {
+          dragOverEvent('dragOverAnimationComplete');
+          _this._ignoreWhileAnimating = null;
+        });
+
+        if (_this !== fromSortable) {
+          fromSortable.animateAll();
+          fromSortable._ignoreWhileAnimating = null;
+        }
+      } // Null lastTarget if it is not inside a previously swapped element
+
+
+      if (target === dragEl && !dragEl.animated || target === el && !target.animated) {
+        lastTarget = null;
+      } // no bubbling and not fallback
+
+
+      if (!options.dragoverBubble && !evt.rootEl && target !== document) {
+        dragEl.parentNode[expando]._isOutsideThisEl(evt.target); // Do not detect for empty insert if already inserted
+
+
+        !insertion && nearestEmptyInsertDetectEvent(evt);
+      }
+
+      !options.dragoverBubble && evt.stopPropagation && evt.stopPropagation();
+      return completedFired = true;
+    } // Call when dragEl has been inserted
+
+
+    function changed() {
+      newIndex = index(dragEl);
+      newDraggableIndex = index(dragEl, options.draggable);
+
+      _dispatchEvent({
+        sortable: _this,
+        name: 'change',
+        toEl: el,
+        newIndex: newIndex,
+        newDraggableIndex: newDraggableIndex,
+        originalEvent: evt
+      });
+    }
+
+    if (evt.preventDefault !== void 0) {
+      evt.cancelable && evt.preventDefault();
+    }
+
+    target = closest(target, options.draggable, el, true);
+    dragOverEvent('dragOver');
+    if (Sortable.eventCanceled) return completedFired;
+
+    if (dragEl.contains(evt.target) || target.animated && target.animatingX && target.animatingY || _this._ignoreWhileAnimating === target) {
+      return completed(false);
+    }
+
+    ignoreNextClick = false;
+
+    if (activeSortable && !options.disabled && (isOwner ? canSort || (revert = !rootEl.contains(dragEl)) // Reverting item into the original list
+    : putSortable === this || (this.lastPutMode = activeGroup.checkPull(this, activeSortable, dragEl, evt)) && group.checkPut(this, activeSortable, dragEl, evt))) {
+      vertical = this._getDirection(evt, target) === 'vertical';
+      dragRect = getRect(dragEl);
+      dragOverEvent('dragOverValid');
+      if (Sortable.eventCanceled) return completedFired;
+
+      if (revert) {
+        parentEl = rootEl; // actualization
+
+        capture();
+
+        this._hideClone();
+
+        dragOverEvent('revert');
+
+        if (!Sortable.eventCanceled) {
+          if (nextEl) {
+            rootEl.insertBefore(dragEl, nextEl);
+          } else {
+            rootEl.appendChild(dragEl);
+          }
+        }
+
+        return completed(true);
+      }
+
+      var elLastChild = lastChild(el, options.draggable);
+
+      if (!elLastChild || _ghostIsLast(evt, vertical, this) && !elLastChild.animated) {
+        // If already at end of list: Do not insert
+        if (elLastChild === dragEl) {
+          return completed(false);
+        } // assign target only if condition is true
+
+
+        if (elLastChild && el === evt.target) {
+          target = elLastChild;
+        }
+
+        if (target) {
+          targetRect = getRect(target);
+        }
+
+        if (_onMove(rootEl, el, dragEl, dragRect, target, targetRect, evt, !!target) !== false) {
+          capture();
+          el.appendChild(dragEl);
+          parentEl = el; // actualization
+
+          changed();
+          return completed(true);
+        }
+      } else if (target.parentNode === el) {
+        targetRect = getRect(target);
+        var direction = 0,
+            targetBeforeFirstSwap,
+            differentLevel = dragEl.parentNode !== el,
+            differentRowCol = !_dragElInRowColumn(dragEl.animated && dragEl.toRect || dragRect, target.animated && target.toRect || targetRect, vertical),
+            side1 = vertical ? 'top' : 'left',
+            scrolledPastTop = isScrolledPast(target, 'top', 'top') || isScrolledPast(dragEl, 'top', 'top'),
+            scrollBefore = scrolledPastTop ? scrolledPastTop.scrollTop : void 0;
+
+        if (lastTarget !== target) {
+          targetBeforeFirstSwap = targetRect[side1];
+          pastFirstInvertThresh = false;
+          isCircumstantialInvert = !differentRowCol && options.invertSwap || differentLevel;
+        }
+
+        direction = _getSwapDirection(evt, target, targetRect, vertical, differentRowCol ? 1 : options.swapThreshold, options.invertedSwapThreshold == null ? options.swapThreshold : options.invertedSwapThreshold, isCircumstantialInvert, lastTarget === target);
+        var sibling;
+
+        if (direction !== 0) {
+          // Check if target is beside dragEl in respective direction (ignoring hidden elements)
+          var dragIndex = index(dragEl);
+
+          do {
+            dragIndex -= direction;
+            sibling = parentEl.children[dragIndex];
+          } while (sibling && (css(sibling, 'display') === 'none' || sibling === ghostEl));
+        } // If dragEl is already beside target: Do not insert
+
+
+        if (direction === 0 || sibling === target) {
+          return completed(false);
+        }
+
+        lastTarget = target;
+        lastDirection = direction;
+        var nextSibling = target.nextElementSibling,
+            after = false;
+        after = direction === 1;
+
+        var moveVector = _onMove(rootEl, el, dragEl, dragRect, target, targetRect, evt, after);
+
+        if (moveVector !== false) {
+          if (moveVector === 1 || moveVector === -1) {
+            after = moveVector === 1;
+          }
+
+          _silent = true;
+          setTimeout(_unsilent, 30);
+          capture();
+
+          if (after && !nextSibling) {
+            el.appendChild(dragEl);
+          } else {
+            target.parentNode.insertBefore(dragEl, after ? nextSibling : target);
+          } // Undo chrome's scroll adjustment (has no effect on other browsers)
+
+
+          if (scrolledPastTop) {
+            scrollBy(scrolledPastTop, 0, scrollBefore - scrolledPastTop.scrollTop);
+          }
+
+          parentEl = dragEl.parentNode; // actualization
+          // must be done before animation
+
+          if (targetBeforeFirstSwap !== undefined && !isCircumstantialInvert) {
+            targetMoveDistance = Math.abs(targetBeforeFirstSwap - getRect(target)[side1]);
+          }
+
+          changed();
+          return completed(true);
+        }
+      }
+
+      if (el.contains(dragEl)) {
+        return completed(false);
+      }
+    }
+
+    return false;
+  },
+  _ignoreWhileAnimating: null,
+  _offMoveEvents: function _offMoveEvents() {
+    off(document, 'mousemove', this._onTouchMove);
+    off(document, 'touchmove', this._onTouchMove);
+    off(document, 'pointermove', this._onTouchMove);
+    off(document, 'dragover', nearestEmptyInsertDetectEvent);
+    off(document, 'mousemove', nearestEmptyInsertDetectEvent);
+    off(document, 'touchmove', nearestEmptyInsertDetectEvent);
+  },
+  _offUpEvents: function _offUpEvents() {
+    var ownerDocument = this.el.ownerDocument;
+    off(ownerDocument, 'mouseup', this._onDrop);
+    off(ownerDocument, 'touchend', this._onDrop);
+    off(ownerDocument, 'pointerup', this._onDrop);
+    off(ownerDocument, 'touchcancel', this._onDrop);
+    off(document, 'selectstart', this);
+  },
+  _onDrop: function _onDrop(
+  /**Event*/
+  evt) {
+    var el = this.el,
+        options = this.options; // Get the index of the dragged element within its parent
+
+    newIndex = index(dragEl);
+    newDraggableIndex = index(dragEl, options.draggable);
+    pluginEvent('drop', this, {
+      evt: evt
+    });
+    parentEl = dragEl && dragEl.parentNode; // Get again after plugin event
+
+    newIndex = index(dragEl);
+    newDraggableIndex = index(dragEl, options.draggable);
+
+    if (Sortable.eventCanceled) {
+      this._nulling();
+
+      return;
+    }
+
+    awaitingDragStarted = false;
+    isCircumstantialInvert = false;
+    pastFirstInvertThresh = false;
+    clearInterval(this._loopId);
+    clearTimeout(this._dragStartTimer);
+
+    _cancelNextTick(this.cloneId);
+
+    _cancelNextTick(this._dragStartId); // Unbind events
+
+
+    if (this.nativeDraggable) {
+      off(document, 'drop', this);
+      off(el, 'dragstart', this._onDragStart);
+    }
+
+    this._offMoveEvents();
+
+    this._offUpEvents();
+
+    if (Safari) {
+      css(document.body, 'user-select', '');
+    }
+
+    css(dragEl, 'transform', '');
+
+    if (evt) {
+      if (moved) {
+        evt.cancelable && evt.preventDefault();
+        !options.dropBubble && evt.stopPropagation();
+      }
+
+      ghostEl && ghostEl.parentNode && ghostEl.parentNode.removeChild(ghostEl);
+
+      if (rootEl === parentEl || putSortable && putSortable.lastPutMode !== 'clone') {
+        // Remove clone(s)
+        cloneEl && cloneEl.parentNode && cloneEl.parentNode.removeChild(cloneEl);
+      }
+
+      if (dragEl) {
+        if (this.nativeDraggable) {
+          off(dragEl, 'dragend', this);
+        }
+
+        _disableDraggable(dragEl);
+
+        dragEl.style['will-change'] = ''; // Remove classes
+        // ghostClass is added in dragStarted
+
+        if (moved && !awaitingDragStarted) {
+          toggleClass(dragEl, putSortable ? putSortable.options.ghostClass : this.options.ghostClass, false);
+        }
+
+        toggleClass(dragEl, this.options.chosenClass, false); // Drag stop event
+
+        _dispatchEvent({
+          sortable: this,
+          name: 'unchoose',
+          toEl: parentEl,
+          newIndex: null,
+          newDraggableIndex: null,
+          originalEvent: evt
+        });
+
+        if (rootEl !== parentEl) {
+          if (newIndex >= 0) {
+            // Add event
+            _dispatchEvent({
+              rootEl: parentEl,
+              name: 'add',
+              toEl: parentEl,
+              fromEl: rootEl,
+              originalEvent: evt
+            }); // Remove event
+
+
+            _dispatchEvent({
+              sortable: this,
+              name: 'remove',
+              toEl: parentEl,
+              originalEvent: evt
+            }); // drag from one list and drop into another
+
+
+            _dispatchEvent({
+              rootEl: parentEl,
+              name: 'sort',
+              toEl: parentEl,
+              fromEl: rootEl,
+              originalEvent: evt
+            });
+
+            _dispatchEvent({
+              sortable: this,
+              name: 'sort',
+              toEl: parentEl,
+              originalEvent: evt
+            });
+          }
+
+          putSortable && putSortable.save();
+        } else {
+          if (newIndex !== oldIndex) {
+            if (newIndex >= 0) {
+              // drag & drop within the same list
+              _dispatchEvent({
+                sortable: this,
+                name: 'update',
+                toEl: parentEl,
+                originalEvent: evt
+              });
+
+              _dispatchEvent({
+                sortable: this,
+                name: 'sort',
+                toEl: parentEl,
+                originalEvent: evt
+              });
+            }
+          }
+        }
+
+        if (Sortable.active) {
+          /* jshint eqnull:true */
+          if (newIndex == null || newIndex === -1) {
+            newIndex = oldIndex;
+            newDraggableIndex = oldDraggableIndex;
+          }
+
+          _dispatchEvent({
+            sortable: this,
+            name: 'end',
+            toEl: parentEl,
+            originalEvent: evt
+          }); // Save sorting
+
+
+          this.save();
+        }
+      }
+    }
+
+    this._nulling();
+  },
+  _nulling: function _nulling() {
+    pluginEvent('nulling', this);
+    rootEl = dragEl = parentEl = ghostEl = nextEl = cloneEl = lastDownEl = cloneHidden = tapEvt = touchEvt = moved = newIndex = newDraggableIndex = oldIndex = oldDraggableIndex = lastTarget = lastDirection = putSortable = activeGroup = Sortable.dragged = Sortable.ghost = Sortable.clone = Sortable.active = null;
+    savedInputChecked.forEach(function (el) {
+      el.checked = true;
+    });
+    savedInputChecked.length = lastDx = lastDy = 0;
+  },
+  handleEvent: function handleEvent(
+  /**Event*/
+  evt) {
+    switch (evt.type) {
+      case 'drop':
+      case 'dragend':
+        this._onDrop(evt);
+
+        break;
+
+      case 'dragenter':
+      case 'dragover':
+        if (dragEl) {
+          this._onDragOver(evt);
+
+          _globalDragOver(evt);
+        }
+
+        break;
+
+      case 'selectstart':
+        evt.preventDefault();
+        break;
+    }
+  },
+
+  /**
+   * Serializes the item into an array of string.
+   * @returns {String[]}
+   */
+  toArray: function toArray() {
+    var order = [],
+        el,
+        children = this.el.children,
+        i = 0,
+        n = children.length,
+        options = this.options;
+
+    for (; i < n; i++) {
+      el = children[i];
+
+      if (closest(el, options.draggable, this.el, false)) {
+        order.push(el.getAttribute(options.dataIdAttr) || _generateId(el));
+      }
+    }
+
+    return order;
+  },
+
+  /**
+   * Sorts the elements according to the array.
+   * @param  {String[]}  order  order of the items
+   */
+  sort: function sort(order) {
+    var items = {},
+        rootEl = this.el;
+    this.toArray().forEach(function (id, i) {
+      var el = rootEl.children[i];
+
+      if (closest(el, this.options.draggable, rootEl, false)) {
+        items[id] = el;
+      }
+    }, this);
+    order.forEach(function (id) {
+      if (items[id]) {
+        rootEl.removeChild(items[id]);
+        rootEl.appendChild(items[id]);
+      }
+    });
+  },
+
+  /**
+   * Save the current sorting
+   */
+  save: function save() {
+    var store = this.options.store;
+    store && store.set && store.set(this);
+  },
+
+  /**
+   * For each element in the set, get the first element that matches the selector by testing the element itself and traversing up through its ancestors in the DOM tree.
+   * @param   {HTMLElement}  el
+   * @param   {String}       [selector]  default: `options.draggable`
+   * @returns {HTMLElement|null}
+   */
+  closest: function closest$1(el, selector) {
+    return closest(el, selector || this.options.draggable, this.el, false);
+  },
+
+  /**
+   * Set/get option
+   * @param   {string} name
+   * @param   {*}      [value]
+   * @returns {*}
+   */
+  option: function option(name, value) {
+    var options = this.options;
+
+    if (value === void 0) {
+      return options[name];
+    } else {
+      var modifiedValue = PluginManager.modifyOption(this, name, value);
+
+      if (typeof modifiedValue !== 'undefined') {
+        options[name] = modifiedValue;
+      } else {
+        options[name] = value;
+      }
+
+      if (name === 'group') {
+        _prepareGroup(options);
+      }
+    }
+  },
+
+  /**
+   * Destroy
+   */
+  destroy: function destroy() {
+    pluginEvent('destroy', this);
+    var el = this.el;
+    el[expando] = null;
+    off(el, 'mousedown', this._onTapStart);
+    off(el, 'touchstart', this._onTapStart);
+    off(el, 'pointerdown', this._onTapStart);
+
+    if (this.nativeDraggable) {
+      off(el, 'dragover', this);
+      off(el, 'dragenter', this);
+    } // Remove draggable attributes
+
+
+    Array.prototype.forEach.call(el.querySelectorAll('[draggable]'), function (el) {
+      el.removeAttribute('draggable');
+    });
+
+    this._onDrop();
+
+    this._disableDelayedDragEvents();
+
+    sortables.splice(sortables.indexOf(this.el), 1);
+    this.el = el = null;
+  },
+  _hideClone: function _hideClone() {
+    if (!cloneHidden) {
+      pluginEvent('hideClone', this);
+      if (Sortable.eventCanceled) return;
+      css(cloneEl, 'display', 'none');
+
+      if (this.options.removeCloneOnHide && cloneEl.parentNode) {
+        cloneEl.parentNode.removeChild(cloneEl);
+      }
+
+      cloneHidden = true;
+    }
+  },
+  _showClone: function _showClone(putSortable) {
+    if (putSortable.lastPutMode !== 'clone') {
+      this._hideClone();
+
+      return;
+    }
+
+    if (cloneHidden) {
+      pluginEvent('showClone', this);
+      if (Sortable.eventCanceled) return; // show clone at dragEl or original position
+
+      if (rootEl.contains(dragEl) && !this.options.group.revertClone) {
+        rootEl.insertBefore(cloneEl, dragEl);
+      } else if (nextEl) {
+        rootEl.insertBefore(cloneEl, nextEl);
+      } else {
+        rootEl.appendChild(cloneEl);
+      }
+
+      if (this.options.group.revertClone) {
+        this.animate(dragEl, cloneEl);
+      }
+
+      css(cloneEl, 'display', '');
+      cloneHidden = false;
+    }
+  }
+};
+
+function _globalDragOver(
+/**Event*/
+evt) {
+  if (evt.dataTransfer) {
+    evt.dataTransfer.dropEffect = 'move';
+  }
+
+  evt.cancelable && evt.preventDefault();
+}
+
+function _onMove(fromEl, toEl, dragEl, dragRect, targetEl, targetRect, originalEvent, willInsertAfter) {
+  var evt,
+      sortable = fromEl[expando],
+      onMoveFn = sortable.options.onMove,
+      retVal; // Support for new CustomEvent feature
+
+  if (window.CustomEvent && !IE11OrLess && !Edge) {
+    evt = new CustomEvent('move', {
+      bubbles: true,
+      cancelable: true
+    });
+  } else {
+    evt = document.createEvent('Event');
+    evt.initEvent('move', true, true);
+  }
+
+  evt.to = toEl;
+  evt.from = fromEl;
+  evt.dragged = dragEl;
+  evt.draggedRect = dragRect;
+  evt.related = targetEl || toEl;
+  evt.relatedRect = targetRect || getRect(toEl);
+  evt.willInsertAfter = willInsertAfter;
+  evt.originalEvent = originalEvent;
+  fromEl.dispatchEvent(evt);
+
+  if (onMoveFn) {
+    retVal = onMoveFn.call(sortable, evt, originalEvent);
+  }
+
+  return retVal;
+}
+
+function _disableDraggable(el) {
+  el.draggable = false;
+}
+
+function _unsilent() {
+  _silent = false;
+}
+
+function _ghostIsLast(evt, vertical, sortable) {
+  var rect = getRect(lastChild(sortable.el, sortable.options.draggable));
+  var spacer = 10;
+  return vertical ? evt.clientX > rect.right + spacer || evt.clientX <= rect.right && evt.clientY > rect.bottom && evt.clientX >= rect.left : evt.clientX > rect.right && evt.clientY > rect.top || evt.clientX <= rect.right && evt.clientY > rect.bottom + spacer;
+}
+
+function _getSwapDirection(evt, target, targetRect, vertical, swapThreshold, invertedSwapThreshold, invertSwap, isLastTarget) {
+  var mouseOnAxis = vertical ? evt.clientY : evt.clientX,
+      targetLength = vertical ? targetRect.height : targetRect.width,
+      targetS1 = vertical ? targetRect.top : targetRect.left,
+      targetS2 = vertical ? targetRect.bottom : targetRect.right,
+      invert = false;
+
+  if (!invertSwap) {
+    // Never invert or create dragEl shadow when target movemenet causes mouse to move past the end of regular swapThreshold
+    if (isLastTarget && targetMoveDistance < targetLength * swapThreshold) {
+      // multiplied only by swapThreshold because mouse will already be inside target by (1 - threshold) * targetLength / 2
+      // check if past first invert threshold on side opposite of lastDirection
+      if (!pastFirstInvertThresh && (lastDirection === 1 ? mouseOnAxis > targetS1 + targetLength * invertedSwapThreshold / 2 : mouseOnAxis < targetS2 - targetLength * invertedSwapThreshold / 2)) {
+        // past first invert threshold, do not restrict inverted threshold to dragEl shadow
+        pastFirstInvertThresh = true;
+      }
+
+      if (!pastFirstInvertThresh) {
+        // dragEl shadow (target move distance shadow)
+        if (lastDirection === 1 ? mouseOnAxis < targetS1 + targetMoveDistance // over dragEl shadow
+        : mouseOnAxis > targetS2 - targetMoveDistance) {
+          return -lastDirection;
+        }
+      } else {
+        invert = true;
+      }
+    } else {
+      // Regular
+      if (mouseOnAxis > targetS1 + targetLength * (1 - swapThreshold) / 2 && mouseOnAxis < targetS2 - targetLength * (1 - swapThreshold) / 2) {
+        return _getInsertDirection(target);
+      }
+    }
+  }
+
+  invert = invert || invertSwap;
+
+  if (invert) {
+    // Invert of regular
+    if (mouseOnAxis < targetS1 + targetLength * invertedSwapThreshold / 2 || mouseOnAxis > targetS2 - targetLength * invertedSwapThreshold / 2) {
+      return mouseOnAxis > targetS1 + targetLength / 2 ? 1 : -1;
+    }
+  }
+
+  return 0;
+}
+/**
+ * Gets the direction dragEl must be swapped relative to target in order to make it
+ * seem that dragEl has been "inserted" into that element's position
+ * @param  {HTMLElement} target       The target whose position dragEl is being inserted at
+ * @return {Number}                   Direction dragEl must be swapped
+ */
+
+
+function _getInsertDirection(target) {
+  if (index(dragEl) < index(target)) {
+    return 1;
+  } else {
+    return -1;
+  }
+}
+/**
+ * Generate id
+ * @param   {HTMLElement} el
+ * @returns {String}
+ * @private
+ */
+
+
+function _generateId(el) {
+  var str = el.tagName + el.className + el.src + el.href + el.textContent,
+      i = str.length,
+      sum = 0;
+
+  while (i--) {
+    sum += str.charCodeAt(i);
+  }
+
+  return sum.toString(36);
+}
+
+function _saveInputCheckedState(root) {
+  savedInputChecked.length = 0;
+  var inputs = root.getElementsByTagName('input');
+  var idx = inputs.length;
+
+  while (idx--) {
+    var el = inputs[idx];
+    el.checked && savedInputChecked.push(el);
+  }
+}
+
+function _nextTick(fn) {
+  return setTimeout(fn, 0);
+}
+
+function _cancelNextTick(id) {
+  return clearTimeout(id);
+} // Fixed #973:
+
+
+if (documentExists) {
+  on(document, 'touchmove', function (evt) {
+    if ((Sortable.active || awaitingDragStarted) && evt.cancelable) {
+      evt.preventDefault();
+    }
+  });
+} // Export utils
+
+
+Sortable.utils = {
+  on: on,
+  off: off,
+  css: css,
+  find: find,
+  is: function is(el, selector) {
+    return !!closest(el, selector, el, false);
+  },
+  extend: extend,
+  throttle: throttle,
+  closest: closest,
+  toggleClass: toggleClass,
+  clone: clone,
+  index: index,
+  nextTick: _nextTick,
+  cancelNextTick: _cancelNextTick,
+  detectDirection: _detectDirection,
+  getChild: getChild
+};
+/**
+ * Get the Sortable instance of an element
+ * @param  {HTMLElement} element The element
+ * @return {Sortable|undefined}         The instance of Sortable
+ */
+
+Sortable.get = function (element) {
+  return element[expando];
+};
+/**
+ * Mount a plugin to Sortable
+ * @param  {...SortablePlugin|SortablePlugin[]} plugins       Plugins being mounted
+ */
+
+
+Sortable.mount = function () {
+  for (var _len = arguments.length, plugins = new Array(_len), _key = 0; _key < _len; _key++) {
+    plugins[_key] = arguments[_key];
+  }
+
+  if (plugins[0].constructor === Array) plugins = plugins[0];
+  plugins.forEach(function (plugin) {
+    if (!plugin.prototype || !plugin.prototype.constructor) {
+      throw "Sortable: Mounted plugin must be a constructor function, not ".concat({}.toString.call(plugin));
+    }
+
+    if (plugin.utils) Sortable.utils = _objectSpread({}, Sortable.utils, plugin.utils);
+    PluginManager.mount(plugin);
+  });
+};
+/**
+ * Create sortable instance
+ * @param {HTMLElement}  el
+ * @param {Object}      [options]
+ */
+
+
+Sortable.create = function (el, options) {
+  return new Sortable(el, options);
+}; // Export
+
+
+Sortable.version = version;
+
+var autoScrolls = [],
+    scrollEl,
+    scrollRootEl,
+    scrolling = false,
+    lastAutoScrollX,
+    lastAutoScrollY,
+    touchEvt$1,
+    pointerElemChangedInterval;
+
+function AutoScrollPlugin() {
+  function AutoScroll() {
+    this.defaults = {
+      scroll: true,
+      scrollSensitivity: 30,
+      scrollSpeed: 10,
+      bubbleScroll: true
+    }; // Bind all private methods
+
+    for (var fn in this) {
+      if (fn.charAt(0) === '_' && typeof this[fn] === 'function') {
+        this[fn] = this[fn].bind(this);
+      }
+    }
+  }
+
+  AutoScroll.prototype = {
+    dragStarted: function dragStarted(_ref) {
+      var originalEvent = _ref.originalEvent;
+
+      if (this.sortable.nativeDraggable) {
+        on(document, 'dragover', this._handleAutoScroll);
+      } else {
+        if (this.options.supportPointer) {
+          on(document, 'pointermove', this._handleFallbackAutoScroll);
+        } else if (originalEvent.touches) {
+          on(document, 'touchmove', this._handleFallbackAutoScroll);
+        } else {
+          on(document, 'mousemove', this._handleFallbackAutoScroll);
+        }
+      }
+    },
+    dragOverCompleted: function dragOverCompleted(_ref2) {
+      var originalEvent = _ref2.originalEvent;
+
+      // For when bubbling is canceled and using fallback (fallback 'touchmove' always reached)
+      if (!this.options.dragOverBubble && !originalEvent.rootEl) {
+        this._handleAutoScroll(originalEvent);
+      }
+    },
+    drop: function drop() {
+      if (this.sortable.nativeDraggable) {
+        off(document, 'dragover', this._handleAutoScroll);
+      } else {
+        off(document, 'pointermove', this._handleFallbackAutoScroll);
+        off(document, 'touchmove', this._handleFallbackAutoScroll);
+        off(document, 'mousemove', this._handleFallbackAutoScroll);
+      }
+
+      clearPointerElemChangedInterval();
+      clearAutoScrolls();
+      cancelThrottle();
+    },
+    nulling: function nulling() {
+      touchEvt$1 = scrollRootEl = scrollEl = scrolling = pointerElemChangedInterval = lastAutoScrollX = lastAutoScrollY = null;
+      autoScrolls.length = 0;
+    },
+    _handleFallbackAutoScroll: function _handleFallbackAutoScroll(evt) {
+      this._handleAutoScroll(evt, true);
+    },
+    _handleAutoScroll: function _handleAutoScroll(evt, fallback) {
+      var _this = this;
+
+      var x = (evt.touches ? evt.touches[0] : evt).clientX,
+          y = (evt.touches ? evt.touches[0] : evt).clientY,
+          elem = document.elementFromPoint(x, y);
+      touchEvt$1 = evt; // IE does not seem to have native autoscroll,
+      // Edge's autoscroll seems too conditional,
+      // MACOS Safari does not have autoscroll,
+      // Firefox and Chrome are good
+
+      if (fallback || Edge || IE11OrLess || Safari) {
+        autoScroll(evt, this.options, elem, fallback); // Listener for pointer element change
+
+        var ogElemScroller = getParentAutoScrollElement(elem, true);
+
+        if (scrolling && (!pointerElemChangedInterval || x !== lastAutoScrollX || y !== lastAutoScrollY)) {
+          pointerElemChangedInterval && clearPointerElemChangedInterval(); // Detect for pointer elem change, emulating native DnD behaviour
+
+          pointerElemChangedInterval = setInterval(function () {
+            var newElem = getParentAutoScrollElement(document.elementFromPoint(x, y), true);
+
+            if (newElem !== ogElemScroller) {
+              ogElemScroller = newElem;
+              clearAutoScrolls();
+            }
+
+            autoScroll(evt, _this.options, newElem, fallback);
+          }, 10);
+          lastAutoScrollX = x;
+          lastAutoScrollY = y;
+        }
+      } else {
+        // if DnD is enabled (and browser has good autoscrolling), first autoscroll will already scroll, so get parent autoscroll of first autoscroll
+        if (!this.options.bubbleScroll || getParentAutoScrollElement(elem, true) === getWindowScrollingElement()) {
+          clearAutoScrolls();
+          return;
+        }
+
+        autoScroll(evt, this.options, getParentAutoScrollElement(elem, false), false);
+      }
+    }
+  };
+  return _extends(AutoScroll, {
+    pluginName: 'scroll',
+    initializeByDefault: true
+  });
+}
+
+function clearAutoScrolls() {
+  autoScrolls.forEach(function (autoScroll) {
+    clearInterval(autoScroll.pid);
+  });
+  autoScrolls = [];
+}
+
+function clearPointerElemChangedInterval() {
+  clearInterval(pointerElemChangedInterval);
+}
+
+var autoScroll = throttle(function (evt, options, rootEl, isFallback) {
+  // Bug: https://bugzilla.mozilla.org/show_bug.cgi?id=505521
+  if (!options.scroll) return;
+  var x = (evt.touches ? evt.touches[0] : evt).clientX,
+      y = (evt.touches ? evt.touches[0] : evt).clientY,
+      sens = options.scrollSensitivity,
+      speed = options.scrollSpeed,
+      winScroller = getWindowScrollingElement();
+  var scrollThisInstance = false,
+      scrollCustomFn; // New scroll root, set scrollEl
+
+  if (scrollRootEl !== rootEl) {
+    scrollRootEl = rootEl;
+    clearAutoScrolls();
+    scrollEl = options.scroll;
+    scrollCustomFn = options.scrollFn;
+
+    if (scrollEl === true) {
+      scrollEl = getParentAutoScrollElement(rootEl, true);
+    }
+  }
+
+  var layersOut = 0;
+  var currentParent = scrollEl;
+
+  do {
+    var el = currentParent,
+        rect = getRect(el),
+        top = rect.top,
+        bottom = rect.bottom,
+        left = rect.left,
+        right = rect.right,
+        width = rect.width,
+        height = rect.height,
+        canScrollX = void 0,
+        canScrollY = void 0,
+        scrollWidth = el.scrollWidth,
+        scrollHeight = el.scrollHeight,
+        elCSS = css(el),
+        scrollPosX = el.scrollLeft,
+        scrollPosY = el.scrollTop;
+
+    if (el === winScroller) {
+      canScrollX = width < scrollWidth && (elCSS.overflowX === 'auto' || elCSS.overflowX === 'scroll' || elCSS.overflowX === 'visible');
+      canScrollY = height < scrollHeight && (elCSS.overflowY === 'auto' || elCSS.overflowY === 'scroll' || elCSS.overflowY === 'visible');
+    } else {
+      canScrollX = width < scrollWidth && (elCSS.overflowX === 'auto' || elCSS.overflowX === 'scroll');
+      canScrollY = height < scrollHeight && (elCSS.overflowY === 'auto' || elCSS.overflowY === 'scroll');
+    }
+
+    var vx = canScrollX && (Math.abs(right - x) <= sens && scrollPosX + width < scrollWidth) - (Math.abs(left - x) <= sens && !!scrollPosX);
+    var vy = canScrollY && (Math.abs(bottom - y) <= sens && scrollPosY + height < scrollHeight) - (Math.abs(top - y) <= sens && !!scrollPosY);
+
+    if (!autoScrolls[layersOut]) {
+      for (var i = 0; i <= layersOut; i++) {
+        if (!autoScrolls[i]) {
+          autoScrolls[i] = {};
+        }
+      }
+    }
+
+    if (autoScrolls[layersOut].vx != vx || autoScrolls[layersOut].vy != vy || autoScrolls[layersOut].el !== el) {
+      autoScrolls[layersOut].el = el;
+      autoScrolls[layersOut].vx = vx;
+      autoScrolls[layersOut].vy = vy;
+      clearInterval(autoScrolls[layersOut].pid);
+
+      if (vx != 0 || vy != 0) {
+        scrollThisInstance = true;
+        /* jshint loopfunc:true */
+
+        autoScrolls[layersOut].pid = setInterval(function () {
+          // emulate drag over during autoscroll (fallback), emulating native DnD behaviour
+          if (isFallback && this.layer === 0) {
+            Sortable.active._onTouchMove(touchEvt$1); // To move ghost if it is positioned absolutely
+
+          }
+
+          var scrollOffsetY = autoScrolls[this.layer].vy ? autoScrolls[this.layer].vy * speed : 0;
+          var scrollOffsetX = autoScrolls[this.layer].vx ? autoScrolls[this.layer].vx * speed : 0;
+
+          if (typeof scrollCustomFn === 'function') {
+            if (scrollCustomFn.call(Sortable.dragged.parentNode[expando], scrollOffsetX, scrollOffsetY, evt, touchEvt$1, autoScrolls[this.layer].el) !== 'continue') {
+              return;
+            }
+          }
+
+          scrollBy(autoScrolls[this.layer].el, scrollOffsetX, scrollOffsetY);
+        }.bind({
+          layer: layersOut
+        }), 24);
+      }
+    }
+
+    layersOut++;
+  } while (options.bubbleScroll && currentParent !== winScroller && (currentParent = getParentAutoScrollElement(currentParent, false)));
+
+  scrolling = scrollThisInstance; // in case another function catches scrolling as false in between when it is not
+}, 30);
+
+var drop = function drop(_ref) {
+  var originalEvent = _ref.originalEvent,
+      putSortable = _ref.putSortable,
+      dragEl = _ref.dragEl,
+      activeSortable = _ref.activeSortable,
+      dispatchSortableEvent = _ref.dispatchSortableEvent,
+      hideGhostForTarget = _ref.hideGhostForTarget,
+      unhideGhostForTarget = _ref.unhideGhostForTarget;
+  if (!originalEvent) return;
+  var toSortable = putSortable || activeSortable;
+  hideGhostForTarget();
+  var touch = originalEvent.changedTouches && originalEvent.changedTouches.length ? originalEvent.changedTouches[0] : originalEvent;
+  var target = document.elementFromPoint(touch.clientX, touch.clientY);
+  unhideGhostForTarget();
+
+  if (toSortable && !toSortable.el.contains(target)) {
+    dispatchSortableEvent('spill');
+    this.onSpill({
+      dragEl: dragEl,
+      putSortable: putSortable
+    });
+  }
+};
+
+function Revert() {}
+
+Revert.prototype = {
+  startIndex: null,
+  dragStart: function dragStart(_ref2) {
+    var oldDraggableIndex = _ref2.oldDraggableIndex;
+    this.startIndex = oldDraggableIndex;
+  },
+  onSpill: function onSpill(_ref3) {
+    var dragEl = _ref3.dragEl,
+        putSortable = _ref3.putSortable;
+    this.sortable.captureAnimationState();
+
+    if (putSortable) {
+      putSortable.captureAnimationState();
+    }
+
+    var nextSibling = getChild(this.sortable.el, this.startIndex, this.options);
+
+    if (nextSibling) {
+      this.sortable.el.insertBefore(dragEl, nextSibling);
+    } else {
+      this.sortable.el.appendChild(dragEl);
+    }
+
+    this.sortable.animateAll();
+
+    if (putSortable) {
+      putSortable.animateAll();
+    }
+  },
+  drop: drop
+};
+
+_extends(Revert, {
+  pluginName: 'revertOnSpill'
+});
+
+function Remove() {}
+
+Remove.prototype = {
+  onSpill: function onSpill(_ref4) {
+    var dragEl = _ref4.dragEl,
+        putSortable = _ref4.putSortable;
+    var parentSortable = putSortable || this.sortable;
+    parentSortable.captureAnimationState();
+    dragEl.parentNode && dragEl.parentNode.removeChild(dragEl);
+    parentSortable.animateAll();
+  },
+  drop: drop
+};
+
+_extends(Remove, {
+  pluginName: 'removeOnSpill'
+});
+
+var lastSwapEl;
+
+function SwapPlugin() {
+  function Swap() {
+    this.defaults = {
+      swapClass: 'sortable-swap-highlight'
+    };
+  }
+
+  Swap.prototype = {
+    dragStart: function dragStart(_ref) {
+      var dragEl = _ref.dragEl;
+      lastSwapEl = dragEl;
+    },
+    dragOverValid: function dragOverValid(_ref2) {
+      var completed = _ref2.completed,
+          target = _ref2.target,
+          onMove = _ref2.onMove,
+          activeSortable = _ref2.activeSortable,
+          changed = _ref2.changed,
+          cancel = _ref2.cancel;
+      if (!activeSortable.options.swap) return;
+      var el = this.sortable.el,
+          options = this.options;
+
+      if (target && target !== el) {
+        var prevSwapEl = lastSwapEl;
+
+        if (onMove(target) !== false) {
+          toggleClass(target, options.swapClass, true);
+          lastSwapEl = target;
+        } else {
+          lastSwapEl = null;
+        }
+
+        if (prevSwapEl && prevSwapEl !== lastSwapEl) {
+          toggleClass(prevSwapEl, options.swapClass, false);
+        }
+      }
+
+      changed();
+      completed(true);
+      cancel();
+    },
+    drop: function drop(_ref3) {
+      var activeSortable = _ref3.activeSortable,
+          putSortable = _ref3.putSortable,
+          dragEl = _ref3.dragEl;
+      var toSortable = putSortable || this.sortable;
+      var options = this.options;
+      lastSwapEl && toggleClass(lastSwapEl, options.swapClass, false);
+
+      if (lastSwapEl && (options.swap || putSortable && putSortable.options.swap)) {
+        if (dragEl !== lastSwapEl) {
+          toSortable.captureAnimationState();
+          if (toSortable !== activeSortable) activeSortable.captureAnimationState();
+          swapNodes(dragEl, lastSwapEl);
+          toSortable.animateAll();
+          if (toSortable !== activeSortable) activeSortable.animateAll();
+        }
+      }
+    },
+    nulling: function nulling() {
+      lastSwapEl = null;
+    }
+  };
+  return _extends(Swap, {
+    pluginName: 'swap',
+    eventProperties: function eventProperties() {
+      return {
+        swapItem: lastSwapEl
+      };
+    }
+  });
+}
+
+function swapNodes(n1, n2) {
+  var p1 = n1.parentNode,
+      p2 = n2.parentNode,
+      i1,
+      i2;
+  if (!p1 || !p2 || p1.isEqualNode(n2) || p2.isEqualNode(n1)) return;
+  i1 = index(n1);
+  i2 = index(n2);
+
+  if (p1.isEqualNode(p2) && i1 < i2) {
+    i2++;
+  }
+
+  p1.insertBefore(n2, p1.children[i1]);
+  p2.insertBefore(n1, p2.children[i2]);
+}
+
+var multiDragElements = [],
+    multiDragClones = [],
+    lastMultiDragSelect,
+    // for selection with modifier key down (SHIFT)
+multiDragSortable,
+    initialFolding = false,
+    // Initial multi-drag fold when drag started
+folding = false,
+    // Folding any other time
+dragStarted = false,
+    dragEl$1,
+    clonesFromRect,
+    clonesHidden;
+
+function MultiDragPlugin() {
+  function MultiDrag(sortable) {
+    // Bind all private methods
+    for (var fn in this) {
+      if (fn.charAt(0) === '_' && typeof this[fn] === 'function') {
+        this[fn] = this[fn].bind(this);
+      }
+    }
+
+    if (sortable.options.supportPointer) {
+      on(document, 'pointerup', this._deselectMultiDrag);
+    } else {
+      on(document, 'mouseup', this._deselectMultiDrag);
+      on(document, 'touchend', this._deselectMultiDrag);
+    }
+
+    on(document, 'keydown', this._checkKeyDown);
+    on(document, 'keyup', this._checkKeyUp);
+    this.defaults = {
+      selectedClass: 'sortable-selected',
+      multiDragKey: null,
+      setData: function setData(dataTransfer, dragEl) {
+        var data = '';
+
+        if (multiDragElements.length && multiDragSortable === sortable) {
+          multiDragElements.forEach(function (multiDragElement, i) {
+            data += (!i ? '' : ', ') + multiDragElement.textContent;
+          });
+        } else {
+          data = dragEl.textContent;
+        }
+
+        dataTransfer.setData('Text', data);
+      }
+    };
+  }
+
+  MultiDrag.prototype = {
+    multiDragKeyDown: false,
+    isMultiDrag: false,
+    delayStartGlobal: function delayStartGlobal(_ref) {
+      var dragged = _ref.dragEl;
+      dragEl$1 = dragged;
+    },
+    delayEnded: function delayEnded() {
+      this.isMultiDrag = ~multiDragElements.indexOf(dragEl$1);
+    },
+    setupClone: function setupClone(_ref2) {
+      var sortable = _ref2.sortable,
+          cancel = _ref2.cancel;
+      if (!this.isMultiDrag) return;
+
+      for (var i = 0; i < multiDragElements.length; i++) {
+        multiDragClones.push(clone(multiDragElements[i]));
+        multiDragClones[i].sortableIndex = multiDragElements[i].sortableIndex;
+        multiDragClones[i].draggable = false;
+        multiDragClones[i].style['will-change'] = '';
+        toggleClass(multiDragClones[i], this.options.selectedClass, false);
+        multiDragElements[i] === dragEl$1 && toggleClass(multiDragClones[i], this.options.chosenClass, false);
+      }
+
+      sortable._hideClone();
+
+      cancel();
+    },
+    clone: function clone(_ref3) {
+      var sortable = _ref3.sortable,
+          rootEl = _ref3.rootEl,
+          dispatchSortableEvent = _ref3.dispatchSortableEvent,
+          cancel = _ref3.cancel;
+      if (!this.isMultiDrag) return;
+
+      if (!this.options.removeCloneOnHide) {
+        if (multiDragElements.length && multiDragSortable === sortable) {
+          insertMultiDragClones(true, rootEl);
+          dispatchSortableEvent('clone');
+          cancel();
+        }
+      }
+    },
+    showClone: function showClone(_ref4) {
+      var cloneNowShown = _ref4.cloneNowShown,
+          rootEl = _ref4.rootEl,
+          cancel = _ref4.cancel;
+      if (!this.isMultiDrag) return;
+      insertMultiDragClones(false, rootEl);
+      multiDragClones.forEach(function (clone) {
+        css(clone, 'display', '');
+      });
+      cloneNowShown();
+      clonesHidden = false;
+      cancel();
+    },
+    hideClone: function hideClone(_ref5) {
+      var _this = this;
+
+      var sortable = _ref5.sortable,
+          cloneNowHidden = _ref5.cloneNowHidden,
+          cancel = _ref5.cancel;
+      if (!this.isMultiDrag) return;
+      multiDragClones.forEach(function (clone) {
+        css(clone, 'display', 'none');
+
+        if (_this.options.removeCloneOnHide && clone.parentNode) {
+          clone.parentNode.removeChild(clone);
+        }
+      });
+      cloneNowHidden();
+      clonesHidden = true;
+      cancel();
+    },
+    dragStartGlobal: function dragStartGlobal(_ref6) {
+      var sortable = _ref6.sortable;
+
+      if (!this.isMultiDrag && multiDragSortable) {
+        multiDragSortable.multiDrag._deselectMultiDrag();
+      }
+
+      multiDragElements.forEach(function (multiDragElement) {
+        multiDragElement.sortableIndex = index(multiDragElement);
+      }); // Sort multi-drag elements
+
+      multiDragElements = multiDragElements.sort(function (a, b) {
+        return a.sortableIndex - b.sortableIndex;
+      });
+      dragStarted = true;
+    },
+    dragStarted: function dragStarted(_ref7) {
+      var _this2 = this;
+
+      var sortable = _ref7.sortable;
+      if (!this.isMultiDrag) return;
+
+      if (this.options.sort) {
+        // Capture rects,
+        // hide multi drag elements (by positioning them absolute),
+        // set multi drag elements rects to dragRect,
+        // show multi drag elements,
+        // animate to rects,
+        // unset rects & remove from DOM
+        sortable.captureAnimationState();
+
+        if (this.options.animation) {
+          multiDragElements.forEach(function (multiDragElement) {
+            if (multiDragElement === dragEl$1) return;
+            css(multiDragElement, 'position', 'absolute');
+          });
+          var dragRect = getRect(dragEl$1, false, true, true);
+          multiDragElements.forEach(function (multiDragElement) {
+            if (multiDragElement === dragEl$1) return;
+            setRect(multiDragElement, dragRect);
+          });
+          folding = true;
+          initialFolding = true;
+        }
+      }
+
+      sortable.animateAll(function () {
+        folding = false;
+        initialFolding = false;
+
+        if (_this2.options.animation) {
+          multiDragElements.forEach(function (multiDragElement) {
+            unsetRect(multiDragElement);
+          });
+        } // Remove all auxiliary multidrag items from el, if sorting enabled
+
+
+        if (_this2.options.sort) {
+          removeMultiDragElements();
+        }
+      });
+    },
+    dragOver: function dragOver(_ref8) {
+      var target = _ref8.target,
+          completed = _ref8.completed,
+          cancel = _ref8.cancel;
+
+      if (folding && ~multiDragElements.indexOf(target)) {
+        completed(false);
+        cancel();
+      }
+    },
+    revert: function revert(_ref9) {
+      var fromSortable = _ref9.fromSortable,
+          rootEl = _ref9.rootEl,
+          sortable = _ref9.sortable,
+          dragRect = _ref9.dragRect;
+
+      if (multiDragElements.length > 1) {
+        // Setup unfold animation
+        multiDragElements.forEach(function (multiDragElement) {
+          sortable.addAnimationState({
+            target: multiDragElement,
+            rect: folding ? getRect(multiDragElement) : dragRect
+          });
+          unsetRect(multiDragElement);
+          multiDragElement.fromRect = dragRect;
+          fromSortable.removeAnimationState(multiDragElement);
+        });
+        folding = false;
+        insertMultiDragElements(!this.options.removeCloneOnHide, rootEl);
+      }
+    },
+    dragOverCompleted: function dragOverCompleted(_ref10) {
+      var sortable = _ref10.sortable,
+          isOwner = _ref10.isOwner,
+          insertion = _ref10.insertion,
+          activeSortable = _ref10.activeSortable,
+          parentEl = _ref10.parentEl,
+          putSortable = _ref10.putSortable;
+      var options = this.options;
+
+      if (insertion) {
+        // Clones must be hidden before folding animation to capture dragRectAbsolute properly
+        if (isOwner) {
+          activeSortable._hideClone();
+        }
+
+        initialFolding = false; // If leaving sort:false root, or already folding - Fold to new location
+
+        if (options.animation && multiDragElements.length > 1 && (folding || !isOwner && !activeSortable.options.sort && !putSortable)) {
+          // Fold: Set all multi drag elements's rects to dragEl's rect when multi-drag elements are invisible
+          var dragRectAbsolute = getRect(dragEl$1, false, true, true);
+          multiDragElements.forEach(function (multiDragElement) {
+            if (multiDragElement === dragEl$1) return;
+            setRect(multiDragElement, dragRectAbsolute); // Move element(s) to end of parentEl so that it does not interfere with multi-drag clones insertion if they are inserted
+            // while folding, and so that we can capture them again because old sortable will no longer be fromSortable
+
+            parentEl.appendChild(multiDragElement);
+          });
+          folding = true;
+        } // Clones must be shown (and check to remove multi drags) after folding when interfering multiDragElements are moved out
+
+
+        if (!isOwner) {
+          // Only remove if not folding (folding will remove them anyways)
+          if (!folding) {
+            removeMultiDragElements();
+          }
+
+          if (multiDragElements.length > 1) {
+            var clonesHiddenBefore = clonesHidden;
+
+            activeSortable._showClone(sortable); // Unfold animation for clones if showing from hidden
+
+
+            if (activeSortable.options.animation && !clonesHidden && clonesHiddenBefore) {
+              multiDragClones.forEach(function (clone) {
+                activeSortable.addAnimationState({
+                  target: clone,
+                  rect: clonesFromRect
+                });
+                clone.fromRect = clonesFromRect;
+                clone.thisAnimationDuration = null;
+              });
+            }
+          } else {
+            activeSortable._showClone(sortable);
+          }
+        }
+      }
+    },
+    dragOverAnimationCapture: function dragOverAnimationCapture(_ref11) {
+      var dragRect = _ref11.dragRect,
+          isOwner = _ref11.isOwner,
+          activeSortable = _ref11.activeSortable;
+      multiDragElements.forEach(function (multiDragElement) {
+        multiDragElement.thisAnimationDuration = null;
+      });
+
+      if (activeSortable.options.animation && !isOwner && activeSortable.multiDrag.isMultiDrag) {
+        clonesFromRect = _extends({}, dragRect);
+        var dragMatrix = matrix(dragEl$1, true);
+        clonesFromRect.top -= dragMatrix.f;
+        clonesFromRect.left -= dragMatrix.e;
+      }
+    },
+    dragOverAnimationComplete: function dragOverAnimationComplete() {
+      if (folding) {
+        folding = false;
+        removeMultiDragElements();
+      }
+    },
+    drop: function drop(_ref12) {
+      var evt = _ref12.originalEvent,
+          rootEl = _ref12.rootEl,
+          parentEl = _ref12.parentEl,
+          sortable = _ref12.sortable,
+          dispatchSortableEvent = _ref12.dispatchSortableEvent,
+          oldIndex = _ref12.oldIndex,
+          putSortable = _ref12.putSortable;
+      var toSortable = putSortable || this.sortable;
+      if (!evt) return;
+      var options = this.options,
+          children = parentEl.children; // Multi-drag selection
+
+      if (!dragStarted) {
+        if (options.multiDragKey && !this.multiDragKeyDown) {
+          this._deselectMultiDrag();
+        }
+
+        toggleClass(dragEl$1, options.selectedClass, !~multiDragElements.indexOf(dragEl$1));
+
+        if (!~multiDragElements.indexOf(dragEl$1)) {
+          multiDragElements.push(dragEl$1);
+          dispatchEvent({
+            sortable: sortable,
+            rootEl: rootEl,
+            name: 'select',
+            targetEl: dragEl$1,
+            originalEvt: evt
+          }); // Modifier activated, select from last to dragEl
+
+          if (evt.shiftKey && lastMultiDragSelect && sortable.el.contains(lastMultiDragSelect)) {
+            var lastIndex = index(lastMultiDragSelect),
+                currentIndex = index(dragEl$1);
+
+            if (~lastIndex && ~currentIndex && lastIndex !== currentIndex) {
+              // Must include lastMultiDragSelect (select it), in case modified selection from no selection
+              // (but previous selection existed)
+              var n, i;
+
+              if (currentIndex > lastIndex) {
+                i = lastIndex;
+                n = currentIndex;
+              } else {
+                i = currentIndex;
+                n = lastIndex + 1;
+              }
+
+              for (; i < n; i++) {
+                if (~multiDragElements.indexOf(children[i])) continue;
+                toggleClass(children[i], options.selectedClass, true);
+                multiDragElements.push(children[i]);
+                dispatchEvent({
+                  sortable: sortable,
+                  rootEl: rootEl,
+                  name: 'select',
+                  targetEl: children[i],
+                  originalEvt: evt
+                });
+              }
+            }
+          } else {
+            lastMultiDragSelect = dragEl$1;
+          }
+
+          multiDragSortable = toSortable;
+        } else {
+          multiDragElements.splice(multiDragElements.indexOf(dragEl$1), 1);
+          lastMultiDragSelect = null;
+          dispatchEvent({
+            sortable: sortable,
+            rootEl: rootEl,
+            name: 'deselect',
+            targetEl: dragEl$1,
+            originalEvt: evt
+          });
+        }
+      } // Multi-drag drop
+
+
+      if (dragStarted && this.isMultiDrag) {
+        // Do not "unfold" after around dragEl if reverted
+        if ((parentEl[expando].options.sort || parentEl !== rootEl) && multiDragElements.length > 1) {
+          var dragRect = getRect(dragEl$1),
+              multiDragIndex = index(dragEl$1, ':not(.' + this.options.selectedClass + ')');
+          if (!initialFolding && options.animation) dragEl$1.thisAnimationDuration = null;
+          toSortable.captureAnimationState();
+
+          if (!initialFolding) {
+            if (options.animation) {
+              dragEl$1.fromRect = dragRect;
+              multiDragElements.forEach(function (multiDragElement) {
+                multiDragElement.thisAnimationDuration = null;
+
+                if (multiDragElement !== dragEl$1) {
+                  var rect = folding ? getRect(multiDragElement) : dragRect;
+                  multiDragElement.fromRect = rect; // Prepare unfold animation
+
+                  toSortable.addAnimationState({
+                    target: multiDragElement,
+                    rect: rect
+                  });
+                }
+              });
+            } // Multi drag elements are not necessarily removed from the DOM on drop, so to reinsert
+            // properly they must all be removed
+
+
+            removeMultiDragElements();
+            multiDragElements.forEach(function (multiDragElement) {
+              if (children[multiDragIndex]) {
+                parentEl.insertBefore(multiDragElement, children[multiDragIndex]);
+              } else {
+                parentEl.appendChild(multiDragElement);
+              }
+
+              multiDragIndex++;
+            }); // If initial folding is done, the elements may have changed position because they are now
+            // unfolding around dragEl, even though dragEl may not have his index changed, so update event
+            // must be fired here as Sortable will not.
+
+            if (oldIndex === index(dragEl$1)) {
+              var update = false;
+              multiDragElements.forEach(function (multiDragElement) {
+                if (multiDragElement.sortableIndex !== index(multiDragElement)) {
+                  update = true;
+                  return;
+                }
+              });
+
+              if (update) {
+                dispatchSortableEvent('update');
+              }
+            }
+          } // Must be done after capturing individual rects (scroll bar)
+
+
+          multiDragElements.forEach(function (multiDragElement) {
+            unsetRect(multiDragElement);
+          });
+          toSortable.animateAll();
+        }
+
+        multiDragSortable = toSortable;
+      } // Remove clones if necessary
+
+
+      if (rootEl === parentEl || putSortable && putSortable.lastPutMode !== 'clone') {
+        multiDragClones.forEach(function (clone) {
+          clone.parentNode && clone.parentNode.removeChild(clone);
+        });
+      }
+    },
+    nullingGlobal: function nullingGlobal() {
+      this.isMultiDrag = dragStarted = false;
+      multiDragClones.length = 0;
+    },
+    destroyGlobal: function destroyGlobal() {
+      this._deselectMultiDrag();
+
+      off(document, 'pointerup', this._deselectMultiDrag);
+      off(document, 'mouseup', this._deselectMultiDrag);
+      off(document, 'touchend', this._deselectMultiDrag);
+      off(document, 'keydown', this._checkKeyDown);
+      off(document, 'keyup', this._checkKeyUp);
+    },
+    _deselectMultiDrag: function _deselectMultiDrag(evt) {
+      if (typeof dragStarted !== "undefined" && dragStarted) return; // Only deselect if selection is in this sortable
+
+      if (multiDragSortable !== this.sortable) return; // Only deselect if target is not item in this sortable
+
+      if (evt && closest(evt.target, this.options.draggable, this.sortable.el, false)) return; // Only deselect if left click
+
+      if (evt && evt.button !== 0) return;
+
+      while (multiDragElements.length) {
+        var el = multiDragElements[0];
+        toggleClass(el, this.options.selectedClass, false);
+        multiDragElements.shift();
+        dispatchEvent({
+          sortable: this.sortable,
+          rootEl: this.sortable.el,
+          name: 'deselect',
+          targetEl: el,
+          originalEvt: evt
+        });
+      }
+    },
+    _checkKeyDown: function _checkKeyDown(evt) {
+      if (evt.key === this.options.multiDragKey) {
+        this.multiDragKeyDown = true;
+      }
+    },
+    _checkKeyUp: function _checkKeyUp(evt) {
+      if (evt.key === this.options.multiDragKey) {
+        this.multiDragKeyDown = false;
+      }
+    }
+  };
+  return _extends(MultiDrag, {
+    // Static methods & properties
+    pluginName: 'multiDrag',
+    utils: {
+      /**
+       * Selects the provided multi-drag item
+       * @param  {HTMLElement} el    The element to be selected
+       */
+      select: function select(el) {
+        var sortable = el.parentNode[expando];
+        if (!sortable || !sortable.options.multiDrag || ~multiDragElements.indexOf(el)) return;
+
+        if (multiDragSortable && multiDragSortable !== sortable) {
+          multiDragSortable.multiDrag._deselectMultiDrag();
+
+          multiDragSortable = sortable;
+        }
+
+        toggleClass(el, sortable.options.selectedClass, true);
+        multiDragElements.push(el);
+      },
+
+      /**
+       * Deselects the provided multi-drag item
+       * @param  {HTMLElement} el    The element to be deselected
+       */
+      deselect: function deselect(el) {
+        var sortable = el.parentNode[expando],
+            index = multiDragElements.indexOf(el);
+        if (!sortable || !sortable.options.multiDrag || !~index) return;
+        toggleClass(el, sortable.options.selectedClass, false);
+        multiDragElements.splice(index, 1);
+      }
+    },
+    eventProperties: function eventProperties() {
+      var _this3 = this;
+
+      var oldIndicies = [],
+          newIndicies = [];
+      multiDragElements.forEach(function (multiDragElement) {
+        oldIndicies.push({
+          multiDragElement: multiDragElement,
+          index: multiDragElement.sortableIndex
+        }); // multiDragElements will already be sorted if folding
+
+        var newIndex;
+
+        if (folding && multiDragElement !== dragEl$1) {
+          newIndex = -1;
+        } else if (folding) {
+          newIndex = index(multiDragElement, ':not(.' + _this3.options.selectedClass + ')');
+        } else {
+          newIndex = index(multiDragElement);
+        }
+
+        newIndicies.push({
+          multiDragElement: multiDragElement,
+          index: newIndex
+        });
+      });
+      return {
+        items: _toConsumableArray(multiDragElements),
+        clones: [].concat(multiDragClones),
+        oldIndicies: oldIndicies,
+        newIndicies: newIndicies
+      };
+    },
+    optionListeners: {
+      multiDragKey: function multiDragKey(key) {
+        key = key.toLowerCase();
+
+        if (key === 'ctrl') {
+          key = 'Control';
+        } else if (key.length > 1) {
+          key = key.charAt(0).toUpperCase() + key.substr(1);
+        }
+
+        return key;
+      }
+    }
+  });
+}
+
+function insertMultiDragElements(clonesInserted, rootEl) {
+  multiDragElements.forEach(function (multiDragElement, i) {
+    var target = rootEl.children[multiDragElement.sortableIndex + (clonesInserted ? Number(i) : 0)];
+
+    if (target) {
+      rootEl.insertBefore(multiDragElement, target);
+    } else {
+      rootEl.appendChild(multiDragElement);
+    }
+  });
+}
+/**
+ * Insert multi-drag clones
+ * @param  {[Boolean]} elementsInserted  Whether the multi-drag elements are inserted
+ * @param  {HTMLElement} rootEl
+ */
+
+
+function insertMultiDragClones(elementsInserted, rootEl) {
+  multiDragClones.forEach(function (clone, i) {
+    var target = rootEl.children[clone.sortableIndex + (elementsInserted ? Number(i) : 0)];
+
+    if (target) {
+      rootEl.insertBefore(clone, target);
+    } else {
+      rootEl.appendChild(clone);
+    }
+  });
+}
+
+function removeMultiDragElements() {
+  multiDragElements.forEach(function (multiDragElement) {
+    if (multiDragElement === dragEl$1) return;
+    multiDragElement.parentNode && multiDragElement.parentNode.removeChild(multiDragElement);
+  });
+}
+
+Sortable.mount(new AutoScrollPlugin());
+Sortable.mount(Remove, Revert);
+
+/* harmony default export */ __webpack_exports__["default"] = (Sortable);
+
+
+
+/***/ }),
+
 /***/ "./node_modules/style-loader/lib/addStyles.js":
 /*!****************************************************!*\
   !*** ./node_modules/style-loader/lib/addStyles.js ***!
@@ -38256,6 +42026,30 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
+    _vm.alert
+      ? _c("div", [
+          _c(
+            "div",
+            { staticClass: "alert alert-success", attrs: { role: "alert" } },
+            [
+              _vm._v(
+                "\n            Tipo de proyecto configurado correctamente\n        "
+              )
+            ]
+          )
+        ])
+      : _vm._e(),
+    _vm._v(" "),
+    _vm.error
+      ? _c("div", [
+          _c(
+            "div",
+            { staticClass: "alert alert-danger", attrs: { role: "alert" } },
+            [_vm._v("\n            Revisa los campos a enviar\n        ")]
+          )
+        ])
+      : _vm._e(),
+    _vm._v(" "),
     _c("div", { staticClass: "form-group" }, [
       _c("label", { attrs: { for: "" } }, [
         _vm._v("Nombre del tipo de proyecto")
@@ -38303,8 +42097,7 @@ var render = function() {
             "preserve-search": true,
             placeholder: "Tareas",
             label: "nombre_tarea",
-            "track-by": "nombre_tarea",
-            "preselect-first": true
+            "track-by": "nombre_tarea"
           },
           model: {
             value: _vm.tarea.value,
@@ -38332,6 +42125,143 @@ var render = function() {
         "button",
         {
           staticClass: "btn btn-success",
+          attrs: { disabled: _vm.enviar },
+          on: {
+            click: function($event) {
+              $event.preventDefault()
+              return _vm.guardar($event)
+            }
+          }
+        },
+        [_vm._v("Crear")]
+      )
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/selectDrag.vue?vue&type=template&id=64199e4a&":
+/*!*************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/selectDrag.vue?vue&type=template&id=64199e4a& ***!
+  \*************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _vm.alert
+      ? _c("div", [
+          _c(
+            "div",
+            { staticClass: "alert alert-success", attrs: { role: "alert" } },
+            [
+              _vm._v(
+                "\n            Tipo de proyecto configurado correctamente\n        "
+              )
+            ]
+          )
+        ])
+      : _vm._e(),
+    _vm._v(" "),
+    _vm.error
+      ? _c("div", [
+          _c(
+            "div",
+            { staticClass: "alert alert-danger", attrs: { role: "alert" } },
+            [_vm._v("\n            Revisa los campos a enviar\n        ")]
+          )
+        ])
+      : _vm._e(),
+    _vm._v(" "),
+    _c("div", { staticClass: "form-group" }, [
+      _c("label", { attrs: { for: "" } }, [
+        _vm._v("Nombre del tipo de proyecto")
+      ]),
+      _vm._v(" "),
+      _c("input", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model.trim",
+            value: _vm.tarea.nombretipo,
+            expression: "tarea.nombretipo",
+            modifiers: { trim: true }
+          }
+        ],
+        staticClass: "form-control",
+        attrs: { type: "text", "aria-describedby": "helpId", placeholder: "" },
+        domProps: { value: _vm.tarea.nombretipo },
+        on: {
+          input: function($event) {
+            if ($event.target.composing) {
+              return
+            }
+            _vm.$set(_vm.tarea, "nombretipo", $event.target.value.trim())
+          },
+          blur: function($event) {
+            return _vm.$forceUpdate()
+          }
+        }
+      })
+    ]),
+    _vm._v(" "),
+    _c(
+      "div",
+      { staticClass: "form-group" },
+      [
+        _c("label", { attrs: { for: "name" } }, [_vm._v("Tareas")]),
+        _vm._v(" "),
+        _c("select-multiple", {
+          attrs: {
+            id: "select-multiple",
+            options: _vm.optionsTask,
+            multiple: true,
+            "close-on-select": false,
+            "clear-on-select": false,
+            "preserve-search": false,
+            placeholder: "Tareas",
+            label: "nombre_tarea",
+            "track-by": "nombre_tarea"
+          },
+          model: {
+            value: _vm.tarea.value,
+            callback: function($$v) {
+              _vm.$set(_vm.tarea, "value", $$v)
+            },
+            expression: "tarea.value"
+          }
+        })
+      ],
+      1
+    ),
+    _vm._v(" "),
+    _c("div", { staticClass: "modal-footer" }, [
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-secondary",
+          attrs: { type: "button", "data-dismiss": "modal" }
+        },
+        [_vm._v("Cerrar")]
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-success",
+          attrs: { disabled: _vm.enviar },
           on: {
             click: function($event) {
               $event.preventDefault()
@@ -50490,6 +54420,2471 @@ if (false) {} else {
 
 /***/ }),
 
+/***/ "./node_modules/vuedraggable/dist/vuedraggable.umd.js":
+/*!************************************************************!*\
+  !*** ./node_modules/vuedraggable/dist/vuedraggable.umd.js ***!
+  \************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+(function webpackUniversalModuleDefinition(root, factory) {
+	if(true)
+		module.exports = factory(__webpack_require__(/*! sortablejs */ "./node_modules/sortablejs/modular/sortable.esm.js"));
+	else {}
+})((typeof self !== 'undefined' ? self : this), function(__WEBPACK_EXTERNAL_MODULE_a352__) {
+return /******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+/******/
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId]) {
+/******/ 			return installedModules[moduleId].exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			i: moduleId,
+/******/ 			l: false,
+/******/ 			exports: {}
+/******/ 		};
+/******/
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/
+/******/ 		// Flag the module as loaded
+/******/ 		module.l = true;
+/******/
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/
+/******/
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+/******/
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+/******/
+/******/ 	// define getter function for harmony exports
+/******/ 	__webpack_require__.d = function(exports, name, getter) {
+/******/ 		if(!__webpack_require__.o(exports, name)) {
+/******/ 			Object.defineProperty(exports, name, { enumerable: true, get: getter });
+/******/ 		}
+/******/ 	};
+/******/
+/******/ 	// define __esModule on exports
+/******/ 	__webpack_require__.r = function(exports) {
+/******/ 		if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 			Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 		}
+/******/ 		Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 	};
+/******/
+/******/ 	// create a fake namespace object
+/******/ 	// mode & 1: value is a module id, require it
+/******/ 	// mode & 2: merge all properties of value into the ns
+/******/ 	// mode & 4: return value when already ns object
+/******/ 	// mode & 8|1: behave like require
+/******/ 	__webpack_require__.t = function(value, mode) {
+/******/ 		if(mode & 1) value = __webpack_require__(value);
+/******/ 		if(mode & 8) return value;
+/******/ 		if((mode & 4) && typeof value === 'object' && value && value.__esModule) return value;
+/******/ 		var ns = Object.create(null);
+/******/ 		__webpack_require__.r(ns);
+/******/ 		Object.defineProperty(ns, 'default', { enumerable: true, value: value });
+/******/ 		if(mode & 2 && typeof value != 'string') for(var key in value) __webpack_require__.d(ns, key, function(key) { return value[key]; }.bind(null, key));
+/******/ 		return ns;
+/******/ 	};
+/******/
+/******/ 	// getDefaultExport function for compatibility with non-harmony modules
+/******/ 	__webpack_require__.n = function(module) {
+/******/ 		var getter = module && module.__esModule ?
+/******/ 			function getDefault() { return module['default']; } :
+/******/ 			function getModuleExports() { return module; };
+/******/ 		__webpack_require__.d(getter, 'a', getter);
+/******/ 		return getter;
+/******/ 	};
+/******/
+/******/ 	// Object.prototype.hasOwnProperty.call
+/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
+/******/
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "";
+/******/
+/******/
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(__webpack_require__.s = "fb15");
+/******/ })
+/************************************************************************/
+/******/ ({
+
+/***/ "01f9":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var LIBRARY = __webpack_require__("2d00");
+var $export = __webpack_require__("5ca1");
+var redefine = __webpack_require__("2aba");
+var hide = __webpack_require__("32e9");
+var Iterators = __webpack_require__("84f2");
+var $iterCreate = __webpack_require__("41a0");
+var setToStringTag = __webpack_require__("7f20");
+var getPrototypeOf = __webpack_require__("38fd");
+var ITERATOR = __webpack_require__("2b4c")('iterator');
+var BUGGY = !([].keys && 'next' in [].keys()); // Safari has buggy iterators w/o `next`
+var FF_ITERATOR = '@@iterator';
+var KEYS = 'keys';
+var VALUES = 'values';
+
+var returnThis = function () { return this; };
+
+module.exports = function (Base, NAME, Constructor, next, DEFAULT, IS_SET, FORCED) {
+  $iterCreate(Constructor, NAME, next);
+  var getMethod = function (kind) {
+    if (!BUGGY && kind in proto) return proto[kind];
+    switch (kind) {
+      case KEYS: return function keys() { return new Constructor(this, kind); };
+      case VALUES: return function values() { return new Constructor(this, kind); };
+    } return function entries() { return new Constructor(this, kind); };
+  };
+  var TAG = NAME + ' Iterator';
+  var DEF_VALUES = DEFAULT == VALUES;
+  var VALUES_BUG = false;
+  var proto = Base.prototype;
+  var $native = proto[ITERATOR] || proto[FF_ITERATOR] || DEFAULT && proto[DEFAULT];
+  var $default = $native || getMethod(DEFAULT);
+  var $entries = DEFAULT ? !DEF_VALUES ? $default : getMethod('entries') : undefined;
+  var $anyNative = NAME == 'Array' ? proto.entries || $native : $native;
+  var methods, key, IteratorPrototype;
+  // Fix native
+  if ($anyNative) {
+    IteratorPrototype = getPrototypeOf($anyNative.call(new Base()));
+    if (IteratorPrototype !== Object.prototype && IteratorPrototype.next) {
+      // Set @@toStringTag to native iterators
+      setToStringTag(IteratorPrototype, TAG, true);
+      // fix for some old engines
+      if (!LIBRARY && typeof IteratorPrototype[ITERATOR] != 'function') hide(IteratorPrototype, ITERATOR, returnThis);
+    }
+  }
+  // fix Array#{values, @@iterator}.name in V8 / FF
+  if (DEF_VALUES && $native && $native.name !== VALUES) {
+    VALUES_BUG = true;
+    $default = function values() { return $native.call(this); };
+  }
+  // Define iterator
+  if ((!LIBRARY || FORCED) && (BUGGY || VALUES_BUG || !proto[ITERATOR])) {
+    hide(proto, ITERATOR, $default);
+  }
+  // Plug for library
+  Iterators[NAME] = $default;
+  Iterators[TAG] = returnThis;
+  if (DEFAULT) {
+    methods = {
+      values: DEF_VALUES ? $default : getMethod(VALUES),
+      keys: IS_SET ? $default : getMethod(KEYS),
+      entries: $entries
+    };
+    if (FORCED) for (key in methods) {
+      if (!(key in proto)) redefine(proto, key, methods[key]);
+    } else $export($export.P + $export.F * (BUGGY || VALUES_BUG), NAME, methods);
+  }
+  return methods;
+};
+
+
+/***/ }),
+
+/***/ "02f4":
+/***/ (function(module, exports, __webpack_require__) {
+
+var toInteger = __webpack_require__("4588");
+var defined = __webpack_require__("be13");
+// true  -> String#at
+// false -> String#codePointAt
+module.exports = function (TO_STRING) {
+  return function (that, pos) {
+    var s = String(defined(that));
+    var i = toInteger(pos);
+    var l = s.length;
+    var a, b;
+    if (i < 0 || i >= l) return TO_STRING ? '' : undefined;
+    a = s.charCodeAt(i);
+    return a < 0xd800 || a > 0xdbff || i + 1 === l || (b = s.charCodeAt(i + 1)) < 0xdc00 || b > 0xdfff
+      ? TO_STRING ? s.charAt(i) : a
+      : TO_STRING ? s.slice(i, i + 2) : (a - 0xd800 << 10) + (b - 0xdc00) + 0x10000;
+  };
+};
+
+
+/***/ }),
+
+/***/ "0390":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var at = __webpack_require__("02f4")(true);
+
+ // `AdvanceStringIndex` abstract operation
+// https://tc39.github.io/ecma262/#sec-advancestringindex
+module.exports = function (S, index, unicode) {
+  return index + (unicode ? at(S, index).length : 1);
+};
+
+
+/***/ }),
+
+/***/ "0bfb":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+// 21.2.5.3 get RegExp.prototype.flags
+var anObject = __webpack_require__("cb7c");
+module.exports = function () {
+  var that = anObject(this);
+  var result = '';
+  if (that.global) result += 'g';
+  if (that.ignoreCase) result += 'i';
+  if (that.multiline) result += 'm';
+  if (that.unicode) result += 'u';
+  if (that.sticky) result += 'y';
+  return result;
+};
+
+
+/***/ }),
+
+/***/ "0d58":
+/***/ (function(module, exports, __webpack_require__) {
+
+// 19.1.2.14 / 15.2.3.14 Object.keys(O)
+var $keys = __webpack_require__("ce10");
+var enumBugKeys = __webpack_require__("e11e");
+
+module.exports = Object.keys || function keys(O) {
+  return $keys(O, enumBugKeys);
+};
+
+
+/***/ }),
+
+/***/ "1495":
+/***/ (function(module, exports, __webpack_require__) {
+
+var dP = __webpack_require__("86cc");
+var anObject = __webpack_require__("cb7c");
+var getKeys = __webpack_require__("0d58");
+
+module.exports = __webpack_require__("9e1e") ? Object.defineProperties : function defineProperties(O, Properties) {
+  anObject(O);
+  var keys = getKeys(Properties);
+  var length = keys.length;
+  var i = 0;
+  var P;
+  while (length > i) dP.f(O, P = keys[i++], Properties[P]);
+  return O;
+};
+
+
+/***/ }),
+
+/***/ "214f":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+__webpack_require__("b0c5");
+var redefine = __webpack_require__("2aba");
+var hide = __webpack_require__("32e9");
+var fails = __webpack_require__("79e5");
+var defined = __webpack_require__("be13");
+var wks = __webpack_require__("2b4c");
+var regexpExec = __webpack_require__("520a");
+
+var SPECIES = wks('species');
+
+var REPLACE_SUPPORTS_NAMED_GROUPS = !fails(function () {
+  // #replace needs built-in support for named groups.
+  // #match works fine because it just return the exec results, even if it has
+  // a "grops" property.
+  var re = /./;
+  re.exec = function () {
+    var result = [];
+    result.groups = { a: '7' };
+    return result;
+  };
+  return ''.replace(re, '$<a>') !== '7';
+});
+
+var SPLIT_WORKS_WITH_OVERWRITTEN_EXEC = (function () {
+  // Chrome 51 has a buggy "split" implementation when RegExp#exec !== nativeExec
+  var re = /(?:)/;
+  var originalExec = re.exec;
+  re.exec = function () { return originalExec.apply(this, arguments); };
+  var result = 'ab'.split(re);
+  return result.length === 2 && result[0] === 'a' && result[1] === 'b';
+})();
+
+module.exports = function (KEY, length, exec) {
+  var SYMBOL = wks(KEY);
+
+  var DELEGATES_TO_SYMBOL = !fails(function () {
+    // String methods call symbol-named RegEp methods
+    var O = {};
+    O[SYMBOL] = function () { return 7; };
+    return ''[KEY](O) != 7;
+  });
+
+  var DELEGATES_TO_EXEC = DELEGATES_TO_SYMBOL ? !fails(function () {
+    // Symbol-named RegExp methods call .exec
+    var execCalled = false;
+    var re = /a/;
+    re.exec = function () { execCalled = true; return null; };
+    if (KEY === 'split') {
+      // RegExp[@@split] doesn't call the regex's exec method, but first creates
+      // a new one. We need to return the patched regex when creating the new one.
+      re.constructor = {};
+      re.constructor[SPECIES] = function () { return re; };
+    }
+    re[SYMBOL]('');
+    return !execCalled;
+  }) : undefined;
+
+  if (
+    !DELEGATES_TO_SYMBOL ||
+    !DELEGATES_TO_EXEC ||
+    (KEY === 'replace' && !REPLACE_SUPPORTS_NAMED_GROUPS) ||
+    (KEY === 'split' && !SPLIT_WORKS_WITH_OVERWRITTEN_EXEC)
+  ) {
+    var nativeRegExpMethod = /./[SYMBOL];
+    var fns = exec(
+      defined,
+      SYMBOL,
+      ''[KEY],
+      function maybeCallNative(nativeMethod, regexp, str, arg2, forceStringMethod) {
+        if (regexp.exec === regexpExec) {
+          if (DELEGATES_TO_SYMBOL && !forceStringMethod) {
+            // The native String method already delegates to @@method (this
+            // polyfilled function), leasing to infinite recursion.
+            // We avoid it by directly calling the native @@method method.
+            return { done: true, value: nativeRegExpMethod.call(regexp, str, arg2) };
+          }
+          return { done: true, value: nativeMethod.call(str, regexp, arg2) };
+        }
+        return { done: false };
+      }
+    );
+    var strfn = fns[0];
+    var rxfn = fns[1];
+
+    redefine(String.prototype, KEY, strfn);
+    hide(RegExp.prototype, SYMBOL, length == 2
+      // 21.2.5.8 RegExp.prototype[@@replace](string, replaceValue)
+      // 21.2.5.11 RegExp.prototype[@@split](string, limit)
+      ? function (string, arg) { return rxfn.call(string, this, arg); }
+      // 21.2.5.6 RegExp.prototype[@@match](string)
+      // 21.2.5.9 RegExp.prototype[@@search](string)
+      : function (string) { return rxfn.call(string, this); }
+    );
+  }
+};
+
+
+/***/ }),
+
+/***/ "230e":
+/***/ (function(module, exports, __webpack_require__) {
+
+var isObject = __webpack_require__("d3f4");
+var document = __webpack_require__("7726").document;
+// typeof document.createElement is 'object' in old IE
+var is = isObject(document) && isObject(document.createElement);
+module.exports = function (it) {
+  return is ? document.createElement(it) : {};
+};
+
+
+/***/ }),
+
+/***/ "23c6":
+/***/ (function(module, exports, __webpack_require__) {
+
+// getting tag from 19.1.3.6 Object.prototype.toString()
+var cof = __webpack_require__("2d95");
+var TAG = __webpack_require__("2b4c")('toStringTag');
+// ES3 wrong here
+var ARG = cof(function () { return arguments; }()) == 'Arguments';
+
+// fallback for IE11 Script Access Denied error
+var tryGet = function (it, key) {
+  try {
+    return it[key];
+  } catch (e) { /* empty */ }
+};
+
+module.exports = function (it) {
+  var O, T, B;
+  return it === undefined ? 'Undefined' : it === null ? 'Null'
+    // @@toStringTag case
+    : typeof (T = tryGet(O = Object(it), TAG)) == 'string' ? T
+    // builtinTag case
+    : ARG ? cof(O)
+    // ES3 arguments fallback
+    : (B = cof(O)) == 'Object' && typeof O.callee == 'function' ? 'Arguments' : B;
+};
+
+
+/***/ }),
+
+/***/ "2621":
+/***/ (function(module, exports) {
+
+exports.f = Object.getOwnPropertySymbols;
+
+
+/***/ }),
+
+/***/ "2aba":
+/***/ (function(module, exports, __webpack_require__) {
+
+var global = __webpack_require__("7726");
+var hide = __webpack_require__("32e9");
+var has = __webpack_require__("69a8");
+var SRC = __webpack_require__("ca5a")('src');
+var $toString = __webpack_require__("fa5b");
+var TO_STRING = 'toString';
+var TPL = ('' + $toString).split(TO_STRING);
+
+__webpack_require__("8378").inspectSource = function (it) {
+  return $toString.call(it);
+};
+
+(module.exports = function (O, key, val, safe) {
+  var isFunction = typeof val == 'function';
+  if (isFunction) has(val, 'name') || hide(val, 'name', key);
+  if (O[key] === val) return;
+  if (isFunction) has(val, SRC) || hide(val, SRC, O[key] ? '' + O[key] : TPL.join(String(key)));
+  if (O === global) {
+    O[key] = val;
+  } else if (!safe) {
+    delete O[key];
+    hide(O, key, val);
+  } else if (O[key]) {
+    O[key] = val;
+  } else {
+    hide(O, key, val);
+  }
+// add fake Function#toString for correct work wrapped methods / constructors with methods like LoDash isNative
+})(Function.prototype, TO_STRING, function toString() {
+  return typeof this == 'function' && this[SRC] || $toString.call(this);
+});
+
+
+/***/ }),
+
+/***/ "2aeb":
+/***/ (function(module, exports, __webpack_require__) {
+
+// 19.1.2.2 / 15.2.3.5 Object.create(O [, Properties])
+var anObject = __webpack_require__("cb7c");
+var dPs = __webpack_require__("1495");
+var enumBugKeys = __webpack_require__("e11e");
+var IE_PROTO = __webpack_require__("613b")('IE_PROTO');
+var Empty = function () { /* empty */ };
+var PROTOTYPE = 'prototype';
+
+// Create object with fake `null` prototype: use iframe Object with cleared prototype
+var createDict = function () {
+  // Thrash, waste and sodomy: IE GC bug
+  var iframe = __webpack_require__("230e")('iframe');
+  var i = enumBugKeys.length;
+  var lt = '<';
+  var gt = '>';
+  var iframeDocument;
+  iframe.style.display = 'none';
+  __webpack_require__("fab2").appendChild(iframe);
+  iframe.src = 'javascript:'; // eslint-disable-line no-script-url
+  // createDict = iframe.contentWindow.Object;
+  // html.removeChild(iframe);
+  iframeDocument = iframe.contentWindow.document;
+  iframeDocument.open();
+  iframeDocument.write(lt + 'script' + gt + 'document.F=Object' + lt + '/script' + gt);
+  iframeDocument.close();
+  createDict = iframeDocument.F;
+  while (i--) delete createDict[PROTOTYPE][enumBugKeys[i]];
+  return createDict();
+};
+
+module.exports = Object.create || function create(O, Properties) {
+  var result;
+  if (O !== null) {
+    Empty[PROTOTYPE] = anObject(O);
+    result = new Empty();
+    Empty[PROTOTYPE] = null;
+    // add "__proto__" for Object.getPrototypeOf polyfill
+    result[IE_PROTO] = O;
+  } else result = createDict();
+  return Properties === undefined ? result : dPs(result, Properties);
+};
+
+
+/***/ }),
+
+/***/ "2b4c":
+/***/ (function(module, exports, __webpack_require__) {
+
+var store = __webpack_require__("5537")('wks');
+var uid = __webpack_require__("ca5a");
+var Symbol = __webpack_require__("7726").Symbol;
+var USE_SYMBOL = typeof Symbol == 'function';
+
+var $exports = module.exports = function (name) {
+  return store[name] || (store[name] =
+    USE_SYMBOL && Symbol[name] || (USE_SYMBOL ? Symbol : uid)('Symbol.' + name));
+};
+
+$exports.store = store;
+
+
+/***/ }),
+
+/***/ "2d00":
+/***/ (function(module, exports) {
+
+module.exports = false;
+
+
+/***/ }),
+
+/***/ "2d95":
+/***/ (function(module, exports) {
+
+var toString = {}.toString;
+
+module.exports = function (it) {
+  return toString.call(it).slice(8, -1);
+};
+
+
+/***/ }),
+
+/***/ "2fdb":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+// 21.1.3.7 String.prototype.includes(searchString, position = 0)
+
+var $export = __webpack_require__("5ca1");
+var context = __webpack_require__("d2c8");
+var INCLUDES = 'includes';
+
+$export($export.P + $export.F * __webpack_require__("5147")(INCLUDES), 'String', {
+  includes: function includes(searchString /* , position = 0 */) {
+    return !!~context(this, searchString, INCLUDES)
+      .indexOf(searchString, arguments.length > 1 ? arguments[1] : undefined);
+  }
+});
+
+
+/***/ }),
+
+/***/ "32e9":
+/***/ (function(module, exports, __webpack_require__) {
+
+var dP = __webpack_require__("86cc");
+var createDesc = __webpack_require__("4630");
+module.exports = __webpack_require__("9e1e") ? function (object, key, value) {
+  return dP.f(object, key, createDesc(1, value));
+} : function (object, key, value) {
+  object[key] = value;
+  return object;
+};
+
+
+/***/ }),
+
+/***/ "38fd":
+/***/ (function(module, exports, __webpack_require__) {
+
+// 19.1.2.9 / 15.2.3.2 Object.getPrototypeOf(O)
+var has = __webpack_require__("69a8");
+var toObject = __webpack_require__("4bf8");
+var IE_PROTO = __webpack_require__("613b")('IE_PROTO');
+var ObjectProto = Object.prototype;
+
+module.exports = Object.getPrototypeOf || function (O) {
+  O = toObject(O);
+  if (has(O, IE_PROTO)) return O[IE_PROTO];
+  if (typeof O.constructor == 'function' && O instanceof O.constructor) {
+    return O.constructor.prototype;
+  } return O instanceof Object ? ObjectProto : null;
+};
+
+
+/***/ }),
+
+/***/ "41a0":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var create = __webpack_require__("2aeb");
+var descriptor = __webpack_require__("4630");
+var setToStringTag = __webpack_require__("7f20");
+var IteratorPrototype = {};
+
+// 25.1.2.1.1 %IteratorPrototype%[@@iterator]()
+__webpack_require__("32e9")(IteratorPrototype, __webpack_require__("2b4c")('iterator'), function () { return this; });
+
+module.exports = function (Constructor, NAME, next) {
+  Constructor.prototype = create(IteratorPrototype, { next: descriptor(1, next) });
+  setToStringTag(Constructor, NAME + ' Iterator');
+};
+
+
+/***/ }),
+
+/***/ "456d":
+/***/ (function(module, exports, __webpack_require__) {
+
+// 19.1.2.14 Object.keys(O)
+var toObject = __webpack_require__("4bf8");
+var $keys = __webpack_require__("0d58");
+
+__webpack_require__("5eda")('keys', function () {
+  return function keys(it) {
+    return $keys(toObject(it));
+  };
+});
+
+
+/***/ }),
+
+/***/ "4588":
+/***/ (function(module, exports) {
+
+// 7.1.4 ToInteger
+var ceil = Math.ceil;
+var floor = Math.floor;
+module.exports = function (it) {
+  return isNaN(it = +it) ? 0 : (it > 0 ? floor : ceil)(it);
+};
+
+
+/***/ }),
+
+/***/ "4630":
+/***/ (function(module, exports) {
+
+module.exports = function (bitmap, value) {
+  return {
+    enumerable: !(bitmap & 1),
+    configurable: !(bitmap & 2),
+    writable: !(bitmap & 4),
+    value: value
+  };
+};
+
+
+/***/ }),
+
+/***/ "4bf8":
+/***/ (function(module, exports, __webpack_require__) {
+
+// 7.1.13 ToObject(argument)
+var defined = __webpack_require__("be13");
+module.exports = function (it) {
+  return Object(defined(it));
+};
+
+
+/***/ }),
+
+/***/ "5147":
+/***/ (function(module, exports, __webpack_require__) {
+
+var MATCH = __webpack_require__("2b4c")('match');
+module.exports = function (KEY) {
+  var re = /./;
+  try {
+    '/./'[KEY](re);
+  } catch (e) {
+    try {
+      re[MATCH] = false;
+      return !'/./'[KEY](re);
+    } catch (f) { /* empty */ }
+  } return true;
+};
+
+
+/***/ }),
+
+/***/ "520a":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var regexpFlags = __webpack_require__("0bfb");
+
+var nativeExec = RegExp.prototype.exec;
+// This always refers to the native implementation, because the
+// String#replace polyfill uses ./fix-regexp-well-known-symbol-logic.js,
+// which loads this file before patching the method.
+var nativeReplace = String.prototype.replace;
+
+var patchedExec = nativeExec;
+
+var LAST_INDEX = 'lastIndex';
+
+var UPDATES_LAST_INDEX_WRONG = (function () {
+  var re1 = /a/,
+      re2 = /b*/g;
+  nativeExec.call(re1, 'a');
+  nativeExec.call(re2, 'a');
+  return re1[LAST_INDEX] !== 0 || re2[LAST_INDEX] !== 0;
+})();
+
+// nonparticipating capturing group, copied from es5-shim's String#split patch.
+var NPCG_INCLUDED = /()??/.exec('')[1] !== undefined;
+
+var PATCH = UPDATES_LAST_INDEX_WRONG || NPCG_INCLUDED;
+
+if (PATCH) {
+  patchedExec = function exec(str) {
+    var re = this;
+    var lastIndex, reCopy, match, i;
+
+    if (NPCG_INCLUDED) {
+      reCopy = new RegExp('^' + re.source + '$(?!\\s)', regexpFlags.call(re));
+    }
+    if (UPDATES_LAST_INDEX_WRONG) lastIndex = re[LAST_INDEX];
+
+    match = nativeExec.call(re, str);
+
+    if (UPDATES_LAST_INDEX_WRONG && match) {
+      re[LAST_INDEX] = re.global ? match.index + match[0].length : lastIndex;
+    }
+    if (NPCG_INCLUDED && match && match.length > 1) {
+      // Fix browsers whose `exec` methods don't consistently return `undefined`
+      // for NPCG, like IE8. NOTE: This doesn' work for /(.?)?/
+      // eslint-disable-next-line no-loop-func
+      nativeReplace.call(match[0], reCopy, function () {
+        for (i = 1; i < arguments.length - 2; i++) {
+          if (arguments[i] === undefined) match[i] = undefined;
+        }
+      });
+    }
+
+    return match;
+  };
+}
+
+module.exports = patchedExec;
+
+
+/***/ }),
+
+/***/ "52a7":
+/***/ (function(module, exports) {
+
+exports.f = {}.propertyIsEnumerable;
+
+
+/***/ }),
+
+/***/ "5537":
+/***/ (function(module, exports, __webpack_require__) {
+
+var core = __webpack_require__("8378");
+var global = __webpack_require__("7726");
+var SHARED = '__core-js_shared__';
+var store = global[SHARED] || (global[SHARED] = {});
+
+(module.exports = function (key, value) {
+  return store[key] || (store[key] = value !== undefined ? value : {});
+})('versions', []).push({
+  version: core.version,
+  mode: __webpack_require__("2d00") ? 'pure' : 'global',
+  copyright: '© 2019 Denis Pushkarev (zloirock.ru)'
+});
+
+
+/***/ }),
+
+/***/ "5ca1":
+/***/ (function(module, exports, __webpack_require__) {
+
+var global = __webpack_require__("7726");
+var core = __webpack_require__("8378");
+var hide = __webpack_require__("32e9");
+var redefine = __webpack_require__("2aba");
+var ctx = __webpack_require__("9b43");
+var PROTOTYPE = 'prototype';
+
+var $export = function (type, name, source) {
+  var IS_FORCED = type & $export.F;
+  var IS_GLOBAL = type & $export.G;
+  var IS_STATIC = type & $export.S;
+  var IS_PROTO = type & $export.P;
+  var IS_BIND = type & $export.B;
+  var target = IS_GLOBAL ? global : IS_STATIC ? global[name] || (global[name] = {}) : (global[name] || {})[PROTOTYPE];
+  var exports = IS_GLOBAL ? core : core[name] || (core[name] = {});
+  var expProto = exports[PROTOTYPE] || (exports[PROTOTYPE] = {});
+  var key, own, out, exp;
+  if (IS_GLOBAL) source = name;
+  for (key in source) {
+    // contains in native
+    own = !IS_FORCED && target && target[key] !== undefined;
+    // export native or passed
+    out = (own ? target : source)[key];
+    // bind timers to global for call from export context
+    exp = IS_BIND && own ? ctx(out, global) : IS_PROTO && typeof out == 'function' ? ctx(Function.call, out) : out;
+    // extend global
+    if (target) redefine(target, key, out, type & $export.U);
+    // export
+    if (exports[key] != out) hide(exports, key, exp);
+    if (IS_PROTO && expProto[key] != out) expProto[key] = out;
+  }
+};
+global.core = core;
+// type bitmap
+$export.F = 1;   // forced
+$export.G = 2;   // global
+$export.S = 4;   // static
+$export.P = 8;   // proto
+$export.B = 16;  // bind
+$export.W = 32;  // wrap
+$export.U = 64;  // safe
+$export.R = 128; // real proto method for `library`
+module.exports = $export;
+
+
+/***/ }),
+
+/***/ "5eda":
+/***/ (function(module, exports, __webpack_require__) {
+
+// most Object methods by ES6 should accept primitives
+var $export = __webpack_require__("5ca1");
+var core = __webpack_require__("8378");
+var fails = __webpack_require__("79e5");
+module.exports = function (KEY, exec) {
+  var fn = (core.Object || {})[KEY] || Object[KEY];
+  var exp = {};
+  exp[KEY] = exec(fn);
+  $export($export.S + $export.F * fails(function () { fn(1); }), 'Object', exp);
+};
+
+
+/***/ }),
+
+/***/ "5f1b":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var classof = __webpack_require__("23c6");
+var builtinExec = RegExp.prototype.exec;
+
+ // `RegExpExec` abstract operation
+// https://tc39.github.io/ecma262/#sec-regexpexec
+module.exports = function (R, S) {
+  var exec = R.exec;
+  if (typeof exec === 'function') {
+    var result = exec.call(R, S);
+    if (typeof result !== 'object') {
+      throw new TypeError('RegExp exec method returned something other than an Object or null');
+    }
+    return result;
+  }
+  if (classof(R) !== 'RegExp') {
+    throw new TypeError('RegExp#exec called on incompatible receiver');
+  }
+  return builtinExec.call(R, S);
+};
+
+
+/***/ }),
+
+/***/ "613b":
+/***/ (function(module, exports, __webpack_require__) {
+
+var shared = __webpack_require__("5537")('keys');
+var uid = __webpack_require__("ca5a");
+module.exports = function (key) {
+  return shared[key] || (shared[key] = uid(key));
+};
+
+
+/***/ }),
+
+/***/ "626a":
+/***/ (function(module, exports, __webpack_require__) {
+
+// fallback for non-array-like ES3 and non-enumerable old V8 strings
+var cof = __webpack_require__("2d95");
+// eslint-disable-next-line no-prototype-builtins
+module.exports = Object('z').propertyIsEnumerable(0) ? Object : function (it) {
+  return cof(it) == 'String' ? it.split('') : Object(it);
+};
+
+
+/***/ }),
+
+/***/ "6762":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+// https://github.com/tc39/Array.prototype.includes
+var $export = __webpack_require__("5ca1");
+var $includes = __webpack_require__("c366")(true);
+
+$export($export.P, 'Array', {
+  includes: function includes(el /* , fromIndex = 0 */) {
+    return $includes(this, el, arguments.length > 1 ? arguments[1] : undefined);
+  }
+});
+
+__webpack_require__("9c6c")('includes');
+
+
+/***/ }),
+
+/***/ "6821":
+/***/ (function(module, exports, __webpack_require__) {
+
+// to indexed object, toObject with fallback for non-array-like ES3 strings
+var IObject = __webpack_require__("626a");
+var defined = __webpack_require__("be13");
+module.exports = function (it) {
+  return IObject(defined(it));
+};
+
+
+/***/ }),
+
+/***/ "69a8":
+/***/ (function(module, exports) {
+
+var hasOwnProperty = {}.hasOwnProperty;
+module.exports = function (it, key) {
+  return hasOwnProperty.call(it, key);
+};
+
+
+/***/ }),
+
+/***/ "6a99":
+/***/ (function(module, exports, __webpack_require__) {
+
+// 7.1.1 ToPrimitive(input [, PreferredType])
+var isObject = __webpack_require__("d3f4");
+// instead of the ES6 spec version, we didn't implement @@toPrimitive case
+// and the second argument - flag - preferred type is a string
+module.exports = function (it, S) {
+  if (!isObject(it)) return it;
+  var fn, val;
+  if (S && typeof (fn = it.toString) == 'function' && !isObject(val = fn.call(it))) return val;
+  if (typeof (fn = it.valueOf) == 'function' && !isObject(val = fn.call(it))) return val;
+  if (!S && typeof (fn = it.toString) == 'function' && !isObject(val = fn.call(it))) return val;
+  throw TypeError("Can't convert object to primitive value");
+};
+
+
+/***/ }),
+
+/***/ "7333":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+// 19.1.2.1 Object.assign(target, source, ...)
+var getKeys = __webpack_require__("0d58");
+var gOPS = __webpack_require__("2621");
+var pIE = __webpack_require__("52a7");
+var toObject = __webpack_require__("4bf8");
+var IObject = __webpack_require__("626a");
+var $assign = Object.assign;
+
+// should work with symbols and should have deterministic property order (V8 bug)
+module.exports = !$assign || __webpack_require__("79e5")(function () {
+  var A = {};
+  var B = {};
+  // eslint-disable-next-line no-undef
+  var S = Symbol();
+  var K = 'abcdefghijklmnopqrst';
+  A[S] = 7;
+  K.split('').forEach(function (k) { B[k] = k; });
+  return $assign({}, A)[S] != 7 || Object.keys($assign({}, B)).join('') != K;
+}) ? function assign(target, source) { // eslint-disable-line no-unused-vars
+  var T = toObject(target);
+  var aLen = arguments.length;
+  var index = 1;
+  var getSymbols = gOPS.f;
+  var isEnum = pIE.f;
+  while (aLen > index) {
+    var S = IObject(arguments[index++]);
+    var keys = getSymbols ? getKeys(S).concat(getSymbols(S)) : getKeys(S);
+    var length = keys.length;
+    var j = 0;
+    var key;
+    while (length > j) if (isEnum.call(S, key = keys[j++])) T[key] = S[key];
+  } return T;
+} : $assign;
+
+
+/***/ }),
+
+/***/ "7726":
+/***/ (function(module, exports) {
+
+// https://github.com/zloirock/core-js/issues/86#issuecomment-115759028
+var global = module.exports = typeof window != 'undefined' && window.Math == Math
+  ? window : typeof self != 'undefined' && self.Math == Math ? self
+  // eslint-disable-next-line no-new-func
+  : Function('return this')();
+if (typeof __g == 'number') __g = global; // eslint-disable-line no-undef
+
+
+/***/ }),
+
+/***/ "77f1":
+/***/ (function(module, exports, __webpack_require__) {
+
+var toInteger = __webpack_require__("4588");
+var max = Math.max;
+var min = Math.min;
+module.exports = function (index, length) {
+  index = toInteger(index);
+  return index < 0 ? max(index + length, 0) : min(index, length);
+};
+
+
+/***/ }),
+
+/***/ "79e5":
+/***/ (function(module, exports) {
+
+module.exports = function (exec) {
+  try {
+    return !!exec();
+  } catch (e) {
+    return true;
+  }
+};
+
+
+/***/ }),
+
+/***/ "7f20":
+/***/ (function(module, exports, __webpack_require__) {
+
+var def = __webpack_require__("86cc").f;
+var has = __webpack_require__("69a8");
+var TAG = __webpack_require__("2b4c")('toStringTag');
+
+module.exports = function (it, tag, stat) {
+  if (it && !has(it = stat ? it : it.prototype, TAG)) def(it, TAG, { configurable: true, value: tag });
+};
+
+
+/***/ }),
+
+/***/ "8378":
+/***/ (function(module, exports) {
+
+var core = module.exports = { version: '2.6.5' };
+if (typeof __e == 'number') __e = core; // eslint-disable-line no-undef
+
+
+/***/ }),
+
+/***/ "84f2":
+/***/ (function(module, exports) {
+
+module.exports = {};
+
+
+/***/ }),
+
+/***/ "86cc":
+/***/ (function(module, exports, __webpack_require__) {
+
+var anObject = __webpack_require__("cb7c");
+var IE8_DOM_DEFINE = __webpack_require__("c69a");
+var toPrimitive = __webpack_require__("6a99");
+var dP = Object.defineProperty;
+
+exports.f = __webpack_require__("9e1e") ? Object.defineProperty : function defineProperty(O, P, Attributes) {
+  anObject(O);
+  P = toPrimitive(P, true);
+  anObject(Attributes);
+  if (IE8_DOM_DEFINE) try {
+    return dP(O, P, Attributes);
+  } catch (e) { /* empty */ }
+  if ('get' in Attributes || 'set' in Attributes) throw TypeError('Accessors not supported!');
+  if ('value' in Attributes) O[P] = Attributes.value;
+  return O;
+};
+
+
+/***/ }),
+
+/***/ "9b43":
+/***/ (function(module, exports, __webpack_require__) {
+
+// optional / simple context binding
+var aFunction = __webpack_require__("d8e8");
+module.exports = function (fn, that, length) {
+  aFunction(fn);
+  if (that === undefined) return fn;
+  switch (length) {
+    case 1: return function (a) {
+      return fn.call(that, a);
+    };
+    case 2: return function (a, b) {
+      return fn.call(that, a, b);
+    };
+    case 3: return function (a, b, c) {
+      return fn.call(that, a, b, c);
+    };
+  }
+  return function (/* ...args */) {
+    return fn.apply(that, arguments);
+  };
+};
+
+
+/***/ }),
+
+/***/ "9c6c":
+/***/ (function(module, exports, __webpack_require__) {
+
+// 22.1.3.31 Array.prototype[@@unscopables]
+var UNSCOPABLES = __webpack_require__("2b4c")('unscopables');
+var ArrayProto = Array.prototype;
+if (ArrayProto[UNSCOPABLES] == undefined) __webpack_require__("32e9")(ArrayProto, UNSCOPABLES, {});
+module.exports = function (key) {
+  ArrayProto[UNSCOPABLES][key] = true;
+};
+
+
+/***/ }),
+
+/***/ "9def":
+/***/ (function(module, exports, __webpack_require__) {
+
+// 7.1.15 ToLength
+var toInteger = __webpack_require__("4588");
+var min = Math.min;
+module.exports = function (it) {
+  return it > 0 ? min(toInteger(it), 0x1fffffffffffff) : 0; // pow(2, 53) - 1 == 9007199254740991
+};
+
+
+/***/ }),
+
+/***/ "9e1e":
+/***/ (function(module, exports, __webpack_require__) {
+
+// Thank's IE8 for his funny defineProperty
+module.exports = !__webpack_require__("79e5")(function () {
+  return Object.defineProperty({}, 'a', { get: function () { return 7; } }).a != 7;
+});
+
+
+/***/ }),
+
+/***/ "a352":
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_a352__;
+
+/***/ }),
+
+/***/ "a481":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var anObject = __webpack_require__("cb7c");
+var toObject = __webpack_require__("4bf8");
+var toLength = __webpack_require__("9def");
+var toInteger = __webpack_require__("4588");
+var advanceStringIndex = __webpack_require__("0390");
+var regExpExec = __webpack_require__("5f1b");
+var max = Math.max;
+var min = Math.min;
+var floor = Math.floor;
+var SUBSTITUTION_SYMBOLS = /\$([$&`']|\d\d?|<[^>]*>)/g;
+var SUBSTITUTION_SYMBOLS_NO_NAMED = /\$([$&`']|\d\d?)/g;
+
+var maybeToString = function (it) {
+  return it === undefined ? it : String(it);
+};
+
+// @@replace logic
+__webpack_require__("214f")('replace', 2, function (defined, REPLACE, $replace, maybeCallNative) {
+  return [
+    // `String.prototype.replace` method
+    // https://tc39.github.io/ecma262/#sec-string.prototype.replace
+    function replace(searchValue, replaceValue) {
+      var O = defined(this);
+      var fn = searchValue == undefined ? undefined : searchValue[REPLACE];
+      return fn !== undefined
+        ? fn.call(searchValue, O, replaceValue)
+        : $replace.call(String(O), searchValue, replaceValue);
+    },
+    // `RegExp.prototype[@@replace]` method
+    // https://tc39.github.io/ecma262/#sec-regexp.prototype-@@replace
+    function (regexp, replaceValue) {
+      var res = maybeCallNative($replace, regexp, this, replaceValue);
+      if (res.done) return res.value;
+
+      var rx = anObject(regexp);
+      var S = String(this);
+      var functionalReplace = typeof replaceValue === 'function';
+      if (!functionalReplace) replaceValue = String(replaceValue);
+      var global = rx.global;
+      if (global) {
+        var fullUnicode = rx.unicode;
+        rx.lastIndex = 0;
+      }
+      var results = [];
+      while (true) {
+        var result = regExpExec(rx, S);
+        if (result === null) break;
+        results.push(result);
+        if (!global) break;
+        var matchStr = String(result[0]);
+        if (matchStr === '') rx.lastIndex = advanceStringIndex(S, toLength(rx.lastIndex), fullUnicode);
+      }
+      var accumulatedResult = '';
+      var nextSourcePosition = 0;
+      for (var i = 0; i < results.length; i++) {
+        result = results[i];
+        var matched = String(result[0]);
+        var position = max(min(toInteger(result.index), S.length), 0);
+        var captures = [];
+        // NOTE: This is equivalent to
+        //   captures = result.slice(1).map(maybeToString)
+        // but for some reason `nativeSlice.call(result, 1, result.length)` (called in
+        // the slice polyfill when slicing native arrays) "doesn't work" in safari 9 and
+        // causes a crash (https://pastebin.com/N21QzeQA) when trying to debug it.
+        for (var j = 1; j < result.length; j++) captures.push(maybeToString(result[j]));
+        var namedCaptures = result.groups;
+        if (functionalReplace) {
+          var replacerArgs = [matched].concat(captures, position, S);
+          if (namedCaptures !== undefined) replacerArgs.push(namedCaptures);
+          var replacement = String(replaceValue.apply(undefined, replacerArgs));
+        } else {
+          replacement = getSubstitution(matched, S, position, captures, namedCaptures, replaceValue);
+        }
+        if (position >= nextSourcePosition) {
+          accumulatedResult += S.slice(nextSourcePosition, position) + replacement;
+          nextSourcePosition = position + matched.length;
+        }
+      }
+      return accumulatedResult + S.slice(nextSourcePosition);
+    }
+  ];
+
+    // https://tc39.github.io/ecma262/#sec-getsubstitution
+  function getSubstitution(matched, str, position, captures, namedCaptures, replacement) {
+    var tailPos = position + matched.length;
+    var m = captures.length;
+    var symbols = SUBSTITUTION_SYMBOLS_NO_NAMED;
+    if (namedCaptures !== undefined) {
+      namedCaptures = toObject(namedCaptures);
+      symbols = SUBSTITUTION_SYMBOLS;
+    }
+    return $replace.call(replacement, symbols, function (match, ch) {
+      var capture;
+      switch (ch.charAt(0)) {
+        case '$': return '$';
+        case '&': return matched;
+        case '`': return str.slice(0, position);
+        case "'": return str.slice(tailPos);
+        case '<':
+          capture = namedCaptures[ch.slice(1, -1)];
+          break;
+        default: // \d\d?
+          var n = +ch;
+          if (n === 0) return match;
+          if (n > m) {
+            var f = floor(n / 10);
+            if (f === 0) return match;
+            if (f <= m) return captures[f - 1] === undefined ? ch.charAt(1) : captures[f - 1] + ch.charAt(1);
+            return match;
+          }
+          capture = captures[n - 1];
+      }
+      return capture === undefined ? '' : capture;
+    });
+  }
+});
+
+
+/***/ }),
+
+/***/ "aae3":
+/***/ (function(module, exports, __webpack_require__) {
+
+// 7.2.8 IsRegExp(argument)
+var isObject = __webpack_require__("d3f4");
+var cof = __webpack_require__("2d95");
+var MATCH = __webpack_require__("2b4c")('match');
+module.exports = function (it) {
+  var isRegExp;
+  return isObject(it) && ((isRegExp = it[MATCH]) !== undefined ? !!isRegExp : cof(it) == 'RegExp');
+};
+
+
+/***/ }),
+
+/***/ "ac6a":
+/***/ (function(module, exports, __webpack_require__) {
+
+var $iterators = __webpack_require__("cadf");
+var getKeys = __webpack_require__("0d58");
+var redefine = __webpack_require__("2aba");
+var global = __webpack_require__("7726");
+var hide = __webpack_require__("32e9");
+var Iterators = __webpack_require__("84f2");
+var wks = __webpack_require__("2b4c");
+var ITERATOR = wks('iterator');
+var TO_STRING_TAG = wks('toStringTag');
+var ArrayValues = Iterators.Array;
+
+var DOMIterables = {
+  CSSRuleList: true, // TODO: Not spec compliant, should be false.
+  CSSStyleDeclaration: false,
+  CSSValueList: false,
+  ClientRectList: false,
+  DOMRectList: false,
+  DOMStringList: false,
+  DOMTokenList: true,
+  DataTransferItemList: false,
+  FileList: false,
+  HTMLAllCollection: false,
+  HTMLCollection: false,
+  HTMLFormElement: false,
+  HTMLSelectElement: false,
+  MediaList: true, // TODO: Not spec compliant, should be false.
+  MimeTypeArray: false,
+  NamedNodeMap: false,
+  NodeList: true,
+  PaintRequestList: false,
+  Plugin: false,
+  PluginArray: false,
+  SVGLengthList: false,
+  SVGNumberList: false,
+  SVGPathSegList: false,
+  SVGPointList: false,
+  SVGStringList: false,
+  SVGTransformList: false,
+  SourceBufferList: false,
+  StyleSheetList: true, // TODO: Not spec compliant, should be false.
+  TextTrackCueList: false,
+  TextTrackList: false,
+  TouchList: false
+};
+
+for (var collections = getKeys(DOMIterables), i = 0; i < collections.length; i++) {
+  var NAME = collections[i];
+  var explicit = DOMIterables[NAME];
+  var Collection = global[NAME];
+  var proto = Collection && Collection.prototype;
+  var key;
+  if (proto) {
+    if (!proto[ITERATOR]) hide(proto, ITERATOR, ArrayValues);
+    if (!proto[TO_STRING_TAG]) hide(proto, TO_STRING_TAG, NAME);
+    Iterators[NAME] = ArrayValues;
+    if (explicit) for (key in $iterators) if (!proto[key]) redefine(proto, key, $iterators[key], true);
+  }
+}
+
+
+/***/ }),
+
+/***/ "b0c5":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var regexpExec = __webpack_require__("520a");
+__webpack_require__("5ca1")({
+  target: 'RegExp',
+  proto: true,
+  forced: regexpExec !== /./.exec
+}, {
+  exec: regexpExec
+});
+
+
+/***/ }),
+
+/***/ "be13":
+/***/ (function(module, exports) {
+
+// 7.2.1 RequireObjectCoercible(argument)
+module.exports = function (it) {
+  if (it == undefined) throw TypeError("Can't call method on  " + it);
+  return it;
+};
+
+
+/***/ }),
+
+/***/ "c366":
+/***/ (function(module, exports, __webpack_require__) {
+
+// false -> Array#indexOf
+// true  -> Array#includes
+var toIObject = __webpack_require__("6821");
+var toLength = __webpack_require__("9def");
+var toAbsoluteIndex = __webpack_require__("77f1");
+module.exports = function (IS_INCLUDES) {
+  return function ($this, el, fromIndex) {
+    var O = toIObject($this);
+    var length = toLength(O.length);
+    var index = toAbsoluteIndex(fromIndex, length);
+    var value;
+    // Array#includes uses SameValueZero equality algorithm
+    // eslint-disable-next-line no-self-compare
+    if (IS_INCLUDES && el != el) while (length > index) {
+      value = O[index++];
+      // eslint-disable-next-line no-self-compare
+      if (value != value) return true;
+    // Array#indexOf ignores holes, Array#includes - not
+    } else for (;length > index; index++) if (IS_INCLUDES || index in O) {
+      if (O[index] === el) return IS_INCLUDES || index || 0;
+    } return !IS_INCLUDES && -1;
+  };
+};
+
+
+/***/ }),
+
+/***/ "c649":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(global) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return insertNodeAt; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return camelize; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return console; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return removeNode; });
+/* harmony import */ var core_js_modules_es6_regexp_replace__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("a481");
+/* harmony import */ var core_js_modules_es6_regexp_replace__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es6_regexp_replace__WEBPACK_IMPORTED_MODULE_0__);
+
+
+function getConsole() {
+  if (typeof window !== "undefined") {
+    return window.console;
+  }
+
+  return global.console;
+}
+
+var console = getConsole();
+
+function cached(fn) {
+  var cache = Object.create(null);
+  return function cachedFn(str) {
+    var hit = cache[str];
+    return hit || (cache[str] = fn(str));
+  };
+}
+
+var regex = /-(\w)/g;
+var camelize = cached(function (str) {
+  return str.replace(regex, function (_, c) {
+    return c ? c.toUpperCase() : "";
+  });
+});
+
+function removeNode(node) {
+  if (node.parentElement !== null) {
+    node.parentElement.removeChild(node);
+  }
+}
+
+function insertNodeAt(fatherNode, node, position) {
+  var refNode = position === 0 ? fatherNode.children[0] : fatherNode.children[position - 1].nextSibling;
+  fatherNode.insertBefore(node, refNode);
+}
+
+
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__("c8ba")))
+
+/***/ }),
+
+/***/ "c69a":
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = !__webpack_require__("9e1e") && !__webpack_require__("79e5")(function () {
+  return Object.defineProperty(__webpack_require__("230e")('div'), 'a', { get: function () { return 7; } }).a != 7;
+});
+
+
+/***/ }),
+
+/***/ "c8ba":
+/***/ (function(module, exports) {
+
+var g;
+
+// This works in non-strict mode
+g = (function() {
+	return this;
+})();
+
+try {
+	// This works if eval is allowed (see CSP)
+	g = g || new Function("return this")();
+} catch (e) {
+	// This works if the window reference is available
+	if (typeof window === "object") g = window;
+}
+
+// g can still be undefined, but nothing to do about it...
+// We return undefined, instead of nothing here, so it's
+// easier to handle this case. if(!global) { ...}
+
+module.exports = g;
+
+
+/***/ }),
+
+/***/ "ca5a":
+/***/ (function(module, exports) {
+
+var id = 0;
+var px = Math.random();
+module.exports = function (key) {
+  return 'Symbol('.concat(key === undefined ? '' : key, ')_', (++id + px).toString(36));
+};
+
+
+/***/ }),
+
+/***/ "cadf":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var addToUnscopables = __webpack_require__("9c6c");
+var step = __webpack_require__("d53b");
+var Iterators = __webpack_require__("84f2");
+var toIObject = __webpack_require__("6821");
+
+// 22.1.3.4 Array.prototype.entries()
+// 22.1.3.13 Array.prototype.keys()
+// 22.1.3.29 Array.prototype.values()
+// 22.1.3.30 Array.prototype[@@iterator]()
+module.exports = __webpack_require__("01f9")(Array, 'Array', function (iterated, kind) {
+  this._t = toIObject(iterated); // target
+  this._i = 0;                   // next index
+  this._k = kind;                // kind
+// 22.1.5.2.1 %ArrayIteratorPrototype%.next()
+}, function () {
+  var O = this._t;
+  var kind = this._k;
+  var index = this._i++;
+  if (!O || index >= O.length) {
+    this._t = undefined;
+    return step(1);
+  }
+  if (kind == 'keys') return step(0, index);
+  if (kind == 'values') return step(0, O[index]);
+  return step(0, [index, O[index]]);
+}, 'values');
+
+// argumentsList[@@iterator] is %ArrayProto_values% (9.4.4.6, 9.4.4.7)
+Iterators.Arguments = Iterators.Array;
+
+addToUnscopables('keys');
+addToUnscopables('values');
+addToUnscopables('entries');
+
+
+/***/ }),
+
+/***/ "cb7c":
+/***/ (function(module, exports, __webpack_require__) {
+
+var isObject = __webpack_require__("d3f4");
+module.exports = function (it) {
+  if (!isObject(it)) throw TypeError(it + ' is not an object!');
+  return it;
+};
+
+
+/***/ }),
+
+/***/ "ce10":
+/***/ (function(module, exports, __webpack_require__) {
+
+var has = __webpack_require__("69a8");
+var toIObject = __webpack_require__("6821");
+var arrayIndexOf = __webpack_require__("c366")(false);
+var IE_PROTO = __webpack_require__("613b")('IE_PROTO');
+
+module.exports = function (object, names) {
+  var O = toIObject(object);
+  var i = 0;
+  var result = [];
+  var key;
+  for (key in O) if (key != IE_PROTO) has(O, key) && result.push(key);
+  // Don't enum bug & hidden keys
+  while (names.length > i) if (has(O, key = names[i++])) {
+    ~arrayIndexOf(result, key) || result.push(key);
+  }
+  return result;
+};
+
+
+/***/ }),
+
+/***/ "d2c8":
+/***/ (function(module, exports, __webpack_require__) {
+
+// helper for String#{startsWith, endsWith, includes}
+var isRegExp = __webpack_require__("aae3");
+var defined = __webpack_require__("be13");
+
+module.exports = function (that, searchString, NAME) {
+  if (isRegExp(searchString)) throw TypeError('String#' + NAME + " doesn't accept regex!");
+  return String(defined(that));
+};
+
+
+/***/ }),
+
+/***/ "d3f4":
+/***/ (function(module, exports) {
+
+module.exports = function (it) {
+  return typeof it === 'object' ? it !== null : typeof it === 'function';
+};
+
+
+/***/ }),
+
+/***/ "d53b":
+/***/ (function(module, exports) {
+
+module.exports = function (done, value) {
+  return { value: value, done: !!done };
+};
+
+
+/***/ }),
+
+/***/ "d8e8":
+/***/ (function(module, exports) {
+
+module.exports = function (it) {
+  if (typeof it != 'function') throw TypeError(it + ' is not a function!');
+  return it;
+};
+
+
+/***/ }),
+
+/***/ "e11e":
+/***/ (function(module, exports) {
+
+// IE 8- don't enum bug keys
+module.exports = (
+  'constructor,hasOwnProperty,isPrototypeOf,propertyIsEnumerable,toLocaleString,toString,valueOf'
+).split(',');
+
+
+/***/ }),
+
+/***/ "f559":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+// 21.1.3.18 String.prototype.startsWith(searchString [, position ])
+
+var $export = __webpack_require__("5ca1");
+var toLength = __webpack_require__("9def");
+var context = __webpack_require__("d2c8");
+var STARTS_WITH = 'startsWith';
+var $startsWith = ''[STARTS_WITH];
+
+$export($export.P + $export.F * __webpack_require__("5147")(STARTS_WITH), 'String', {
+  startsWith: function startsWith(searchString /* , position = 0 */) {
+    var that = context(this, searchString, STARTS_WITH);
+    var index = toLength(Math.min(arguments.length > 1 ? arguments[1] : undefined, that.length));
+    var search = String(searchString);
+    return $startsWith
+      ? $startsWith.call(that, search, index)
+      : that.slice(index, index + search.length) === search;
+  }
+});
+
+
+/***/ }),
+
+/***/ "f6fd":
+/***/ (function(module, exports) {
+
+// document.currentScript polyfill by Adam Miller
+
+// MIT license
+
+(function(document){
+  var currentScript = "currentScript",
+      scripts = document.getElementsByTagName('script'); // Live NodeList collection
+
+  // If browser needs currentScript polyfill, add get currentScript() to the document object
+  if (!(currentScript in document)) {
+    Object.defineProperty(document, currentScript, {
+      get: function(){
+
+        // IE 6-10 supports script readyState
+        // IE 10+ support stack trace
+        try { throw new Error(); }
+        catch (err) {
+
+          // Find the second match for the "at" string to get file src url from stack.
+          // Specifically works with the format of stack traces in IE.
+          var i, res = ((/.*at [^\(]*\((.*):.+:.+\)$/ig).exec(err.stack) || [false])[1];
+
+          // For all scripts on the page, if src matches or if ready state is interactive, return the script tag
+          for(i in scripts){
+            if(scripts[i].src == res || scripts[i].readyState == "interactive"){
+              return scripts[i];
+            }
+          }
+
+          // If no match, return null
+          return null;
+        }
+      }
+    });
+  }
+})(document);
+
+
+/***/ }),
+
+/***/ "f751":
+/***/ (function(module, exports, __webpack_require__) {
+
+// 19.1.3.1 Object.assign(target, source)
+var $export = __webpack_require__("5ca1");
+
+$export($export.S + $export.F, 'Object', { assign: __webpack_require__("7333") });
+
+
+/***/ }),
+
+/***/ "fa5b":
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__("5537")('native-function-to-string', Function.toString);
+
+
+/***/ }),
+
+/***/ "fab2":
+/***/ (function(module, exports, __webpack_require__) {
+
+var document = __webpack_require__("7726").document;
+module.exports = document && document.documentElement;
+
+
+/***/ }),
+
+/***/ "fb15":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+// ESM COMPAT FLAG
+__webpack_require__.r(__webpack_exports__);
+
+// CONCATENATED MODULE: ./node_modules/@vue/cli-service/lib/commands/build/setPublicPath.js
+// This file is imported into lib/wc client bundles.
+
+if (typeof window !== 'undefined') {
+  if (true) {
+    __webpack_require__("f6fd")
+  }
+
+  var setPublicPath_i
+  if ((setPublicPath_i = window.document.currentScript) && (setPublicPath_i = setPublicPath_i.src.match(/(.+\/)[^/]+\.js(\?.*)?$/))) {
+    __webpack_require__.p = setPublicPath_i[1] // eslint-disable-line
+  }
+}
+
+// Indicate to webpack that this file can be concatenated
+/* harmony default export */ var setPublicPath = (null);
+
+// EXTERNAL MODULE: ./node_modules/core-js/modules/es6.object.assign.js
+var es6_object_assign = __webpack_require__("f751");
+
+// EXTERNAL MODULE: ./node_modules/core-js/modules/es6.string.starts-with.js
+var es6_string_starts_with = __webpack_require__("f559");
+
+// EXTERNAL MODULE: ./node_modules/core-js/modules/web.dom.iterable.js
+var web_dom_iterable = __webpack_require__("ac6a");
+
+// EXTERNAL MODULE: ./node_modules/core-js/modules/es6.array.iterator.js
+var es6_array_iterator = __webpack_require__("cadf");
+
+// EXTERNAL MODULE: ./node_modules/core-js/modules/es6.object.keys.js
+var es6_object_keys = __webpack_require__("456d");
+
+// CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/esm/arrayWithHoles.js
+function _arrayWithHoles(arr) {
+  if (Array.isArray(arr)) return arr;
+}
+// CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/esm/iterableToArrayLimit.js
+function _iterableToArrayLimit(arr, i) {
+  if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return;
+  var _arr = [];
+  var _n = true;
+  var _d = false;
+  var _e = undefined;
+
+  try {
+    for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {
+      _arr.push(_s.value);
+
+      if (i && _arr.length === i) break;
+    }
+  } catch (err) {
+    _d = true;
+    _e = err;
+  } finally {
+    try {
+      if (!_n && _i["return"] != null) _i["return"]();
+    } finally {
+      if (_d) throw _e;
+    }
+  }
+
+  return _arr;
+}
+// CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/esm/arrayLikeToArray.js
+function _arrayLikeToArray(arr, len) {
+  if (len == null || len > arr.length) len = arr.length;
+
+  for (var i = 0, arr2 = new Array(len); i < len; i++) {
+    arr2[i] = arr[i];
+  }
+
+  return arr2;
+}
+// CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/esm/unsupportedIterableToArray.js
+
+function _unsupportedIterableToArray(o, minLen) {
+  if (!o) return;
+  if (typeof o === "string") return _arrayLikeToArray(o, minLen);
+  var n = Object.prototype.toString.call(o).slice(8, -1);
+  if (n === "Object" && o.constructor) n = o.constructor.name;
+  if (n === "Map" || n === "Set") return Array.from(o);
+  if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);
+}
+// CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/esm/nonIterableRest.js
+function _nonIterableRest() {
+  throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+}
+// CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/esm/slicedToArray.js
+
+
+
+
+function _slicedToArray(arr, i) {
+  return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest();
+}
+// EXTERNAL MODULE: ./node_modules/core-js/modules/es7.array.includes.js
+var es7_array_includes = __webpack_require__("6762");
+
+// EXTERNAL MODULE: ./node_modules/core-js/modules/es6.string.includes.js
+var es6_string_includes = __webpack_require__("2fdb");
+
+// CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/esm/arrayWithoutHoles.js
+
+function _arrayWithoutHoles(arr) {
+  if (Array.isArray(arr)) return _arrayLikeToArray(arr);
+}
+// CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/esm/iterableToArray.js
+function _iterableToArray(iter) {
+  if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter);
+}
+// CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/esm/nonIterableSpread.js
+function _nonIterableSpread() {
+  throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+}
+// CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/esm/toConsumableArray.js
+
+
+
+
+function _toConsumableArray(arr) {
+  return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread();
+}
+// EXTERNAL MODULE: external {"commonjs":"sortablejs","commonjs2":"sortablejs","amd":"sortablejs","root":"Sortable"}
+var external_commonjs_sortablejs_commonjs2_sortablejs_amd_sortablejs_root_Sortable_ = __webpack_require__("a352");
+var external_commonjs_sortablejs_commonjs2_sortablejs_amd_sortablejs_root_Sortable_default = /*#__PURE__*/__webpack_require__.n(external_commonjs_sortablejs_commonjs2_sortablejs_amd_sortablejs_root_Sortable_);
+
+// EXTERNAL MODULE: ./src/util/helper.js
+var helper = __webpack_require__("c649");
+
+// CONCATENATED MODULE: ./src/vuedraggable.js
+
+
+
+
+
+
+
+
+
+
+
+
+function buildAttribute(object, propName, value) {
+  if (value === undefined) {
+    return object;
+  }
+
+  object = object || {};
+  object[propName] = value;
+  return object;
+}
+
+function computeVmIndex(vnodes, element) {
+  return vnodes.map(function (elt) {
+    return elt.elm;
+  }).indexOf(element);
+}
+
+function _computeIndexes(slots, children, isTransition, footerOffset) {
+  if (!slots) {
+    return [];
+  }
+
+  var elmFromNodes = slots.map(function (elt) {
+    return elt.elm;
+  });
+  var footerIndex = children.length - footerOffset;
+
+  var rawIndexes = _toConsumableArray(children).map(function (elt, idx) {
+    return idx >= footerIndex ? elmFromNodes.length : elmFromNodes.indexOf(elt);
+  });
+
+  return isTransition ? rawIndexes.filter(function (ind) {
+    return ind !== -1;
+  }) : rawIndexes;
+}
+
+function emit(evtName, evtData) {
+  var _this = this;
+
+  this.$nextTick(function () {
+    return _this.$emit(evtName.toLowerCase(), evtData);
+  });
+}
+
+function delegateAndEmit(evtName) {
+  var _this2 = this;
+
+  return function (evtData) {
+    if (_this2.realList !== null) {
+      _this2["onDrag" + evtName](evtData);
+    }
+
+    emit.call(_this2, evtName, evtData);
+  };
+}
+
+function isTransitionName(name) {
+  return ["transition-group", "TransitionGroup"].includes(name);
+}
+
+function vuedraggable_isTransition(slots) {
+  if (!slots || slots.length !== 1) {
+    return false;
+  }
+
+  var _slots = _slicedToArray(slots, 1),
+      componentOptions = _slots[0].componentOptions;
+
+  if (!componentOptions) {
+    return false;
+  }
+
+  return isTransitionName(componentOptions.tag);
+}
+
+function getSlot(slot, scopedSlot, key) {
+  return slot[key] || (scopedSlot[key] ? scopedSlot[key]() : undefined);
+}
+
+function computeChildrenAndOffsets(children, slot, scopedSlot) {
+  var headerOffset = 0;
+  var footerOffset = 0;
+  var header = getSlot(slot, scopedSlot, "header");
+
+  if (header) {
+    headerOffset = header.length;
+    children = children ? [].concat(_toConsumableArray(header), _toConsumableArray(children)) : _toConsumableArray(header);
+  }
+
+  var footer = getSlot(slot, scopedSlot, "footer");
+
+  if (footer) {
+    footerOffset = footer.length;
+    children = children ? [].concat(_toConsumableArray(children), _toConsumableArray(footer)) : _toConsumableArray(footer);
+  }
+
+  return {
+    children: children,
+    headerOffset: headerOffset,
+    footerOffset: footerOffset
+  };
+}
+
+function getComponentAttributes($attrs, componentData) {
+  var attributes = null;
+
+  var update = function update(name, value) {
+    attributes = buildAttribute(attributes, name, value);
+  };
+
+  var attrs = Object.keys($attrs).filter(function (key) {
+    return key === "id" || key.startsWith("data-");
+  }).reduce(function (res, key) {
+    res[key] = $attrs[key];
+    return res;
+  }, {});
+  update("attrs", attrs);
+
+  if (!componentData) {
+    return attributes;
+  }
+
+  var on = componentData.on,
+      props = componentData.props,
+      componentDataAttrs = componentData.attrs;
+  update("on", on);
+  update("props", props);
+  Object.assign(attributes.attrs, componentDataAttrs);
+  return attributes;
+}
+
+var eventsListened = ["Start", "Add", "Remove", "Update", "End"];
+var eventsToEmit = ["Choose", "Unchoose", "Sort", "Filter", "Clone"];
+var readonlyProperties = ["Move"].concat(eventsListened, eventsToEmit).map(function (evt) {
+  return "on" + evt;
+});
+var draggingElement = null;
+var props = {
+  options: Object,
+  list: {
+    type: Array,
+    required: false,
+    default: null
+  },
+  value: {
+    type: Array,
+    required: false,
+    default: null
+  },
+  noTransitionOnDrag: {
+    type: Boolean,
+    default: false
+  },
+  clone: {
+    type: Function,
+    default: function _default(original) {
+      return original;
+    }
+  },
+  element: {
+    type: String,
+    default: "div"
+  },
+  tag: {
+    type: String,
+    default: null
+  },
+  move: {
+    type: Function,
+    default: null
+  },
+  componentData: {
+    type: Object,
+    required: false,
+    default: null
+  }
+};
+var draggableComponent = {
+  name: "draggable",
+  inheritAttrs: false,
+  props: props,
+  data: function data() {
+    return {
+      transitionMode: false,
+      noneFunctionalComponentMode: false
+    };
+  },
+  render: function render(h) {
+    var slots = this.$slots.default;
+    this.transitionMode = vuedraggable_isTransition(slots);
+
+    var _computeChildrenAndOf = computeChildrenAndOffsets(slots, this.$slots, this.$scopedSlots),
+        children = _computeChildrenAndOf.children,
+        headerOffset = _computeChildrenAndOf.headerOffset,
+        footerOffset = _computeChildrenAndOf.footerOffset;
+
+    this.headerOffset = headerOffset;
+    this.footerOffset = footerOffset;
+    var attributes = getComponentAttributes(this.$attrs, this.componentData);
+    return h(this.getTag(), attributes, children);
+  },
+  created: function created() {
+    if (this.list !== null && this.value !== null) {
+      helper["b" /* console */].error("Value and list props are mutually exclusive! Please set one or another.");
+    }
+
+    if (this.element !== "div") {
+      helper["b" /* console */].warn("Element props is deprecated please use tag props instead. See https://github.com/SortableJS/Vue.Draggable/blob/master/documentation/migrate.md#element-props");
+    }
+
+    if (this.options !== undefined) {
+      helper["b" /* console */].warn("Options props is deprecated, add sortable options directly as vue.draggable item, or use v-bind. See https://github.com/SortableJS/Vue.Draggable/blob/master/documentation/migrate.md#options-props");
+    }
+  },
+  mounted: function mounted() {
+    var _this3 = this;
+
+    this.noneFunctionalComponentMode = this.getTag().toLowerCase() !== this.$el.nodeName.toLowerCase() && !this.getIsFunctional();
+
+    if (this.noneFunctionalComponentMode && this.transitionMode) {
+      throw new Error("Transition-group inside component is not supported. Please alter tag value or remove transition-group. Current tag value: ".concat(this.getTag()));
+    }
+
+    var optionsAdded = {};
+    eventsListened.forEach(function (elt) {
+      optionsAdded["on" + elt] = delegateAndEmit.call(_this3, elt);
+    });
+    eventsToEmit.forEach(function (elt) {
+      optionsAdded["on" + elt] = emit.bind(_this3, elt);
+    });
+    var attributes = Object.keys(this.$attrs).reduce(function (res, key) {
+      res[Object(helper["a" /* camelize */])(key)] = _this3.$attrs[key];
+      return res;
+    }, {});
+    var options = Object.assign({}, this.options, attributes, optionsAdded, {
+      onMove: function onMove(evt, originalEvent) {
+        return _this3.onDragMove(evt, originalEvent);
+      }
+    });
+    !("draggable" in options) && (options.draggable = ">*");
+    this._sortable = new external_commonjs_sortablejs_commonjs2_sortablejs_amd_sortablejs_root_Sortable_default.a(this.rootContainer, options);
+    this.computeIndexes();
+  },
+  beforeDestroy: function beforeDestroy() {
+    if (this._sortable !== undefined) this._sortable.destroy();
+  },
+  computed: {
+    rootContainer: function rootContainer() {
+      return this.transitionMode ? this.$el.children[0] : this.$el;
+    },
+    realList: function realList() {
+      return this.list ? this.list : this.value;
+    }
+  },
+  watch: {
+    options: {
+      handler: function handler(newOptionValue) {
+        this.updateOptions(newOptionValue);
+      },
+      deep: true
+    },
+    $attrs: {
+      handler: function handler(newOptionValue) {
+        this.updateOptions(newOptionValue);
+      },
+      deep: true
+    },
+    realList: function realList() {
+      this.computeIndexes();
+    }
+  },
+  methods: {
+    getIsFunctional: function getIsFunctional() {
+      var fnOptions = this._vnode.fnOptions;
+      return fnOptions && fnOptions.functional;
+    },
+    getTag: function getTag() {
+      return this.tag || this.element;
+    },
+    updateOptions: function updateOptions(newOptionValue) {
+      for (var property in newOptionValue) {
+        var value = Object(helper["a" /* camelize */])(property);
+
+        if (readonlyProperties.indexOf(value) === -1) {
+          this._sortable.option(value, newOptionValue[property]);
+        }
+      }
+    },
+    getChildrenNodes: function getChildrenNodes() {
+      if (this.noneFunctionalComponentMode) {
+        return this.$children[0].$slots.default;
+      }
+
+      var rawNodes = this.$slots.default;
+      return this.transitionMode ? rawNodes[0].child.$slots.default : rawNodes;
+    },
+    computeIndexes: function computeIndexes() {
+      var _this4 = this;
+
+      this.$nextTick(function () {
+        _this4.visibleIndexes = _computeIndexes(_this4.getChildrenNodes(), _this4.rootContainer.children, _this4.transitionMode, _this4.footerOffset);
+      });
+    },
+    getUnderlyingVm: function getUnderlyingVm(htmlElt) {
+      var index = computeVmIndex(this.getChildrenNodes() || [], htmlElt);
+
+      if (index === -1) {
+        //Edge case during move callback: related element might be
+        //an element different from collection
+        return null;
+      }
+
+      var element = this.realList[index];
+      return {
+        index: index,
+        element: element
+      };
+    },
+    getUnderlyingPotencialDraggableComponent: function getUnderlyingPotencialDraggableComponent(_ref) {
+      var vue = _ref.__vue__;
+
+      if (!vue || !vue.$options || !isTransitionName(vue.$options._componentTag)) {
+        if (!("realList" in vue) && vue.$children.length === 1 && "realList" in vue.$children[0]) return vue.$children[0];
+        return vue;
+      }
+
+      return vue.$parent;
+    },
+    emitChanges: function emitChanges(evt) {
+      var _this5 = this;
+
+      this.$nextTick(function () {
+        _this5.$emit("change", evt);
+      });
+    },
+    alterList: function alterList(onList) {
+      if (this.list) {
+        onList(this.list);
+        return;
+      }
+
+      var newList = _toConsumableArray(this.value);
+
+      onList(newList);
+      this.$emit("input", newList);
+    },
+    spliceList: function spliceList() {
+      var _arguments = arguments;
+
+      var spliceList = function spliceList(list) {
+        return list.splice.apply(list, _toConsumableArray(_arguments));
+      };
+
+      this.alterList(spliceList);
+    },
+    updatePosition: function updatePosition(oldIndex, newIndex) {
+      var updatePosition = function updatePosition(list) {
+        return list.splice(newIndex, 0, list.splice(oldIndex, 1)[0]);
+      };
+
+      this.alterList(updatePosition);
+    },
+    getRelatedContextFromMoveEvent: function getRelatedContextFromMoveEvent(_ref2) {
+      var to = _ref2.to,
+          related = _ref2.related;
+      var component = this.getUnderlyingPotencialDraggableComponent(to);
+
+      if (!component) {
+        return {
+          component: component
+        };
+      }
+
+      var list = component.realList;
+      var context = {
+        list: list,
+        component: component
+      };
+
+      if (to !== related && list && component.getUnderlyingVm) {
+        var destination = component.getUnderlyingVm(related);
+
+        if (destination) {
+          return Object.assign(destination, context);
+        }
+      }
+
+      return context;
+    },
+    getVmIndex: function getVmIndex(domIndex) {
+      var indexes = this.visibleIndexes;
+      var numberIndexes = indexes.length;
+      return domIndex > numberIndexes - 1 ? numberIndexes : indexes[domIndex];
+    },
+    getComponent: function getComponent() {
+      return this.$slots.default[0].componentInstance;
+    },
+    resetTransitionData: function resetTransitionData(index) {
+      if (!this.noTransitionOnDrag || !this.transitionMode) {
+        return;
+      }
+
+      var nodes = this.getChildrenNodes();
+      nodes[index].data = null;
+      var transitionContainer = this.getComponent();
+      transitionContainer.children = [];
+      transitionContainer.kept = undefined;
+    },
+    onDragStart: function onDragStart(evt) {
+      this.context = this.getUnderlyingVm(evt.item);
+      evt.item._underlying_vm_ = this.clone(this.context.element);
+      draggingElement = evt.item;
+    },
+    onDragAdd: function onDragAdd(evt) {
+      var element = evt.item._underlying_vm_;
+
+      if (element === undefined) {
+        return;
+      }
+
+      Object(helper["d" /* removeNode */])(evt.item);
+      var newIndex = this.getVmIndex(evt.newIndex);
+      this.spliceList(newIndex, 0, element);
+      this.computeIndexes();
+      var added = {
+        element: element,
+        newIndex: newIndex
+      };
+      this.emitChanges({
+        added: added
+      });
+    },
+    onDragRemove: function onDragRemove(evt) {
+      Object(helper["c" /* insertNodeAt */])(this.rootContainer, evt.item, evt.oldIndex);
+
+      if (evt.pullMode === "clone") {
+        Object(helper["d" /* removeNode */])(evt.clone);
+        return;
+      }
+
+      var oldIndex = this.context.index;
+      this.spliceList(oldIndex, 1);
+      var removed = {
+        element: this.context.element,
+        oldIndex: oldIndex
+      };
+      this.resetTransitionData(oldIndex);
+      this.emitChanges({
+        removed: removed
+      });
+    },
+    onDragUpdate: function onDragUpdate(evt) {
+      Object(helper["d" /* removeNode */])(evt.item);
+      Object(helper["c" /* insertNodeAt */])(evt.from, evt.item, evt.oldIndex);
+      var oldIndex = this.context.index;
+      var newIndex = this.getVmIndex(evt.newIndex);
+      this.updatePosition(oldIndex, newIndex);
+      var moved = {
+        element: this.context.element,
+        oldIndex: oldIndex,
+        newIndex: newIndex
+      };
+      this.emitChanges({
+        moved: moved
+      });
+    },
+    updateProperty: function updateProperty(evt, propertyName) {
+      evt.hasOwnProperty(propertyName) && (evt[propertyName] += this.headerOffset);
+    },
+    computeFutureIndex: function computeFutureIndex(relatedContext, evt) {
+      if (!relatedContext.element) {
+        return 0;
+      }
+
+      var domChildren = _toConsumableArray(evt.to.children).filter(function (el) {
+        return el.style["display"] !== "none";
+      });
+
+      var currentDOMIndex = domChildren.indexOf(evt.related);
+      var currentIndex = relatedContext.component.getVmIndex(currentDOMIndex);
+      var draggedInList = domChildren.indexOf(draggingElement) !== -1;
+      return draggedInList || !evt.willInsertAfter ? currentIndex : currentIndex + 1;
+    },
+    onDragMove: function onDragMove(evt, originalEvent) {
+      var onMove = this.move;
+
+      if (!onMove || !this.realList) {
+        return true;
+      }
+
+      var relatedContext = this.getRelatedContextFromMoveEvent(evt);
+      var draggedContext = this.context;
+      var futureIndex = this.computeFutureIndex(relatedContext, evt);
+      Object.assign(draggedContext, {
+        futureIndex: futureIndex
+      });
+      var sendEvt = Object.assign({}, evt, {
+        relatedContext: relatedContext,
+        draggedContext: draggedContext
+      });
+      return onMove(sendEvt, originalEvent);
+    },
+    onDragEnd: function onDragEnd() {
+      this.computeIndexes();
+      draggingElement = null;
+    }
+  }
+};
+
+if (typeof window !== "undefined" && "Vue" in window) {
+  window.Vue.component("draggable", draggableComponent);
+}
+
+/* harmony default export */ var vuedraggable = (draggableComponent);
+// CONCATENATED MODULE: ./node_modules/@vue/cli-service/lib/commands/build/entry-lib.js
+
+
+/* harmony default export */ var entry_lib = __webpack_exports__["default"] = (vuedraggable);
+
+
+
+/***/ })
+
+/******/ })["default"];
+});
+//# sourceMappingURL=vuedraggable.umd.js.map
+
+/***/ }),
+
 /***/ "./node_modules/webpack/buildin/global.js":
 /*!***********************************!*\
   !*** (webpack)/buildin/global.js ***!
@@ -50565,6 +56960,7 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 Vue.component('guardar-tarea', __webpack_require__(/*! ./components/Select.vue */ "./resources/js/components/Select.vue")["default"]);
+Vue.component('guardar-tarea2', __webpack_require__(/*! ./components/selectDrag.vue */ "./resources/js/components/selectDrag.vue")["default"]);
 var app = new Vue({
   el: '#app'
 });
@@ -50680,6 +57076,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Select_vue_vue_type_template_id_17cc0527___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Select_vue_vue_type_template_id_17cc0527___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/selectDrag.vue":
+/*!************************************************!*\
+  !*** ./resources/js/components/selectDrag.vue ***!
+  \************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _selectDrag_vue_vue_type_template_id_64199e4a___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./selectDrag.vue?vue&type=template&id=64199e4a& */ "./resources/js/components/selectDrag.vue?vue&type=template&id=64199e4a&");
+/* harmony import */ var _selectDrag_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./selectDrag.vue?vue&type=script&lang=js& */ "./resources/js/components/selectDrag.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _selectDrag_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _selectDrag_vue_vue_type_template_id_64199e4a___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _selectDrag_vue_vue_type_template_id_64199e4a___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/selectDrag.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/selectDrag.vue?vue&type=script&lang=js&":
+/*!*************************************************************************!*\
+  !*** ./resources/js/components/selectDrag.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_selectDrag_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./selectDrag.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/selectDrag.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_selectDrag_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/selectDrag.vue?vue&type=template&id=64199e4a&":
+/*!*******************************************************************************!*\
+  !*** ./resources/js/components/selectDrag.vue?vue&type=template&id=64199e4a& ***!
+  \*******************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_selectDrag_vue_vue_type_template_id_64199e4a___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./selectDrag.vue?vue&type=template&id=64199e4a& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/selectDrag.vue?vue&type=template&id=64199e4a&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_selectDrag_vue_vue_type_template_id_64199e4a___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_selectDrag_vue_vue_type_template_id_64199e4a___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

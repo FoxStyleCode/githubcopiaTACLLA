@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 use Illuminate\Auth\Access\Gate;
+use Illuminate\Support\Facades\DB;
 
 class RolesController extends Controller
 {
@@ -17,6 +18,7 @@ class RolesController extends Controller
      */
     public function __construct()
     {
+        //solo usuarios que puedan crear, actualizar, leer y eliminar roles podrán ingresar
         $this->middleware(['permission:crear-role|leer-roles|actualizar-role|eliminar-role'], ['only' => ['create', 'store', 'edit', 'destroy']]);
         
     }
@@ -25,6 +27,7 @@ class RolesController extends Controller
     public function index()
     {
 
+        //si el usuario puede leer roles entonces mostrarle la lista de roles
         if(auth()->user()->can('leer-roles')){
         $roles = Role::all();
 
@@ -42,6 +45,7 @@ class RolesController extends Controller
      */
     public function create()
     {
+        //listar permisos en la ventana create
         $permisos = Permission::all()->pluck('name','id');
         return view('roles.create', compact('permisos'));
     }
@@ -54,22 +58,32 @@ class RolesController extends Controller
      */
     public function store(Request $request)
     {
+        //iniciamos una transacción por ocurre una interrupción
+        DB::transaction(function() use($request){
+        //si el usuario está autorizado para crear roles entonces
         if(auth()->user()->can('crear-role')){
+        //hacer uso del modelo para crear un role
         $role = new Role;
 
+        //agregar nombre al role
         $role->name = $request->namerole;
 
+        //guardar el role
         $role->save();
 
+        //asignar los permisos al role
         $role->givePermissionTo($request->permisos);
 
+        //insertar en el log
         $estado = 'Creó un nuevo role llamado'. ' ' . $request->namerole;
         $nombre_usu = auth()->user()->name;
-        $registro_log = \DB::select('call insertar_log(?,?)', array($nombre_usu,$estado));
+        $registro_log = DB::insert('call insertar_log(?,?)', array($nombre_usu,$estado));
         return redirect('/roles')->with('success', 'Role agregado correctamente');
         }else{
             return redirect('/roles')->with('danger', 'No tienes permisos para crear un role');
         }
+        });
+        return redirect('/roles');
     }
 
     /**
@@ -116,6 +130,7 @@ class RolesController extends Controller
      */
     public function update(Request $request, $id)
     {
+        DB::transaction(function() use($request,$id){
         if(auth()->user()->can('actualizar-role')){
         $roles = Role::findOrFail($id);
 
@@ -127,13 +142,16 @@ class RolesController extends Controller
 
         $estado = 'Actualizó el role llamado'. ' ' . $request->namerole;
         $nombre_usu = auth()->user()->name;
-        $registro_log = \DB::select('call insertar_log(?,?)', array($nombre_usu,$estado));
+        $registro_log = DB::select('call insertar_log(?,?)', array($nombre_usu,$estado));
 
         return redirect('/roles')->with('success', 'Role actualizado correctamente');
 
         }else{
             return redirect('/roles')->with('danger', 'No tienes permisos para actualizar este role');
         }
+        });
+
+        return redirect('/roles');
     }
 
     /**
@@ -145,18 +163,19 @@ class RolesController extends Controller
     public function destroy($id)
     {
 
+        DB::transaction(function() use($id){
         if(auth()->user()->can('eliminar-role')){
 
         $roles = Role::findOrFail($id);
-
+        
         if($roles->name == "SPR.TMG"){
             return redirect('/roles')->with('danger', 'No puedes eliminar al super rol SPR.TMG');
         }else{
 
         if($roles->delete()){
-            $estado = 'Eliminó un role';
+            $estado = 'Eliminó el role llamado' . " " . $roles->name;
             $nombre_usu = auth()->user()->name;
-            $registro_log = \DB::select('call insertar_log(?,?)', array($nombre_usu,$estado));
+            $registro_log = DB::insert('call insertar_log(?,?)', array($nombre_usu,$estado));
             
             return redirect('/roles')->with('danger', 'Eliminado correctamente');
         }else{
@@ -169,5 +188,10 @@ class RolesController extends Controller
     }else{
         return redirect('/roles')->with('danger', 'Este usuario no puede eliminar un role'); 
     }
+
+    });
+
+    return back();
+
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class tipoController extends Controller
 {
@@ -34,10 +35,14 @@ class tipoController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate( [
+            'value' => ['required', 'array'],
+            'nombretipo' => ['required'],
+        ]);
+        
+        DB::transaction(function () use($request) {
         $tipo = \App\tipo_de_proyecto::create(['nombre'=> $request->nombretipo]);
         //agregar area y tipo a las tareas
-      
-       
 
         foreach($request->value as $tarea){
             $t = \App\Tarea::create([
@@ -47,7 +52,17 @@ class tipoController extends Controller
             ]);
         }
 
-        return ;
+        if(isset($t)){
+            $estado = ("Añadido nuevo tipo de proyecto llamado: ".$request->nombretipo);
+            $nombre_usu = auth()->user()->name;
+            $registro_log = DB::insert('call insertar_log(?,?)', array($nombre_usu, $estado));
+            return back()->with('success', 'Tipo de proyecto configurado correctamente');
+        }else{
+            return back()->with('danger', 'No se pudo configurar el tipo de proyecto nuevo');
+        }
+
+    });
+        
 
         /*$result = \DB::select('CAll insertar_tipo(?)', array($request->nombretipo));
         $array_tipo = $request->tareastipo;
@@ -59,16 +74,7 @@ class tipoController extends Controller
             $t,$resultado->id));
         }*/
         
-        //codigo de log y redireccionamiento
-
-        if(isset($insercion)){
-            $estado = ("Añadido nuevo tipo de proyecto llamado: ".$request->nombretipo);
-            $nombre_usu = auth()->user()->name;
-            $registro_log = \DB::select('call insertar_log(?,?)', array($nombre_usu, $estado));
-            return back()->with('success', 'Tipo de proyecto configurado correctamente');
-        }else{
-            return back()->with('danger', 'No se pudo configurar el tipo de proyecto nuevo');
-        }
+        //codigo de log y redireccionamiento  
          
     }
 

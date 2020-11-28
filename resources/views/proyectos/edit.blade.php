@@ -1,9 +1,8 @@
 @extends('layouts.app')
 
 
-@section('content')
-<br>
-<br>
+@section('contenido')
+
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
@@ -17,8 +16,20 @@
                             @csrf
                             @method('PUT')
                             <div class="form-group">
-                                <label for="name">Jugador</label>
-                                <input type="text" name="name" id="name" required class="form-control" autocomplete="off" value="{{$proyectos->player}}">
+                                <label for="name">Tipo de proyecto</label>
+                                <select class="form-control" name="tipo" id="">
+                                    @foreach ($data as $datos)
+                                    @if($proyectos->tipo_de_proyecto_id==$datos->id)
+                                    <option selected value="{{$datos->id}}">
+                                        {{$datos->nombre}}
+                                    </option>
+                                    @else
+                                    <option value="{{$datos->id}}">
+                                        {{$datos->nombre}}
+                                    </option>
+                                    @endif
+                                    @endforeach
+                                </select>
                             </div>
                             <div class="form-group">
                                 <label for="num">Numero del proyecto</label>

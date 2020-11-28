@@ -14,6 +14,7 @@ class logController extends Controller
      */
     public function index()
     {
+        //traer toda la información del y mostrarla en la vista
         $logs = Log::all();
         return view('logs.principal', compact('logs'));
         

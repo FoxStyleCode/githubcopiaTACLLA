@@ -26,6 +26,7 @@ class CreateProyectosTable extends Migration
             $table->string('municipio');
             $table->unsignedBigInteger('tipo_de_proyecto_id');
             $table->foreign('tipo_de_proyecto_id')->references('id')->on('tipo_de_proyectos');
+            $table->integer('estado');
             $table->timestamps();
         });
     }

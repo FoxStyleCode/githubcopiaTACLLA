@@ -27,7 +27,10 @@
         "@riophae/vue-treeselect": "^0.4.0",
         "cxlt-vue2-toastr": "^1.1.1",
         "noty": "^3.2.0-beta",
+        "sweetalert2": "^10.10.1",
         "toastr": "^2.1.4",
-        "vue-multiselect": "^2.1.6"
+        "vue-draggable-next": "^2.0.0",
+        "vue-multiselect": "^2.1.6",
+        "vuedraggable": "^2.24.3"
     }
 }

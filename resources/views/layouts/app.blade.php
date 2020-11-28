@@ -9,6 +9,10 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
+    <!--scripts-->
+    <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ asset('js/jquery-3.5.1.min.js') }}" defer></script>
+
     <!--font awesome-->
     <script src="https://kit.fontawesome.com/7309319a36.js" crossorigin="anonymous"></script>
 
@@ -19,16 +23,15 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/stilos.css') }}" rel="stylesheet">
 
-    <script src="{{ asset('js/app.js') }}" defer></script>
-
     @yield('css')
+    
 </head>
 <body>
     
     <div id="app">
-        <nav class="navbar navbar fixed-top navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
+                <a class="navbar-brand" href="{{ url('/home') }}">
                     {{ config('app.name', 'Laravel') }}
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -79,8 +82,11 @@
                             <li>
                                 <a href="{{url('plantillas')}}" class="nav-link">Links</a>
                             </li>
+                            <li>
+                                <a href="{{url('cerrados')}}" class="nav-link">Cerrados</a>
+                            </li>
                             
-                            <li class="nav-item dropdown">
+                            <li class="nav-item dropdown ">
                                 <a class="nav-link" data-toggle="dropdown" href="#">
                                     <i class="far fa-comment"></i>
                                     <span class="badge badge-warning navbar-badge">
@@ -92,22 +98,25 @@
                                 <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                                     <span class="dropdown-header">Notificacion no leidas</span>
                                     @foreach (auth()->user()->unreadNotifications as $notification)
-                                    <a href="#" class="dropdown-item">
+                                    <a href="#" class="dropdown-item overflow-hidden">
                                         <i class="fas fa-envelope mr-2"></i> {{$notification->data['usuario']}}
+                                        <span class="pull-right text-muted ml-3 text-sm">{{$notification->data['detalle']}}</span>
+                                        <span class="pull-right text-muted ml-3 text-sm">{{$notification->data['detalle2']}}</span>
                                         <span class="pull-right text-muted ml-3 text-sm">{{$notification->created_at->diffForHumans()}}</span>
                                     </a>
                                     @endforeach
                                 <div class="dropdown-divider"></div>
-                                    <span class="dropdown-header center">Notificacion leidas</span>
+                                    {{-- <span class="dropdown-header center">Notificacion leidas</span>
                                     @forelse (auth()->user()->readNotifications as $notification)
                                     <a href="#" class="dropdown-item">
                                         <i class="fas fa-envelope mr-2"></i> {{$notification->data['usuario']}}
+                                        <span class="pull-right text-muted ml-3 text-sm">{{$notification->data['detalle']}}</span>
                                         <span class="ml-3 pull-right text-muted ml-3 text-sm">{{$notification->created_at->diffForHumans()}}</span>
                                     </a>
                                     @empty
                                     <hr>
                                     <span class="ml-4 pull-right text-muted text-sm">Sin notificaciones leidas</span>
-                                    @endforelse
+                                    @endforelse --}}
                         
                                 <div class="dropdown-divider"></div>
                                 <a href="{{route('marcarLeidas')}}" class="dropdown-item dropdown-footer">Marcar todas como leidas</a>
@@ -143,9 +152,13 @@
         </main>
     </div>
 
+    <div class="contenido">
+        @yield('contenido')
+    </div>
+
     <div class="scripts">
         @yield('scripts')
     </div>
-    
+
 </body>
 </html>

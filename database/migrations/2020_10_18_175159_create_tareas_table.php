@@ -18,6 +18,8 @@ class CreateTareasTable extends Migration
             $table->string('nombre_tarea');
             $table->unsignedBigInteger('tipo_de_proyecto_id');
             $table->foreign('tipo_de_proyecto_id')->references('id')->on('tipo_de_proyectos');
+            $table->unsignedBigInteger('area_id');
+            $table->foreign('area_id')->references('id')->on('areas');
             $table->timestamps();
         });
     }

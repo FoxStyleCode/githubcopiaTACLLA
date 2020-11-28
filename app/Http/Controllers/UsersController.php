@@ -9,6 +9,8 @@ use Illuminate\Support\Carbon;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\DB;
+
 
 class UsersController extends Controller
 {
@@ -26,7 +28,7 @@ class UsersController extends Controller
      */
     public function index()
     {
-        $user = User::all();
+        $user = User::where('estado',1)->get();
         return view('usuarios.index', compact('user'));
     }
 
@@ -50,7 +52,6 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-
         
         $usuario = new User;
 
@@ -58,13 +59,20 @@ class UsersController extends Controller
         $usuario->email = $request->email;
         $usuario->password = $request->password;
         $usuario->area_id = $request->area;
+        $usuario->estado = 1;
+
+        request()->validate([
+            'name' => 'required',
+            'email' => 'required|email|unique:users,email,'.$usuario->id,
+            'password' => '',
+        ]);
 
         if ($usuario->save()) {
             $estado = 'Añadió un nuevo usuario llamado'. ' ' . $request->name;
             $nombre_usu = auth()->user()->name;
-            $registro_log = \DB::insert('call insertar_log(?,?)', array($nombre_usu,$estado));
+            $registro_log = DB::insert('call insertar_log(?,?)', array($nombre_usu,$estado));
             $usuario->assignRole($request->role);
-            return redirect('/usuarios');
+            return redirect('/usuarios')->with('success','usuario creado correctamente');
         }
     }
 
@@ -122,12 +130,14 @@ class UsersController extends Controller
 
         $estado = 'Actualizó al usuario'. ' ' . $request->name;
         $nombre_usu = auth()->user()->name;
-        $registro_log = \DB::insert('call insertar_log(?,?)', array($nombre_usu,$estado));
+        $registro_log = DB::insert('call insertar_log(?,?)', array($nombre_usu,$estado));
 
         return redirect('/usuarios')->with('success', 'usuario actualizado correctamente');
     }else{
         return redirect('/usuarios')->with('danger', 'No tienes permisos para actualizar a este usuario'); 
     }
+    
+
     }
 
     /**
@@ -146,13 +156,16 @@ class UsersController extends Controller
         }else{
 
 
+        if($usuario->hasAnyRole()){
         $usuario->removeRole($usuario->roles->implode('name','id'));
-        
+        }
+
         if($usuario->delete()){
-            $estado = 'Eliminó un usuario';
+            $estado = 'Eliminó un usuario llamado' . " " . $usuario->name;
             $nombre_usu = auth()->user()->name;
-            $registro_log = \DB::insert('call insertar_log(?,?)', array($nombre_usu,$estado));
+            $registro_log = DB::insert('call insertar_log(?,?)', array($nombre_usu,$estado));
             return redirect('/usuarios')->with('danger', 'usuario eliminado correctamente');
+            // return redirect('/usuarios')->with('eliminar', 'eliminado');
         }else{
             return response()->json([
                 "mensaje" => "error al eliminar usuario"

@@ -8,10 +8,7 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.6/css/responsive.bootstrap4.min.css">
 @endsection
 
-<br>
-<br>
-<br>
-@section('content')
+@section('contenido')
 
 <div class="container">
     <div class="row justify-content-center">
@@ -19,7 +16,7 @@
             <div class="card">
                 <div class="card-header">Log</div>
                 <div class="card-body">
-                    <table class="" id="mitabla" style="width:100%">
+                    <table class="table-primary" id="mitabla" style="width:100%">
                         <thead class="thead-light">
                             <tr>
                                 <th>Fecha</th>
@@ -46,7 +43,7 @@
         </div>
     </div>
 </div>
-
+@endsection
 
 @section('scripts')
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>

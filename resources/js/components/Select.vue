@@ -1,5 +1,18 @@
 <template>
     <div>
+
+        <div v-if="alert">
+            <div class="alert alert-success" role="alert">
+                Tipo de proyecto configurado correctamente
+            </div>
+        </div>
+
+        <div v-if="error">
+            <div class="alert alert-danger" role="alert">
+                Revisa los campos a enviar
+            </div>
+        </div>
+
         <div class="form-group">
         <label for="">Nombre del tipo de proyecto</label>
         <input type="text"
@@ -16,13 +29,15 @@
             :preserve-search="true" 
             placeholder="Tareas" 
             label="nombre_tarea" 
-            track-by="nombre_tarea" 
-            :preselect-first="true"/>
+            track-by="nombre_tarea"/>
         </div>
         
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-            <button @click.prevent="guardar" class="btn btn-success">Crear</button>
+            <button 
+            :disabled="enviar"
+            @click.prevent="guardar" 
+            class="btn btn-success">Crear</button>
         </div>
 
     </div>    
@@ -32,13 +47,6 @@
  
  import multiselect from 'vue-multiselect'
  import 'vue-multiselect/dist/vue-multiselect.min.css'
- import CxltToastr from 'cxlt-vue2-toastr'
- import 'cxlt-vue2-toastr/dist/css/cxlt-vue2-toastr.css'
- var toastrConfigs = {
- position: 'top right',
- showDuration: 200
- }
- Vue.use(CxltToastr, toastrConfigs)
  
  export default {
     props : {
@@ -54,7 +62,10 @@
             tarea : {
                 value : [],
                 nombretipo : ''
-            }
+            },
+            alert : null,
+            enviar : false,
+            error : null
             
         }
     },
@@ -66,16 +77,15 @@
     methods : {
         guardar ( )
         {
-            axios.post('tipos', this.tarea).then( respuesta =>
+            this.enviar = true
+            this.error = null
+            axios.post('tipos', this.tarea).then( r =>
             {
-                this.tarea.value = []
-                this.tarea.nombretipo = ''
-                $('#ventanaModelTipo').modal('hide')
-                
-                this.$toast.success({
-                title:'Tipo de proyecto',
-                message:'Se ha agregado un nuevo tipo de proyecto'
-                })
+                this.alert = 'ok'
+                setTimeout(function(){ location.reload() }, 1000);
+            }).catch( e => {
+                this.error = e.response.data
+                this.enviar = false
             })
         }
     }

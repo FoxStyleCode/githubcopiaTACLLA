@@ -16,6 +16,7 @@ class PermisosController extends Controller
      */
     public function index()
     {
+        //sin funcionamiento la parte de los permisos
         $permisos = Permission::all();
         return view('permisos.index', compact('permisos'));
     }

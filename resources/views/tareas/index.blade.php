@@ -11,11 +11,7 @@
     }
 </style>
 
-@section('content')
-
-
-<br>
-<br>
+@section('contenido')
     <div class="container">
 
         @if(session('danger'))
@@ -36,14 +32,12 @@
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <td>Proyecto</td>
-                                    <td>Tarea</td>
-                                    <td>Area</td>
-                                    <td>Estado</td>
-                                    <td>Persona</td>
-                                    <td>Asignar</td>
-                                    <td>Link</td>
-                                    <td>Ver link</td>
+                                    <td class="active">Proyecto</td>
+                                    <td class="active">Tarea</td>
+                                    <td class="active">Area</td>
+                                    <td class="active">Estado</td>
+                                    <td class="active">Persona</td>
+                                    <td class="active">Asignar</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -60,6 +54,7 @@
                                     <td class="ctado" data-toggle="modal" data-target="#ventanaModel{{$result->id}}" style="background-color:#58D68D; border-radius:5px; color: white; text-align: center">{{$result->nombre_estado}}</td>
                                     @endif
                                     <td>{{$result->name}}</td>
+                                        {{-- asignar una tarea --}}
                                         @can('actualizar-tareas')
                                         <td><a class="btn btn-primary prue" data-toggle="modal" data-target="#ventana{{$result->id,$result->nombre_tarea}}" href=""><i class="far fa-edit"></i></a>
                                             <!-- Modal -->
@@ -83,9 +78,15 @@
                                                             <label for="name">Usuarios</label>
                                                             <select class="form-control" name="tipo" id="">
                                                                 @foreach ($usuario as $us)
+                                                                @if($result->usuario_id == $us->id)
+                                                                <option selected value="{{$us->id}}">
+                                                                    {{$us->name}}
+                                                                </option>
+                                                                @else
                                                                 <option value="{{$us->id}}">
                                                                     {{$us->name}}
                                                                 </option>
+                                                                @endif
                                                                 @endforeach
                                                             </select>
                                                         </div>
@@ -103,7 +104,8 @@
                                         </td>
                                         @endcan
                             
-                                        <td><a class="btn btn-success prue" data-toggle="modal" data-target="#ventanaLink{{$result->id}}" href=""><i class="fas fa-upload"></i></a>
+                                        {{-- linkear un nuevo archivo de dropbox --}}
+                                        <td>
                                             <!-- Modal -->
                                             <div class="modal fade" id="ventanaLink{{$result->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog" role="document">
@@ -116,9 +118,16 @@
                                                     </div>
                                                     <div class="modal-body">
                                                         
-                                                        <form action="" method="post">
+                                                        <form action="{{route('links.update', $result->proyecto_id)}}" method="post">
                                                         @csrf
                                                         @method('PUT')
+
+                                                        <input type="text" name="tarea_id" hidden value="{{$result->id}}">
+                                                        <div class="form-group">
+                                                            <label for="">Enlace</label>
+                                                            <input type="text"
+                                                              class="form-control" name="enlac" id="" aria-describedby="helpId" placeholder="">
+                                                          </div>
                                                        
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
@@ -131,8 +140,16 @@
                                             </div>
                                         </td>
 
-                                        <td><a name="" id="" class="btn btn-warning prue" href="" role="button"><i class="far fa-file-word"></i></a></td>
+                                        {{-- comprobar si existe o no un enlace --}}
+                                        @if(isset($result->enlace))
+                                        <td><a name="" id="" target="_blank" href="{{$result->enlace}}" class="btn btn-warning prue" role="button"><i class="far fa-file-word"></i></a></td>
+                                        @else
+                                        <td><a name=""  data-toggle="modal" data-target="#ventanaLink{{$result->id}}" href="" class="btn btn-secondary prue" role="button"><i class="far fa-file-word"></i></a></td>
+                                        {{-- <td><a name="" id="" href="#" class="btn btn-warning prue" role="button"><i class="far fa-file-word"></i></a></td> --}}
+                                        @endif
 
+
+                                        {{-- actualizar el estado de una tarea --}}
                                         @can('actualizar-estado')
                                         <td>
                                             <!-- Modal -->
@@ -157,9 +174,15 @@
                                                             <label for="name">Estados</label>
                                                             <select class="form-control" name="est" id="">
                                                                 @foreach ($estados as $es)
+                                                                @if($result->estado_id == $es->id)
+                                                                <option selected value="{{$es->id}}">
+                                                                    <span id="nameS">{{$es->nombre_estado}}</span>
+                                                                </option>
+                                                                @else
                                                                 <option value="{{$es->id}}">
                                                                     <span id="nameS">{{$es->nombre_estado}}</span>
                                                                 </option>
+                                                                @endif
                                                                 @endforeach
                                                             </select>
                                                         </div>
@@ -187,7 +210,4 @@
     </div>
 @endsection
 
-@section('scrip')
-
-@endsection
 

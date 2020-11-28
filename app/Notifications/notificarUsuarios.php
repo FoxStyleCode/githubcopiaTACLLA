@@ -11,6 +11,7 @@ use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 use Illuminate\Support\Facades\Auth;
 
+
 class notificarUsuarios extends Notification
 {
     use Queueable;
@@ -20,9 +21,9 @@ class notificarUsuarios extends Notification
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($notificacion2)
     {
-        
+        $this->notifica = $notificacion2;   
     }
 
     /**
@@ -59,8 +60,9 @@ class notificarUsuarios extends Notification
     public function toArray($notifiable)
     {
         return [
-            'usuario' => Auth()->user()->name,
-            'detalle' => 'actualizó sus tareas',
+            'usuario' => Auth()->user()->name. " " . "Dice: ",
+            'detalle' => 'Es tu turno!'. " " . "proyecto". " : ".  $this->notifica[0]->proyecto,
+            'detalle2' => "Tarea" . " : " . $this->notifica[0]->nombre_tarea,
             'time' => Carbon::now()->diffForHumans(),
         ];
     }

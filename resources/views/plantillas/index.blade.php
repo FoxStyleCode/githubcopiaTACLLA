@@ -27,11 +27,22 @@
     </style>
 @endsection
     
-@section('content')
-<br>
-<br>
-<br>
+@section('contenido')
+
 <div class="container">
+    @if(!empty($errors->all()))
+    <div class="alert alert-danger">
+        <h4 class="is-size-4">Por favor, valida los siguientes errores:</h4>
+        <ul>
+            @foreach ($errors->all() as $mensaje)
+                <li>
+                    {{$mensaje}}
+                </li>
+            @endforeach
+        </ul>
+    </div>
+    @endif
+
     @if(session('danger'))
     <div class="alert alert-danger" role="alert">
         {{session('danger')}}
@@ -64,7 +75,7 @@
                                 <div class="card">
                                     <img title="titulo-plantilla" alt="Cotización" class="card-img-top w-60" src="/imagenes/{{$resul->dir}}" alt=""/>
                                     <div class="card-body">
-                                        <h5 class="card-title">{{$resul->nombre_plantilla}}</h5>
+                                        <h5 class="card-title $enable-responsive-font-sizes">{{$resul->nombre_plantilla}}</h5>
                                         <a target="_blank" href="{{$resul->link}}">{{$resul->nombre_plantilla}}</a>
                                         <form action="{{route('plantillas.destroy', $resul->id)}}" method="post" style="display: inline-block">
                                             @method('DELETE')
@@ -120,3 +131,5 @@
 </div>
 </div>
 @endsection
+
+

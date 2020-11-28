@@ -23,6 +23,8 @@ class CreateDetalleDeProyectosTable extends Migration
             $table->foreign('estado_id')->references('id')->on('estados');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
+            $table->integer('pelota');
+            $table->string('enlace');
             $table->timestamps();
         });
     }
